@@ -184,36 +184,32 @@
       transform: scaleX(0);
     }
 
-    @media (prefers-reduced-motion: no-preference) {
-      @supports (animation-timeline: scroll()) {
-        @keyframes usp-grow-progress {
-          from { transform: scaleX(0); }
-          to { transform: scaleX(1); }
-        }
-        #scroll-progress {
-          animation: usp-grow-progress auto linear;
-          animation-timeline: scroll(root block);
-        }
+    @supports (animation-timeline: scroll()) {
+      @keyframes usp-grow-progress {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      body:not(.motion-paused) #scroll-progress {
+        animation: usp-grow-progress auto linear;
+        animation-timeline: scroll(root block);
       }
     }
 
-    @media (prefers-reduced-motion: no-preference) {
-      @supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
-        html {
-          timeline-scope: --act-ter, --act-sec;
-        }
-        #nosotros { view-timeline: --act-ter block; }
-        #sectores { view-timeline: --act-sec block; }
+    @supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
+      html {
+        timeline-scope: --act-ter, --act-sec;
+      }
+      #nosotros { view-timeline: --act-ter block; }
+      #sectores { view-timeline: --act-sec block; }
 
-        @keyframes usp-ambient-shift {
-          from { opacity: 0.45; transform: translateY(10px); }
-          to { opacity: 0.9; transform: translateY(-10px); }
-        }
-        .ambient-map-caption {
-          animation: usp-ambient-shift auto linear both;
-          animation-timeline: --act-ter;
-          animation-range: entry 0% exit 100%;
-        }
+      @keyframes usp-ambient-shift {
+        from { opacity: 0.45; transform: translateY(10px); }
+        to { opacity: 0.9; transform: translateY(-10px); }
+      }
+      body:not(.motion-paused) .ambient-map-caption {
+        animation: usp-ambient-shift auto linear both;
+        animation-timeline: --act-ter;
+        animation-range: entry 0% exit 100%;
       }
     }
 
@@ -626,14 +622,12 @@
       filter: drop-shadow(0 0 10px rgba(0, 174, 239, 0.95));
     }
 
-    @media (prefers-reduced-motion: no-preference) {
-      @keyframes usp-beacon-breathe {
-        0%, 100% { opacity: 0.78; filter: drop-shadow(0 0 8px rgba(0, 174, 239, 0.7)); }
-        50% { opacity: 1; filter: drop-shadow(0 0 18px rgba(155, 235, 255, 1)); }
-      }
-      body:not(.motion-paused) .hero-emblem-svg .usp-beacon {
-        animation: usp-beacon-breathe 4.2s ease-in-out infinite;
-      }
+    @keyframes usp-beacon-breathe {
+      0%, 100% { opacity: 0.78; filter: drop-shadow(0 0 8px rgba(0, 174, 239, 0.7)); }
+      50% { opacity: 1; filter: drop-shadow(0 0 18px rgba(155, 235, 255, 1)); }
+    }
+    body:not(.motion-paused) .hero-emblem-svg .usp-beacon {
+      animation: usp-beacon-breathe 4.2s ease-in-out infinite;
     }
 
     .hero-copy-block {
@@ -991,14 +985,14 @@
       -webkit-backdrop-filter: none;
     }
 
-    @media (max-width: 899px) and (prefers-reduced-motion: no-preference) {
+    @media (max-width: 899px) {
       @supports ((animation-timeline: view()) and (animation-range: entry)) {
         @keyframes usp-card-scroll-reveal {
           entry 0% { opacity: 0.35; transform: translateY(28px) scale(0.96); }
           entry 100%, exit 0% { opacity: 1; transform: translateY(0) scale(1); }
           exit 100% { opacity: 0.65; transform: translateY(-10px) scale(0.98); }
         }
-        .service-prism-card {
+        body:not(.motion-paused) .service-prism-card {
           animation: usp-card-scroll-reveal auto linear both;
           animation-timeline: view();
         }
@@ -1512,11 +1506,9 @@
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .faro-beam-shaft { display: none; }
-      .contact-portal-card { clip-path: none !important; }
-      .sector-lens { clip-path: none !important; }
-    }
+    body.motion-paused .faro-beam-shaft { display: none; }
+    body.motion-paused .contact-portal-card { clip-path: none !important; }
+    body.motion-paused .sector-lens { clip-path: none !important; }
   </style>
 </head>
 <body>
@@ -2517,7 +2509,6 @@
         }
       };
 
-      var reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
       var state = {
         lang: 'es',
         activeCityIdx: 0,
@@ -2529,8 +2520,15 @@
         mouseX: 0.5,
         mouseY: 0.45,
         pausedByUser: false,
-        reducedMotion: reducedMotionQuery.matches
+        reducedMotion: false
       };
+
+      /* Only pause initially if user previously clicked the pause toggle on this browser */
+      try {
+        if (localStorage.getItem('usp_motion_paused') === '1') {
+          state.pausedByUser = true;
+        }
+      } catch (e) {}
 
       /* Resolve initial language (?lang=en or saved preference) */
       try {
@@ -3061,15 +3059,14 @@
 
       if (toggleBtn) {
         toggleBtn.addEventListener('click', function () {
-          if (state.reducedMotion || state.pausedByUser) {
-            state.reducedMotion = false;
-            state.pausedByUser = false;
-          } else {
-            state.pausedByUser = true;
-          }
+          state.reducedMotion = false;
+          state.pausedByUser = !state.pausedByUser;
+          try {
+            localStorage.setItem('usp_motion_paused', state.pausedByUser ? '1' : '0');
+          } catch (e) {}
           syncMotionToggleUI();
           mountScrollChoreography();
-          if (!state.pausedByUser && !state.reducedMotion) kickShader();
+          if (!state.pausedByUser) kickShader();
         });
       }
 
@@ -3096,7 +3093,7 @@
         if (lenis) {
           lenis.scrollTo(el, { duration: 1.15 });
         } else {
-          el.scrollIntoView({ behavior: state.reducedMotion ? 'auto' : 'smooth' });
+          el.scrollIntoView({ behavior: state.pausedByUser ? 'auto' : 'smooth' });
         }
       }
 
