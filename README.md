@@ -10,8 +10,9 @@ Repositorio oficial del sitio web, el Manual de Estilo Digital y las maquetas in
 
 ```text
 ushuaiasoporte-web/
-├── index.html                           # Hub ejecutivo: Manual de Estilo + Selector de 3 Pilotos + Comparativa
+├── index.html                           # Sitio oficial principal — Aurora Austral (Single-Scroll Cinematográfico)
 ├── favicon.svg                          # Isotipo oficial vectorial (Faro Les Éclaireurs + RJ45)
+├── studio/index.html                    # Hub histórico de comparativa de los 3 pilotos
 ├── assets/
 │   ├── usp-logo-cyan.svg                # Vector oficial exacto (#00AEEF) extraído de PDF Illustrator
 │   ├── usp-logo-white.svg               # Versión negativa blanca
@@ -23,9 +24,9 @@ ushuaiasoporte-web/
 ├── manual-de-estilo/
 │   ├── index.html                       # Manual de Estilo Digital interactivo (exportable a PDF A4)
 │   └── MANUAL_DE_ESTILO.md              # Guía canónica Markdown (DESIGN.md)
-├── piloto-1-faro-telemetry/index.html   # Piloto 01 — Dark Precision + Canvas 2D + SVG Blueprint Scrub
-├── piloto-2-meridiano-54/index.html     # Piloto 02 — Quiet Luxury Glacier Editorial + Horizontal Track + Polarity Wipe
-├── piloto-3-aurora-austral/index.html   # Piloto 03 — Spatial Light-Field WebGL2 Shader + Z-Depth Glass Stack
+├── piloto-1-faro-telemetry/index.html   # Archivo de referencia — Piloto 01
+├── piloto-2-meridiano-54/index.html     # Archivo de referencia — Piloto 02
+├── piloto-3-aurora-austral/index.html   # Archivo de referencia — Piloto 03 base
 ├── .github/workflows/deploy.yml         # CI/CD automático hacia GitHub Pages en cada push a main
 └── _headers                             # Cabeceras de seguridad listas para Cloudflare Pages
 ```

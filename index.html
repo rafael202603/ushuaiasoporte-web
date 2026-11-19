@@ -1,577 +1,1491 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ushuaia Soporte Técnico — Estudio de Identidad &amp; 3 Pilotos Web</title>
+  <title>Ushuaia Soporte Técnico — Infraestructura, Redes y Asistencia Informática</title>
+  <meta name="description" content="Ushuaia Soporte Técnico. Infraestructura, redes corporativas y asistencia informática para organizaciones desde 2014 en Ushuaia, Tolhuin, Río Grande y El Calafate." />
+  <meta name="theme-color" content="#04070E" />
+  <link rel="canonical" href="https://ushuaiasoporte.com/" />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:site_name" content="Ushuaia Soporte Técnico" />
+  <meta property="og:title" content="Ushuaia Soporte Técnico — Infraestructura, Redes y Asistencia Informática" />
+  <meta property="og:description" content="Acompañamos la operación tecnológica de empresas e instituciones desde 2014 en Ushuaia, Tolhuin, Río Grande y El Calafate." />
+  <meta property="og:url" content="https://ushuaiasoporte.com/" />
+
+  <!-- Structured Data (Verified Business Info Only) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Ushuaia Soporte Técnico",
+    "alternateName": "USP",
+    "url": "https://ushuaiasoporte.com",
+    "foundingDate": "2014",
+    "founder": {
+      "@type": "Person",
+      "name": "Rafael Pinto",
+      "jobTitle": "Owner & CEO"
+    },
+    "telephone": "+54 9 2901 519191",
+    "email": "contacto@ushuaiasoporte.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ushuaia",
+      "addressRegion": "Tierra del Fuego",
+      "addressCountry": "AR"
+    },
+    "areaServed": [
+      "Ushuaia",
+      "Tolhuin",
+      "Río Grande",
+      "El Calafate"
+    ],
+    "description": "Infraestructura, redes corporativas y asistencia informática para organizaciones del sector privado, bancario, hotelería y gastronomía."
+  }
+  </script>
+
+  <!-- Strict 2-Family Typography: Sora + IBM Plex Mono (Consolas fallback) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
   <style>
     :root {
-      --bg: #070A10;
-      --surface: #0E131D;
-      --surface-elevated: #141B29;
-      --border: rgba(255, 255, 255, 0.08);
-      --border-strong: rgba(0, 174, 239, 0.35);
+      --bg-abyss: #04070E;
+      --bg-deep: #061221;
+      --bg-ocean: #082036;
       --cyan: #00AEEF;
-      --cyan-soft: rgba(0, 174, 239, 0.12);
-      --text: #F2F6FC;
-      --muted: #8E9DB5;
-      --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --font-mono: "JetBrains Mono", Consolas, monospace;
-      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --cyan-ice: #7FE2FF;
+      --cyan-spec: #9BEBFF;
+      --cyan-dim: rgba(0, 174, 239, 0.16);
+
+      --glass: rgba(5, 13, 25, 0.78);
+      --glass-strong: rgba(5, 13, 25, 0.90);
+      --glass-border: rgba(136, 230, 255, 0.16);
+      --glass-border-hi: rgba(0, 174, 239, 0.52);
+
+      --ink: #F3FAFF;
+      --ink-2: #C2D9EA;
+      --ink-muted: #8EB2CB;
+
+      --font-sans: 'Sora', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'IBM Plex Mono', Consolas, 'Courier New', monospace;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --container: 1180px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      background-color: var(--bg-abyss);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: clip;
+      scroll-behavior: auto;
+    }
+
     body {
-      background: var(--bg);
-      color: var(--text);
+      position: relative;
+      min-height: 100vh;
+      background-color: var(--bg-abyss);
+      color: var(--ink);
       font-family: var(--font-sans);
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
       overflow-x: clip;
     }
 
-    /* Subtle architectural grid background */
-    body::before {
-      content: "";
+    /* Accessible Skip Link */
+    .skip-link {
+      position: fixed;
+      top: -100px;
+      left: 20px;
+      z-index: 200;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--cyan);
+      color: #03101B;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .skip-link:focus { top: 16px; }
+
+    /* Focus-Visible Standard (never clipped) */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--cyan-ice);
+      outline-offset: 3px;
+    }
+
+    /* =========================================================================
+       BACKGROUND ATMOSPHERE: STATIC FALLBACK + WEBGL2 AURORA SHADER + GRAIN
+       ========================================================================= */
+    .aurora-fallback {
       position: fixed;
       inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 75% 52% at 50% 18%, rgba(0, 174, 239, 0.18) 0%, rgba(7, 36, 61, 0.42) 44%, rgba(4, 7, 14, 0.98) 85%),
+        radial-gradient(ellipse 55% 40% at 80% 78%, rgba(127, 226, 255, 0.08) 0%, transparent 72%),
+        linear-gradient(180deg, #04070E 0%, #07192B 52%, #04070E 100%);
+    }
+
+    #aurora-gl {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      display: block;
+    }
+
+    /* Subtle architectural coordinate grid & light-field vignette */
+    .spatial-grid-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
       pointer-events: none;
       background-image:
-        linear-gradient(to right, rgba(255,255,255,0.028) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.028) 1px, transparent 1px);
-      background-size: 72px 72px;
-      mask-image: radial-gradient(circle at 50% 15%, rgba(0,0,0,0.9), transparent 80%);
-      z-index: 0;
+        linear-gradient(to right, rgba(136, 230, 255, 0.032) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(136, 230, 255, 0.032) 1px, transparent 1px);
+      background-size: 96px 96px;
+      mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.65) 15%, transparent 86%);
+    }
+
+    /* =========================================================================
+       SCROLL PROGRESS BAR — NATIVE CSS SCROLL-DRIVEN ANIMATION + JS FALLBACK
+       (modern-web-guidance: scroll-progress-indicator & scrollytelling)
+       ========================================================================= */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      z-index: 120;
+      pointer-events: none;
+      background: linear-gradient(90deg, rgba(0, 174, 239, 0.45), var(--cyan), var(--cyan-ice));
+      box-shadow: 0 0 14px rgba(0, 174, 239, 0.7);
+      transform-origin: 0 50%;
+      transform: scaleX(0);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      @supports (animation-timeline: scroll()) {
+        @keyframes usp-grow-progress {
+          from { transform: scaleX(0); }
+          to { transform: scaleX(1); }
+        }
+        #scroll-progress {
+          animation: usp-grow-progress auto linear;
+          animation-timeline: scroll(root block);
+        }
+      }
+    }
+
+    /* Native CSS Scrollytelling Timeline Scope for decorative ambient parallax cues */
+    @media (prefers-reduced-motion: no-preference) {
+      @supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
+        html {
+          timeline-scope: --act-ter, --act-sec;
+        }
+        #nosotros { view-timeline: --act-ter block; }
+        #sectores { view-timeline: --act-sec block; }
+
+        @keyframes usp-ambient-shift {
+          from { opacity: 0.45; transform: translateY(16px); }
+          to { opacity: 1; transform: translateY(-16px); }
+        }
+        .ambient-lat-marker {
+          animation: usp-ambient-shift auto linear both;
+          animation-timeline: --act-ter;
+          animation-range: entry 0% exit 100%;
+        }
+      }
+    }
+
+    /* =========================================================================
+       FLOATING GLASS NAVIGATION PILL
+       ========================================================================= */
+    .site-nav-wrap {
+      position: fixed;
+      top: 18px;
+      left: 0;
+      right: 0;
+      z-index: 90;
+      display: flex;
+      justify-content: center;
+      padding: 0 18px;
+      pointer-events: none;
+    }
+
+    .site-nav {
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      width: 100%;
+      max-width: 980px;
+      padding: 9px 10px 9px 16px;
+      border-radius: 999px;
+      background: rgba(5, 12, 24, 0.74);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(155, 235, 255, 0.08);
+      transition: background-color 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+    }
+
+    .nav-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      color: var(--ink);
+      flex-shrink: 0;
+    }
+    .nav-brand svg {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+    .nav-brand-text {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--ink-2);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      transition: color 0.2s var(--ease-out);
+    }
+    .nav-links a:hover,
+    .nav-links a.is-active {
+      color: var(--cyan-ice);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      background: rgba(0, 174, 239, 0.14);
+      border: 1px solid rgba(0, 174, 239, 0.48);
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), color 0.2s var(--ease-out);
+    }
+    .nav-cta:hover {
+      background: var(--cyan);
+      border-color: var(--cyan);
+      color: #03101B;
+    }
+
+    /* =========================================================================
+       RIGHT CHAPTER TELEMETRY RAIL (I - V) + WCAG 2.2.2 PAUSE CONTROL
+       ========================================================================= */
+    .chapter-rail {
+      position: fixed;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 80;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 14px;
+    }
+    .chapter-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--ink-muted);
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.1em;
+      padding: 3px 0;
+      transition: color 0.2s var(--ease-out);
+    }
+    .chapter-dot .dot-bar {
+      width: 14px;
+      height: 2px;
+      border-radius: 999px;
+      background: rgba(142, 178, 203, 0.35);
+      transition: width 0.28s var(--ease-out), background-color 0.28s var(--ease-out);
+    }
+    .chapter-dot .dot-label {
+      opacity: 0;
+      transform: translateX(6px);
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(4, 7, 14, 0.88);
+      border: 1px solid rgba(136, 230, 255, 0.16);
+      backdrop-filter: blur(8px);
+      transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+    }
+    .chapter-dot:hover .dot-label,
+    .chapter-dot.is-active .dot-label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .chapter-dot.is-active {
+      color: var(--cyan-ice);
+    }
+    .chapter-dot.is-active .dot-bar {
+      width: 28px;
+      background: var(--cyan);
+      box-shadow: 0 0 10px rgba(0, 174, 239, 0.8);
+    }
+
+    /* WCAG 2.2.2 Pause, Stop, Hide visible keyboard button (no aria-pressed because label toggles) */
+    .motion-toggle {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 85;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(5, 13, 25, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--glass-border);
+      color: var(--ink-muted);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: border-color 0.2s var(--ease-out), color 0.2s var(--ease-out);
+    }
+    .motion-toggle:hover {
+      border-color: var(--cyan);
+      color: var(--ink);
+    }
+    .motion-toggle-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+    }
+    .motion-toggle.is-paused .motion-toggle-dot {
+      background: var(--ink-muted);
+    }
+
+    /* =========================================================================
+       SHARED LAYOUT & TYPOGRAPHY PRIMITIVES
+       ========================================================================= */
+    main {
+      position: relative;
+      z-index: 10;
     }
 
     .container {
-      position: relative;
-      z-index: 1;
-      max-width: 1240px;
+      width: 100%;
+      max-width: var(--container);
       margin: 0 auto;
       padding: 0 clamp(20px, 4vw, 48px);
     }
 
-    /* Top Header */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      backdrop-filter: blur(16px);
-      background: rgba(7, 10, 16, 0.82);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      min-height: 74px;
-      padding: 10px 0;
-    }
-    .brand-lockup {
-      display: flex;
+    .act-eyebrow {
+      display: inline-flex;
       align-items: center;
       gap: 12px;
-      text-decoration: none;
-      color: var(--text);
-      min-width: 0;
-    }
-    .brand-lockup svg { width: 38px; height: 38px; flex-shrink: 0; }
-    .brand-name {
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.04em;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      line-height: 1.15;
+      color: var(--cyan-ice);
+      margin-bottom: 16px;
     }
-    .brand-sub {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--cyan);
-      letter-spacing: 0.06em;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-    .nav-links a {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s var(--ease);
-    }
-    .nav-links a:hover { color: var(--text); }
-    .nav-badge {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--cyan);
-      background: var(--cyan-soft);
-      border: 1px solid var(--border-strong);
-      padding: 6px 12px;
-      border-radius: 999px;
-      white-space: nowrap;
-    }
-
-    /* Hero */
-    .hero {
-      padding: clamp(56px, 8vw, 104px) 0 48px;
-      border-bottom: 1px solid var(--border);
-    }
-    .eyebrow {
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 18px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .eyebrow::before {
+    .act-eyebrow::before {
       content: "";
-      width: 24px;
+      width: 26px;
       height: 1px;
-      background: var(--cyan);
+      background: linear-gradient(90deg, var(--cyan), transparent);
     }
-    h1 {
-      font-size: clamp(2.1rem, 4.4vw, 3.65rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.08;
-      max-width: 900px;
-      margin-bottom: 22px;
-    }
-    h1 span { font-weight: 300; color: var(--muted); }
-    .hero-desc {
-      max-width: 720px;
-      color: var(--muted);
-      font-size: 1.05rem;
-      margin-bottom: 32px;
-    }
-    .hero-meta-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px 28px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-    .hero-meta-strip strong { color: var(--text); font-weight: 500; }
 
-    /* Brand Manual Banner Card */
-    .section { padding: 64px 0; border-bottom: 1px solid var(--border); }
-    .section-head {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 32px;
-      flex-wrap: wrap;
-    }
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      color: var(--cyan);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    h2 {
-      font-size: clamp(1.5rem, 2.5vw, 2.15rem);
+    .act-title {
+      font-size: clamp(2rem, 4.2vw, 3.65rem);
       font-weight: 600;
-      letter-spacing: -0.02em;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      color: var(--ink);
     }
 
-    .manual-banner {
-      display: grid;
-      grid-template-columns: 1.35fr 0.85fr;
-      gap: 32px;
-      background: linear-gradient(135deg, rgba(14, 19, 29, 0.96), rgba(20, 27, 41, 0.92));
-      border: 1px solid var(--border-strong);
-      border-radius: 16px;
-      padding: clamp(24px, 3.5vw, 40px);
-      align-items: center;
+    .act-lead {
+      font-size: clamp(0.98rem, 1.35vw, 1.15rem);
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--ink-2);
     }
-    .manual-banner p {
-      color: var(--muted);
-      margin: 14px 0 24px;
-      font-size: 0.96rem;
-    }
-    .swatch-row {
+
+    /* =========================================================================
+       ACTO I — APERTURA · PORTAL DEL FARO (HERO MONUMENTAL)
+       ========================================================================= */
+    .act-hero {
+      position: relative;
+      min-height: 100svh;
       display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-    .swatch-pill {
-      display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 6px 11px;
-      border-radius: 8px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      color: var(--text);
+      justify-content: center;
+      padding: 100px 20px 64px;
+      overflow: hidden;
     }
-    .swatch-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 3px;
-      border: 1px solid rgba(255,255,255,0.2);
+
+    /* Vertical lighthouse light shaft revealed during portal split */
+    .faro-beam-shaft {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      transform: translateX(-50%) scaleY(0);
+      transform-origin: 50% 42%;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 174, 239, 0.25) 20%, rgba(155, 235, 255, 0.95) 50%, rgba(0, 174, 239, 0.35) 85%, transparent 100%);
+      box-shadow: 0 0 36px 4px rgba(0, 174, 239, 0.55);
+      pointer-events: none;
+      z-index: 1;
     }
-    .manual-visual {
-      background: #090D16;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px;
+
+    .hero-stage {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 960px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 16px;
       text-align: center;
     }
-    .manual-visual svg { width: 112px; height: 112px; }
-    .manual-visual .caption {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
 
-    /* Buttons */
-    .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
-    .btn {
+    .hero-coord-pill {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 20px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 0.88rem;
-      text-decoration: none;
-      transition: transform 0.2s var(--ease), background 0.2s var(--ease), border-color 0.2s var(--ease);
-    }
-    .btn:hover { transform: translateY(-1px); }
-    .btn-primary {
-      background: var(--cyan);
-      color: #04101A;
-    }
-    .btn-primary:hover { background: #26C1FB; }
-    .btn-ghost {
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
-
-    /* 3 Pilots Grid */
-    .pilots-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-    .pilot-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: border-color 0.28s var(--ease), transform 0.28s var(--ease);
-    }
-    .pilot-card:hover {
-      border-color: var(--border-strong);
-      transform: translateY(-4px);
-    }
-
-    /* Architectural mini visual preview inside each card */
-    .pilot-preview {
-      height: 196px;
-      position: relative;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-    }
-    .preview-1 {
-      background:
-        radial-gradient(circle at 80% 25%, rgba(0, 174, 239, 0.22), transparent 55%),
-        linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px),
-        #06090F;
-      background-size: auto, 28px 28px, 28px 28px, auto;
-    }
-    .preview-2 {
-      background:
-        linear-gradient(125deg, #F8FAFC 0%, #EDF3F7 64%, #111827 64.2%, #0E1524 100%);
-      color: #0B111E;
-    }
-    .preview-3 {
-      background:
-        radial-gradient(ellipse at 25% 80%, rgba(0, 174, 239, 0.42), transparent 58%),
-        radial-gradient(ellipse at 82% 20%, rgba(124, 228, 255, 0.24), transparent 52%),
-        linear-gradient(160deg, #04070E 0%, #071A2B 100%);
-    }
-    .preview-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-    .preview-pill {
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(6, 9, 15, 0.65);
-      color: #E2EEF9;
-    }
-    .preview-2 .preview-pill {
-      background: rgba(255,255,255,0.86);
-      color: #0B111E;
-      border-color: rgba(11,17,30,0.14);
-    }
-    .preview-wire {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
       gap: 10px;
-      align-items: end;
-    }
-    .preview-title-mini {
-      font-weight: 700;
-      font-size: 1.15rem;
-      letter-spacing: -0.02em;
-      line-height: 1.15;
-    }
-    .preview-2 .preview-title-mini { color: #0B111E; }
-    .preview-sub-mini {
-      font-family: var(--font-mono);
-      font-size: 0.66rem;
-      opacity: 0.78;
-      margin-top: 4px;
-    }
-    .preview-2 .preview-sub-mini { color: #334155; }
-    .preview-glass-chip {
-      justify-self: end;
-      padding: 8px 10px;
-      border-radius: 8px;
-      font-family: var(--font-mono);
-      font-size: 0.66rem;
-      background: rgba(10, 18, 30, 0.72);
-      border: 1px solid rgba(0, 174, 239, 0.35);
-      color: #7CE4FF;
-      backdrop-filter: blur(8px);
-    }
-
-    .pilot-body {
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
-    .pilot-code {
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: rgba(5, 13, 25, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--glass-border);
       font-family: var(--font-mono);
       font-size: 0.72rem;
-      color: var(--cyan);
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      margin-bottom: 6px;
+      color: var(--cyan-ice);
+      margin-bottom: 24px;
     }
-    .pilot-body h3 {
-      font-size: 1.28rem;
+    .coord-pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+    }
+
+    /* Monumental Official Layered Emblem Portal */
+    .portal-emblem-wrap {
+      position: relative;
+      width: clamp(190px, 24vw, 256px);
+      height: clamp(190px, 24vw, 256px);
+      display: grid;
+      place-items: center;
+      margin-bottom: 24px;
+    }
+
+    .portal-halo {
+      position: absolute;
+      inset: 8%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 174, 239, 0.32) 0%, rgba(8, 32, 54, 0.16) 52%, transparent 74%);
+      filter: blur(16px);
+      pointer-events: none;
+    }
+
+    .portal-orbit-outer,
+    .portal-orbit-inner {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .portal-orbit-outer {
+      inset: -12px;
+      border: 1px solid rgba(155, 235, 255, 0.22);
+    }
+    .portal-orbit-outer::before,
+    .portal-orbit-outer::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      width: 1px;
+      height: 14px;
+      background: var(--cyan-spec);
+      transform: translateX(-50%);
+    }
+    .portal-orbit-outer::before { top: -7px; }
+    .portal-orbit-outer::after { bottom: -7px; }
+
+    .portal-orbit-inner {
+      inset: 10px;
+      border: 1px dashed rgba(0, 174, 239, 0.32);
+    }
+
+    .hero-emblem-svg {
+      position: relative;
+      z-index: 2;
+      width: 78%;
+      height: 78%;
+      overflow: visible;
+      filter: drop-shadow(0 0 28px rgba(0, 174, 239, 0.26));
+    }
+    .hero-emblem-svg .usp-ring { color: rgba(243, 250, 255, 0.94); transform-origin: 180px 180px; }
+    .hero-emblem-svg .usp-faro { color: #FFFFFF; transform-origin: 180px 180px; }
+    .hero-emblem-svg .usp-rj-left { color: var(--cyan-ice); transform-origin: 145px 180px; }
+    .hero-emblem-svg .usp-rj-right { color: var(--cyan-ice); transform-origin: 215px 180px; }
+    .hero-emblem-svg .usp-beacon {
+      color: var(--cyan);
+      transform-origin: 179.5px 50px;
+      filter: drop-shadow(0 0 10px rgba(0, 174, 239, 0.95));
+    }
+
+    /* Gentle WCAG-safe beacon breathing (< 0.25 Hz, strictly < 3 flashes/s, opt-in) */
+    @media (prefers-reduced-motion: no-preference) {
+      @keyframes usp-beacon-breathe {
+        0%, 100% { opacity: 0.78; filter: drop-shadow(0 0 8px rgba(0, 174, 239, 0.7)); }
+        50% { opacity: 1; filter: drop-shadow(0 0 18px rgba(155, 235, 255, 1)); }
+      }
+      body:not(.motion-paused) .hero-emblem-svg .usp-beacon {
+        animation: usp-beacon-breathe 4.2s ease-in-out infinite;
+      }
+    }
+
+    .hero-copy-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-h1 {
+      font-size: clamp(2.25rem, 5.2vw, 4.45rem);
       font-weight: 700;
-      margin-bottom: 10px;
+      line-height: 1.03;
+      letter-spacing: -0.035em;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+
+    .hero-sub {
+      font-size: clamp(1.08rem, 2.05vw, 1.55rem);
+      font-weight: 400;
+      line-height: 1.32;
+      color: var(--cyan-ice);
+      max-width: 720px;
+      margin-bottom: 14px;
       letter-spacing: -0.015em;
     }
-    .pilot-body p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 18px;
+
+    .hero-desc {
+      font-size: clamp(0.95rem, 1.25vw, 1.08rem);
+      font-weight: 300;
+      line-height: 1.68;
+      color: var(--ink-2);
+      max-width: 640px;
+      margin-bottom: 30px;
     }
-    .spec-list {
-      list-style: none;
-      margin-bottom: 24px;
-      display: flex;
+
+    .scroll-cue {
+      display: inline-flex;
       flex-direction: column;
-      gap: 9px;
-      border-top: 1px solid var(--border);
-      padding-top: 16px;
-      font-size: 0.83rem;
-      color: #C7D4E8;
-    }
-    .spec-list li {
-      display: grid;
-      grid-template-columns: 94px 1fr;
-      gap: 10px;
-    }
-    .spec-list span {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      padding-top: 2px;
-    }
-    .pilot-actions {
-      margin-top: auto;
-      display: flex;
-      gap: 10px;
-    }
-    .pilot-actions .btn { width: 100%; }
-
-    /* Comparison Table */
-    .table-wrap {
-      overflow-x: auto;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: var(--surface);
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.86rem;
-    }
-    th, td {
-      padding: 15px 18px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-      vertical-align: top;
-    }
-    th {
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--cyan);
-      background: rgba(255,255,255,0.02);
-    }
-    tr:last-child td { border-bottom: none; }
-    td:first-child {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    /* Skills Audit Grid */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-    .skill-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-    }
-    .skill-top {
-      display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
-    .skill-name {
+      gap: 10px;
       font-family: var(--font-mono);
-      font-size: 0.84rem;
-      font-weight: 600;
-      color: var(--text);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--ink-muted);
+      text-transform: uppercase;
     }
-    .skill-tag {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      color: var(--cyan);
-      background: var(--cyan-soft);
-      padding: 3px 8px;
-      border-radius: 6px;
-    }
-    .skill-card p {
-      font-size: 0.85rem;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-    .skill-repo {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: #6B7D99;
+    .scroll-cue-line {
+      width: 1px;
+      height: 36px;
+      background: linear-gradient(180deg, var(--cyan), transparent);
     }
 
-    /* Next steps footer */
-    .deploy-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px;
+    /* =========================================================================
+       ACTO II — QUIÉNES SOMOS & COBERTURA AUSTRAL (CONSTELLATION MAP)
+       ========================================================================= */
+    .act-territory {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: 104px 0 84px;
+      border-top: 1px solid rgba(136, 230, 255, 0.08);
+    }
+
+    .territory-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.08fr);
+      gap: clamp(32px, 5vw, 64px);
+      align-items: center;
+    }
+
+    .territory-copy .act-title {
+      margin-bottom: 20px;
+    }
+    .territory-copy .act-lead {
+      margin-bottom: 28px;
+      max-width: 540px;
+    }
+
+    .cities-list {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 28px;
-    }
-    .deploy-box h3 { font-size: 1.05rem; margin-bottom: 10px; }
-    .deploy-box ul {
-      padding-left: 18px;
-      color: var(--muted);
-      font-size: 0.88rem;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .deploy-box code {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--cyan);
-      background: rgba(0, 174, 239, 0.08);
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
-
-    footer {
-      padding: 36px 0 48px;
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
       gap: 12px;
     }
 
-    @media (max-width: 1024px) {
-      .pilots-grid, .skills-grid { grid-template-columns: 1fr; }
-      .manual-banner, .deploy-box { grid-template-columns: 1fr; }
+    .city-card {
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: var(--glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      transition: border-color 0.35s var(--ease-out), background-color 0.35s var(--ease-out), transform 0.35s var(--ease-out);
     }
-    @media (max-width: 720px) {
+    .city-card.is-lit {
+      border-color: var(--glass-border-hi);
+      background: rgba(8, 28, 48, 0.86);
+      box-shadow: 0 12px 32px rgba(0, 174, 239, 0.14);
+    }
+    .city-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .city-name {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+    }
+    .city-card.is-lit .city-name {
+      color: var(--cyan-ice);
+    }
+    .city-coord {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      color: var(--ink-muted);
+    }
+    .city-role {
+      font-size: 0.83rem;
+      color: var(--ink-2);
+      font-weight: 300;
+      line-height: 1.45;
+    }
+
+    /* Constellation Architectural Instrument Panel */
+    .constellation-stage {
+      position: relative;
+      border-radius: 24px;
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      padding: 24px;
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(155, 235, 255, 0.09);
+      overflow: hidden;
+    }
+
+    .constellation-hud {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 14px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(136, 230, 255, 0.1);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.09em;
+      color: var(--ink-muted);
+    }
+    .constellation-hud strong {
+      color: var(--cyan-ice);
+      font-weight: 500;
+    }
+
+    .constellation-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .map-node-dot {
+      transition: fill 0.35s ease, r 0.35s ease;
+    }
+    .map-node-pulse {
+      transform-box: fill-box;
+      transform-origin: center;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .map-node-group.is-lit .map-node-dot {
+      fill: #9BEBFF;
+    }
+    .map-node-group.is-lit .map-node-pulse {
+      opacity: 0.85;
+      transform: scale(1.35);
+    }
+    .map-node-group.is-lit .map-node-label {
+      fill: #FFFFFF;
+    }
+
+    .constellation-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(136, 230, 255, 0.1);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--ink-muted);
+    }
+
+    /* =========================================================================
+       ACTO III — SERVICIOS (3D PERSPECTIVE SPATIAL DECK + ORBITAL DIAL)
+       ========================================================================= */
+    .act-services {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: 104px 0 88px;
+      border-top: 1px solid rgba(136, 230, 255, 0.08);
+    }
+
+    .services-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
+      gap: clamp(32px, 5vw, 68px);
+      align-items: center;
+    }
+
+    .services-sidebar .act-title {
+      margin-bottom: 14px;
+    }
+    .services-sidebar .act-lead {
+      margin-bottom: 28px;
+    }
+
+    /* Architectural Rotating Orbital Dial */
+    .orbital-dial-box {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      margin-bottom: 20px;
+    }
+    .orbital-dial-svg {
+      width: 92px;
+      height: 92px;
+      flex-shrink: 0;
+    }
+    .dial-rotator {
+      transform-origin: 60px 60px;
+    }
+    .dial-readout {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .dial-index {
+      font-family: var(--font-mono);
+      font-size: 1.45rem;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.02em;
+    }
+    .dial-index span {
+      color: var(--ink-muted);
+      font-size: 0.88rem;
+      font-weight: 400;
+    }
+    .dial-caption {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--cyan-ice);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .service-nav-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .service-pill-btn {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(5, 13, 25, 0.74);
+      border: 1px solid var(--glass-border);
+      color: var(--ink-muted);
+      cursor: pointer;
+      transition: border-color 0.2s var(--ease-out), color 0.2s var(--ease-out), background-color 0.2s var(--ease-out);
+    }
+    .service-pill-btn:hover {
+      border-color: var(--cyan);
+      color: var(--ink);
+    }
+    .service-pill-btn.is-active {
+      background: rgba(0, 174, 239, 0.18);
+      border-color: var(--cyan);
+      color: var(--cyan-ice);
+    }
+
+    /* 3D Spatial Perspective Deck Stage */
+    .deck-viewport {
+      position: relative;
+      perspective: 1400px;
+      perspective-origin: 50% 42%;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* Only switched to layered 3D stack inside desktop matchMedia via JS (.is-3d-deck) */
+    .deck-viewport.is-3d-deck {
+      height: 452px;
+      display: block;
+      overflow: hidden;
+      padding-top: 42px;
+    }
+
+    .service-prism-card {
+      position: relative;
+      border-radius: 26px;
+      background: linear-gradient(150deg, rgba(8, 22, 40, 0.92) 0%, rgba(4, 11, 22, 0.94) 100%);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border: 1px solid var(--glass-border);
+      padding: clamp(26px, 3.2vw, 38px);
+      box-shadow: 0 28px 72px rgba(0, 0, 0, 0.56), inset 0 1px 0 rgba(155, 235, 255, 0.14);
+      transform-style: preserve-3d;
+      will-change: transform, opacity;
+      overflow: hidden;
+    }
+
+    .service-prism-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 65% 45% at 88% 12%, rgba(0, 174, 239, 0.18), transparent 68%);
+      pointer-events: none;
+    }
+
+    .deck-viewport.is-3d-deck .service-prism-card {
+      position: absolute;
+      top: 42px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: linear-gradient(150deg, #071629 0%, #040B16 100%);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    /* Native CSS view() scroll entry/exit for non-pinned mobile cards (modern-web-guidance: scroll-entry-exit-effects) */
+    @media (max-width: 899px) and (prefers-reduced-motion: no-preference) {
+      @supports ((animation-timeline: view()) and (animation-range: entry)) {
+        @keyframes usp-card-scroll-reveal {
+          entry 0% { opacity: 0.35; transform: translateY(28px) scale(0.96); }
+          entry 100%, exit 0% { opacity: 1; transform: translateY(0) scale(1); }
+          exit 100% { opacity: 0.65; transform: translateY(-10px) scale(0.98); }
+        }
+        .service-prism-card {
+          animation: usp-card-scroll-reveal auto linear both;
+          animation-timeline: view();
+        }
+      }
+    }
+
+    .prism-top {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .prism-num {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      color: var(--cyan-ice);
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(0, 174, 239, 0.12);
+      border: 1px solid rgba(0, 174, 239, 0.34);
+    }
+    .prism-glyph {
+      width: 58px;
+      height: 58px;
+      color: var(--cyan-ice);
+      opacity: 0.92;
+      flex-shrink: 0;
+    }
+
+    .prism-body {
+      position: relative;
+      z-index: 2;
+    }
+    .prism-body h3 {
+      font-size: clamp(1.38rem, 2.3vw, 1.95rem);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.18;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+    .prism-body p {
+      font-size: clamp(0.96rem, 1.25vw, 1.08rem);
+      font-weight: 300;
+      line-height: 1.72;
+      color: var(--ink-2);
+      max-width: 560px;
+    }
+
+    .prism-foot {
+      position: relative;
+      z-index: 2;
+      margin-top: 26px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(136, 230, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.09em;
+      color: var(--ink-muted);
+      text-transform: uppercase;
+    }
+    .prism-foot strong {
+      color: var(--cyan-ice);
+      font-weight: 500;
+    }
+
+    /* =========================================================================
+       ACTO IV — SECTORES (ECCENTRIC COUNTER-SCROLL KINETIC MARQUEE + LENSES)
+       ========================================================================= */
+    .act-sectors {
+      position: relative;
+      padding: clamp(92px, 11vw, 148px) 0;
+      border-top: 1px solid rgba(136, 230, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .sectors-header {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 48px;
+    }
+    .sectors-header .act-eyebrow {
+      justify-content: center;
+    }
+    .sectors-header .act-eyebrow::after {
+      content: "";
+      width: 26px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan));
+    }
+    .sectors-header .act-title {
+      margin-bottom: 16px;
+    }
+
+    /* Eccentric Counter-Scrolling Monumental Kinetic Ribbon */
+    .kinetic-stage {
+      position: relative;
+      padding: 20px 0 42px;
+      margin-bottom: 30px;
+      user-select: none;
+      pointer-events: none;
+    }
+    .kinetic-track {
+      display: flex;
+      align-items: center;
+      gap: 44px;
+      white-space: nowrap;
+      will-change: transform;
+      line-height: 1.05;
+    }
+    .kinetic-track + .kinetic-track {
+      margin-top: 10px;
+    }
+    .kinetic-word {
+      font-size: clamp(2.6rem, 6.8vw, 6.2rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(155, 235, 255, 0.28);
+    }
+    .kinetic-word.is-solid {
+      color: rgba(243, 250, 255, 0.92);
+      -webkit-text-stroke: 0;
+    }
+    .kinetic-word.is-cyan {
+      color: transparent;
+      -webkit-text-stroke: 1.2px rgba(0, 174, 239, 0.65);
+    }
+    .kinetic-sep {
+      font-family: var(--font-mono);
+      font-size: clamp(1.2rem, 2.2vw, 2rem);
+      color: var(--cyan);
+      opacity: 0.7;
+    }
+
+    /* 4 Sector Optical Lenses */
+    .sectors-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .sector-lens {
+      position: relative;
+      border-radius: 22px;
+      background: var(--glass);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--glass-border);
+      padding: clamp(24px, 3vw, 34px);
+      transition: border-color 0.28s var(--ease-out), background-color 0.28s var(--ease-out), transform 0.28s var(--ease-out);
+      overflow: hidden;
+    }
+    .sector-lens::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 174, 239, 0.7), transparent);
+      opacity: 0.35;
+      transition: opacity 0.28s var(--ease-out);
+    }
+    .sector-lens:hover {
+      border-color: var(--glass-border-hi);
+      background: rgba(7, 22, 40, 0.88);
+      transform: translateY(-3px);
+    }
+    .sector-lens:hover::after {
+      opacity: 1;
+    }
+
+    .sector-index {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      color: var(--cyan-ice);
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sector-lens h3 {
+      font-size: clamp(1.28rem, 2vw, 1.65rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .sector-lens p {
+      font-size: 0.96rem;
+      font-weight: 300;
+      line-height: 1.66;
+      color: var(--ink-2);
+    }
+
+    /* =========================================================================
+       ACTO V — CIERRE & CONTACTO (CIRCULAR IRIS PORTAL REVEAL)
+       ========================================================================= */
+    .act-contact {
+      position: relative;
+      padding: clamp(88px, 10vw, 140px) 0 64px;
+      border-top: 1px solid rgba(136, 230, 255, 0.08);
+    }
+
+    /* Outer wrapper stays unclipped so focus-visible rings are never cut off (modern-web-guidance: motion) */
+    .contact-portal-outer {
+      position: relative;
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .contact-portal-card {
+      position: relative;
+      border-radius: 30px;
+      background: linear-gradient(155deg, rgba(7, 22, 40, 0.92) 0%, rgba(4, 10, 20, 0.95) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(136, 230, 255, 0.24);
+      padding: clamp(32px, 5vw, 60px);
+      box-shadow: 0 36px 96px rgba(0, 0, 0, 0.6), 0 0 80px rgba(0, 174, 239, 0.08);
+      will-change: clip-path, transform;
+    }
+
+    .contact-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: 28px;
+      align-items: end;
+      padding-bottom: 34px;
+      margin-bottom: 34px;
+      border-bottom: 1px solid rgba(136, 230, 255, 0.12);
+    }
+    .contact-head .act-title {
+      margin-bottom: 14px;
+    }
+    .contact-founder-tag {
+      justify-self: end;
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: rgba(4, 10, 20, 0.68);
+      border: 1px solid var(--glass-border);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      line-height: 1.6;
+      color: var(--ink-muted);
+    }
+    .contact-founder-tag strong {
+      display: block;
+      color: var(--ink);
+      font-weight: 500;
+      font-size: 0.82rem;
+    }
+
+    .channels-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+
+    .channel-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: rgba(4, 10, 20, 0.72);
+      border: 1px solid var(--glass-border);
+      transition: border-color 0.22s var(--ease-out), background-color 0.22s var(--ease-out);
+    }
+    .channel-item:hover {
+      border-color: var(--glass-border-hi);
+      background: rgba(7, 20, 36, 0.86);
+    }
+    .channel-meta {
+      min-width: 0;
+    }
+    .channel-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 5px;
+    }
+    .channel-value {
+      font-family: var(--font-mono);
+      font-size: clamp(0.84rem, 1.15vw, 0.96rem);
+      font-weight: 500;
+      color: var(--ink);
+      word-break: break-all;
+    }
+    .copy-btn {
+      flex-shrink: 0;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(0, 174, 239, 0.1);
+      border: 1px solid rgba(0, 174, 239, 0.34);
+      color: var(--cyan-ice);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: background-color 0.2s var(--ease-out), color 0.2s var(--ease-out), border-color 0.2s var(--ease-out);
+    }
+    .copy-btn:hover {
+      background: var(--cyan);
+      border-color: var(--cyan);
+      color: #03101B;
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      background: var(--cyan);
+      color: #03101B;
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(0, 174, 239, 0.34);
+      transition: background-color 0.2s var(--ease-out), transform 0.2s var(--ease-out);
+    }
+    .btn-primary:hover {
+      background: #2CC3FC;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--glass-border-hi);
+      color: var(--ink);
+      font-weight: 500;
+      font-size: 0.92rem;
+      text-decoration: none;
+      transition: background-color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), color 0.2s var(--ease-out);
+    }
+    .btn-secondary:hover {
+      background: rgba(0, 174, 239, 0.14);
+      color: var(--cyan-ice);
+    }
+
+    /* =========================================================================
+       MINIMAL FOOTER
+       ========================================================================= */
+    .site-footer {
+      position: relative;
+      z-index: 10;
+      padding: 36px 0 56px;
+      border-top: 1px solid rgba(136, 230, 255, 0.08);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .footer-brand svg {
+      width: 26px;
+      height: 26px;
+    }
+    .footer-brand-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .footer-brand-domain {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--cyan-ice);
+      margin-left: 8px;
+    }
+    .footer-geo {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* Accessible Copy Toast */
+    .copy-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translate(-50%, 16px);
+      z-index: 150;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(4, 15, 29, 0.94);
+      border: 1px solid var(--cyan);
+      color: var(--cyan-ice);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+    }
+    .copy-toast.is-visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* =========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================= */
+    @media (max-width: 1260px) {
+      .chapter-rail { display: none; }
+    }
+
+    @media (max-width: 900px) {
       .nav-links { display: none; }
-      .nav-badge { display: none; }
-      .brand-name { font-size: 0.88rem; }
-      .brand-sub { font-size: 0.68rem; }
+      .territory-grid,
+      .services-layout,
+      .contact-head {
+        grid-template-columns: 1fr;
+      }
+      .contact-founder-tag {
+        justify-self: start;
+      }
+      .sectors-grid,
+      .channels-grid {
+        grid-template-columns: 1fr;
+      }
+      .cities-list {
+        grid-template-columns: 1fr;
+      }
+      .act-territory,
+      .act-services {
+        min-height: auto;
+        padding: 76px 0;
+      }
+      .service-nav-pills {
+        display: none;
+      }
+      .orbital-dial-box {
+        display: none;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .site-nav {
+        padding: 8px 8px 8px 12px;
+        gap: 10px;
+      }
+      .nav-brand-text {
+        font-size: 0.66rem;
+        letter-spacing: 0.06em;
+      }
+      .nav-cta {
+        padding: 8px 13px;
+        font-size: 0.68rem;
+      }
+      .hero-coord-pill {
+        font-size: 0.64rem;
+        padding: 6px 12px;
+      }
+      .channel-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .motion-toggle {
+        right: 12px;
+        bottom: 12px;
+        padding: 6px 10px;
+        font-size: 0.64rem;
+      }
+    }
+
+    /* Strict Reduced-Motion Static Safety */
+    @media (prefers-reduced-motion: reduce) {
+      .faro-beam-shaft { display: none; }
+      .contact-portal-card { clip-path: none !important; }
+      .sector-lens { clip-path: none !important; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="container nav-inner">
-      <a class="brand-lockup" href="#top">
+  <a class="skip-link" href="#main-content">Ir al contenido principal</a>
+
+  <!-- Static Aurora Fallback + WebGL2 Polar Light-Field Canvas + Subtle Spatial Grid -->
+  <div class="aurora-fallback" aria-hidden="true"></div>
+  <canvas id="aurora-gl" aria-hidden="true"></canvas>
+  <div class="spatial-grid-overlay" aria-hidden="true"></div>
+
+  <!-- Native CSS Scroll-Driven Top Progress Rail -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Floating Glass Navigation Pill -->
+  <header class="site-nav-wrap">
+    <nav class="site-nav" aria-label="Navegación principal">
+      <a class="nav-brand" href="#inicio">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-label="Ushuaia Soporte Técnico">
           <defs>
-            <mask id="hub-logo-mask">
+            <mask id="nav-m-logo">
               <rect width="360" height="360" fill="#000000"/>
               <path d="M349.22 180.00 C349.22 273.46 273.46 349.22 180.00 349.22 C86.54 349.22 10.78 273.46 10.78 180.00 C10.78 86.54 86.54 10.78 180.00 10.78 C273.46 10.78 349.22 86.54 349.22 180.00 Z" fill="#ffffff"/>
               <path d="M333.72 180.00 C333.72 264.90 264.90 333.72 180.00 333.72 C95.10 333.72 26.28 264.90 26.28 180.00 C26.28 95.10 95.10 26.28 180.00 26.28 C264.90 26.28 333.72 95.10 333.72 180.00 Z" fill="#000000"/>
@@ -609,311 +1523,1209 @@
               <path d="M224.92 161.85 L235.52 161.85 L235.52 167.70 L224.92 167.70 Z" fill="#000000"/>
             </mask>
           </defs>
-          <rect width="360" height="360" fill="#00AEEF" mask="url(#hub-logo-mask)"/>
+          <rect width="360" height="360" fill="#00AEEF" mask="url(#nav-m-logo)"/>
         </svg>
-        <div>
-          <div class="brand-name">Ushuaia Soporte Técnico</div>
-          <div class="brand-sub">ushuaiasoporte.com · Studio Hub</div>
-        </div>
+        <span class="nav-brand-text">Ushuaia Soporte Técnico</span>
       </a>
-      <nav class="nav-links" aria-label="Navegación principal">
-        <a href="#manual">01 Manual de Estilo</a>
-        <a href="#pilotos">02 Los 3 Pilotos</a>
-        <a href="#comparativa">03 Comparativa</a>
-        <a href="#skills">04 Skills Auditadas</a>
-      </nav>
-      <span class="nav-badge">54°48′S 68°18′W · 2026</span>
-    </div>
+
+      <ul class="nav-links">
+        <li><a href="#nosotros" data-nav="nosotros">Nosotros</a></li>
+        <li><a href="#servicios" data-nav="servicios">Servicios</a></li>
+        <li><a href="#sectores" data-nav="sectores">Sectores</a></li>
+        <li><a href="#nosotros" data-nav="cobertura">Cobertura</a></li>
+        <li><a href="#contacto" data-nav="contacto">Contacto</a></li>
+      </ul>
+
+      <a class="nav-cta" href="#contacto">Consultar</a>
+    </nav>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container">
-        <div class="eyebrow">Identidad de Marca + 3 Maquetas Interactivas</div>
-        <h1>ushuaiasoporte.com <span>— Tres visiones futuristas con el ADN real de tu marca.</span></h1>
-        <p class="hero-desc">
-          Relevamos tus originales vectoriales de marca en Google Drive (emblema Faro Les Éclaireurs + RJ45, tarjetas vectoriales Opción 1 y 2, firmas corporativas y documentación operativa del repo), extrajimos el isotipo en SVG exacto y construimos el Manual de Estilo junto a 3 pilotos completamente funcionales para que elijas la dirección definitiva.
-        </p>
-        <div class="hero-meta-strip">
-          <div><strong>Emblema fuente:</strong> LOGO SOPORTE USHUAIA RAFA PINTO.pdf/.ai → SVG exacto</div>
-          <div><strong>Color oficial medido:</strong> #00AEEF (CMYK 87/0/0/0)</div>
-          <div><strong>Regla de contenido:</strong> 100% real · 0% datos ficticios</div>
-          <div><strong>Tipografía:</strong> Máx. 2 familias (Sans + Mono)</div>
+  <!-- Right Chapter Telemetry Rail -->
+  <aside class="chapter-rail" aria-label="Progreso de actos">
+    <button class="chapter-dot is-active" type="button" data-jump="#inicio"><span class="dot-label">I · INICIO</span><span class="dot-bar"></span></button>
+    <button class="chapter-dot" type="button" data-jump="#nosotros"><span class="dot-label">II · TERRITORIO</span><span class="dot-bar"></span></button>
+    <button class="chapter-dot" type="button" data-jump="#servicios"><span class="dot-label">III · SERVICIOS</span><span class="dot-bar"></span></button>
+    <button class="chapter-dot" type="button" data-jump="#sectores"><span class="dot-label">IV · SECTORES</span><span class="dot-bar"></span></button>
+    <button class="chapter-dot" type="button" data-jump="#contacto"><span class="dot-label">V · CONTACTO</span><span class="dot-bar"></span></button>
+  </aside>
+
+  <!-- WCAG 2.2.2 Pause/Resume Atmospheric Animation Control (label toggles, no aria-pressed) -->
+  <button id="motion-toggle" class="motion-toggle" type="button">
+    <span class="motion-toggle-dot" aria-hidden="true"></span>
+    <span id="motion-toggle-label">Pausar efecto</span>
+  </button>
+
+  <main id="main-content">
+
+    <!-- ===================================================================
+         ACTO I — APERTURA · PORTAL DEL FARO
+         =================================================================== -->
+    <section class="act-hero" id="inicio" aria-label="Apertura">
+      <div class="faro-beam-shaft" id="faro-beam" aria-hidden="true"></div>
+
+      <div class="hero-stage">
+        <div class="hero-coord-pill">
+          <span class="coord-pulse" aria-hidden="true"></span>
+          <span>54°48′S 68°18′W · TIERRA DEL FUEGO &amp; PATAGONIA</span>
+        </div>
+
+        <div class="portal-emblem-wrap" id="portal-emblem">
+          <div class="portal-halo" aria-hidden="true"></div>
+          <div class="portal-orbit-outer" id="orbit-outer" aria-hidden="true"></div>
+          <div class="portal-orbit-inner" id="orbit-inner" aria-hidden="true"></div>
+
+          <!-- Official 5-Layer Vector Emblem (extracted 1:1 from LOGO SOPORTE USHUAIA RAFA PINTO.pdf) -->
+          <svg class="hero-emblem-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-label="Emblema oficial Ushuaia Soporte Técnico — Faro Les Éclaireurs y conectores RJ45">
+            <defs>
+              <mask id="hero-m-ring">
+                <rect width="360" height="360" fill="#000000"/>
+                <path d="M349.22 180.00 C349.22 273.46 273.46 349.22 180.00 349.22 C86.54 349.22 10.78 273.46 10.78 180.00 C10.78 86.54 86.54 10.78 180.00 10.78 C273.46 10.78 349.22 86.54 349.22 180.00 Z" fill="#ffffff"/>
+                <path d="M333.72 180.00 C333.72 264.90 264.90 333.72 180.00 333.72 C95.10 333.72 26.28 264.90 26.28 180.00 C26.28 95.10 95.10 26.28 180.00 26.28 C264.90 26.28 333.72 95.10 333.72 180.00 Z" fill="#000000"/>
+              </mask>
+              <mask id="hero-m-faro">
+                <rect width="360" height="360" fill="#000000"/>
+                <path d="M147.63 299.39 L210.29 300.00 L205.71 102.30 L194.70 102.30 L194.70 69.53 L179.19 54.01 L164.41 68.79 L164.39 102.30 L153.72 102.30 Z" fill="#ffffff"/>
+                <path d="M158.66 166.84 L200.32 166.84 L201.58 230.31 L157.16 230.31 Z" fill="#000000"/>
+                <path d="M178.96 67.20 L171.41 72.84 L171.41 101.08 L185.77 101.08 L185.77 72.84 Z" fill="#000000"/>
+              </mask>
+              <mask id="hero-m-beacon">
+                <rect width="360" height="360" fill="#000000"/>
+                <path d="M187.61 49.96 C187.61 54.44 183.98 58.06 179.51 58.06 C175.03 58.06 171.41 54.44 171.41 49.96 C171.41 45.49 175.03 41.86 179.51 41.86 C183.98 41.86 187.61 45.49 187.61 49.96 Z" fill="#ffffff"/>
+              </mask>
+              <mask id="hero-m-rj-left">
+                <rect width="360" height="360" fill="#000000"/>
+                <path d="M28.25 200.27 L30.11 200.27 C31.53 201.61 34.00 202.49 36.80 202.49 L39.44 202.49 C40.76 204.26 43.44 205.47 46.55 205.47 L48.84 205.47 C49.90 208.05 52.91 209.90 56.45 209.90 L58.88 209.90 C59.97 212.84 62.95 214.95 66.46 214.95 L137.82 214.95 C142.26 214.95 145.85 211.59 145.85 207.45 L145.85 152.45 C145.85 148.31 142.26 144.95 137.82 144.95 L66.46 144.95 C63.20 144.95 60.40 146.77 59.14 149.38 L56.45 149.38 C52.56 149.38 49.32 151.61 48.58 154.58 L46.55 154.58 C43.67 154.58 41.16 155.62 39.76 157.18 L36.80 157.18 C34.16 157.18 31.83 157.96 30.37 159.16 L28.25 159.16 C23.84 159.16 20.26 161.13 20.26 163.57 L20.26 195.87 C20.26 198.30 23.84 200.27 28.25 200.27 Z" fill="#ffffff"/>
+                <path d="M28.42 167.49 L32.55 167.49 C33.22 167.49 33.77 166.94 33.77 166.27 L33.77 165.81 C33.77 165.14 34.32 164.59 34.99 164.59 L42.79 164.59 C43.46 164.59 44.01 164.04 44.01 163.37 L44.01 163.06 C44.01 162.38 44.56 161.84 45.23 161.84 L53.33 161.84 C54.01 161.84 54.56 161.29 54.56 160.61 L54.56 158.02 C54.56 157.34 55.10 156.79 55.78 156.79 L63.57 156.79 C64.25 156.79 64.79 156.25 64.79 155.57 L64.79 152.97 C64.79 152.30 65.34 151.75 66.02 151.75 L138.46 151.75 C139.14 151.75 139.68 152.30 139.68 152.97 L139.68 207.38 C139.68 208.06 139.14 208.60 138.46 208.60 L65.56 208.60 C64.88 208.60 64.34 208.06 64.34 207.38 L64.34 204.48 C64.34 203.80 63.79 203.25 63.11 203.25 L55.47 203.25 C54.80 203.25 54.25 202.71 54.25 202.03 L54.25 199.74 C54.25 199.06 53.70 198.52 53.03 198.52 L44.93 198.52 C44.25 198.52 43.70 197.97 43.70 197.29 L43.70 196.68 C43.70 196.01 43.16 195.46 42.48 195.46 L34.69 195.46 C34.01 195.46 33.46 194.91 33.46 194.24 C33.46 193.56 32.92 193.01 32.24 193.01 L28.42 193.01 C27.75 193.01 27.20 192.47 27.20 191.79 L27.20 189.04 C27.20 188.37 27.75 187.82 28.42 187.82 L32.39 187.82 C33.07 187.82 33.62 187.27 33.62 186.60 L33.62 173.91 C33.62 173.24 33.07 172.69 32.39 172.69 L28.42 172.69 C27.75 172.69 27.20 172.14 27.20 171.47 L27.20 168.71 C27.20 168.04 27.75 167.49 28.42 167.49 Z" fill="#000000"/>
+                <path d="M44.01 190.26 L38.89 190.26 L38.89 169.94 L44.01 169.94 Z" fill="#ffffff"/>
+                <path d="M54.56 192.84 L49.44 192.84 L49.44 166.84 L54.56 166.84 Z" fill="#ffffff"/>
+                <path d="M64.87 198.33 L59.75 198.33 L59.75 161.95 L64.87 161.95 Z" fill="#ffffff"/>
+                <path d="M103.31 203.14 L70.07 203.14 L70.07 156.73 L103.31 156.73 Z" fill="#ffffff"/>
+                <path d="M134.54 203.38 L107.97 203.38 L107.97 156.97 L134.54 156.97 Z" fill="#ffffff"/>
+                <path d="M114.53 190.26 L76.42 190.26 C74.09 190.26 72.20 188.38 72.20 186.05 L72.20 173.54 C72.20 171.21 74.09 169.33 76.42 169.33 L114.53 169.33 C116.86 169.33 118.75 171.21 118.75 173.54 L118.75 186.05 C118.75 188.38 116.86 190.26 114.53 190.26 Z" fill="#000000"/>
+                <path d="M103.31 185.22 L77.33 185.22 L77.33 174.83 L103.31 174.83 Z" fill="#ffffff"/>
+                <path d="M113.55 185.22 L108.66 185.22 L108.66 174.83 L113.55 174.83 Z" fill="#ffffff"/>
+                <path d="M134.54 167.80 L123.94 167.80 L123.94 161.95 L134.54 161.95 Z" fill="#000000"/>
+                <path d="M134.54 177.95 L123.94 177.95 L123.94 172.11 L134.54 172.11 Z" fill="#000000"/>
+                <path d="M134.54 188.11 L123.94 188.11 L123.94 182.27 L134.54 182.27 Z" fill="#000000"/>
+                <path d="M134.54 198.27 L123.94 198.27 L123.94 192.42 L134.54 192.42 Z" fill="#000000"/>
+              </mask>
+              <mask id="hero-m-rj-right">
+                <rect width="360" height="360" fill="#000000"/>
+                <path d="M331.21 159.85 L329.35 159.85 C327.93 158.52 325.46 157.63 322.66 157.63 L320.02 157.63 C318.70 155.87 316.02 154.65 312.91 154.65 L310.62 154.65 C309.56 152.08 306.55 150.22 303.01 150.22 L300.58 150.22 C299.49 147.29 296.51 145.18 293.00 145.18 L221.64 145.18 C217.20 145.18 213.61 148.53 213.61 152.68 L213.61 207.68 C213.61 211.82 217.20 215.18 221.64 215.18 L293.00 215.18 C296.26 215.18 299.06 213.35 300.32 210.74 L303.01 210.74 C306.90 210.74 310.14 208.51 310.88 205.55 L312.91 205.55 C315.79 205.55 318.30 204.51 319.70 202.95 L322.66 202.95 C325.30 202.95 327.63 202.16 329.09 200.96 L331.21 200.96 C335.62 200.96 339.20 198.99 339.20 196.56 L339.20 164.25 C339.20 161.82 335.62 159.85 331.21 159.85 Z" fill="#ffffff"/>
+                <path d="M331.04 192.63 L326.91 192.63 C326.24 192.63 325.69 193.18 325.69 193.86 L325.69 194.31 C325.69 194.99 325.14 195.54 324.47 195.54 L316.67 195.54 C316.00 195.54 315.45 196.08 315.45 196.76 L315.45 197.06 C315.45 197.74 314.90 198.29 314.23 198.29 L306.13 198.29 C305.45 198.29 304.90 198.83 304.90 199.51 L304.90 202.11 C304.90 202.78 304.36 203.33 303.68 203.33 L295.89 203.33 C295.21 203.33 294.67 203.88 294.67 204.55 L294.67 207.15 C294.67 207.83 294.12 208.37 293.44 208.37 L221.00 208.37 C220.32 208.37 219.78 207.83 219.78 207.15 L219.78 152.74 C219.78 152.07 220.32 151.52 221.00 151.52 L293.90 151.52 C294.58 151.52 295.12 152.07 295.12 152.74 L295.12 155.65 C295.12 156.32 295.67 156.87 296.35 156.87 L303.99 156.87 C304.66 156.87 305.21 157.42 305.21 158.09 L305.21 160.38 C305.21 161.06 305.76 161.61 306.43 161.61 L314.53 161.61 C315.21 161.61 315.76 162.15 315.76 162.83 L315.76 163.44 C315.76 164.12 316.30 164.66 316.98 164.66 L324.77 164.66 C325.45 164.66 326.00 165.21 326.00 165.89 C326.00 166.56 326.54 167.11 327.22 167.11 L331.04 167.11 C331.71 167.11 332.26 167.66 332.26 168.33 L332.26 171.08 C332.26 171.76 331.71 172.31 331.04 172.31 L327.07 172.31 C326.39 172.31 325.84 172.85 325.84 173.53 L325.84 186.21 C325.84 186.89 326.39 187.44 327.07 187.44 L331.04 187.44 C331.71 187.44 332.26 187.98 332.26 188.66 L332.26 191.41 C332.26 192.09 331.71 192.63 331.04 192.63 Z" fill="#000000"/>
+                <path d="M315.45 169.86 L320.57 169.86 L320.57 190.19 L315.45 190.19 Z" fill="#ffffff"/>
+                <path d="M304.90 167.29 L310.02 167.29 L310.02 193.28 L304.90 193.28 Z" fill="#ffffff"/>
+                <path d="M294.59 161.80 L299.71 161.80 L299.71 198.17 L294.59 198.17 Z" fill="#ffffff"/>
+                <path d="M256.14 156.99 L289.39 156.99 L289.39 203.39 L256.14 203.39 Z" fill="#ffffff"/>
+                <path d="M224.92 156.74 L251.49 156.74 L251.49 203.15 L224.92 203.15 Z" fill="#ffffff"/>
+                <path d="M244.93 169.86 L283.04 169.86 C285.37 169.86 287.26 171.75 287.26 174.08 L287.26 186.58 C287.26 188.91 285.37 190.80 283.04 190.80 L244.93 190.80 C242.60 190.80 240.71 188.91 240.71 186.58 L240.71 174.08 C240.71 171.75 242.60 169.86 244.93 169.86 Z" fill="#000000"/>
+                <path d="M256.15 174.90 L282.13 174.90 L282.13 185.30 L256.15 185.30 Z" fill="#ffffff"/>
+                <path d="M245.91 174.90 L250.80 174.90 L250.80 185.30 L245.91 185.30 Z" fill="#ffffff"/>
+                <path d="M224.92 192.33 L235.52 192.33 L235.52 198.17 L224.92 198.17 Z" fill="#000000"/>
+                <path d="M224.92 182.17 L235.52 182.17 L235.52 188.02 L224.92 188.02 Z" fill="#000000"/>
+                <path d="M224.92 172.01 L235.52 172.01 L235.52 177.86 L224.92 177.86 Z" fill="#000000"/>
+                <path d="M224.92 161.85 L235.52 161.85 L235.52 167.70 L224.92 167.70 Z" fill="#000000"/>
+              </mask>
+            </defs>
+            <g class="usp-ring" id="layer-ring"><rect width="360" height="360" fill="currentColor" mask="url(#hero-m-ring)"/></g>
+            <g class="usp-rj-left" id="layer-rj-left"><rect width="360" height="360" fill="currentColor" mask="url(#hero-m-rj-left)"/></g>
+            <g class="usp-rj-right" id="layer-rj-right"><rect width="360" height="360" fill="currentColor" mask="url(#hero-m-rj-right)"/></g>
+            <g class="usp-faro" id="layer-faro"><rect width="360" height="360" fill="currentColor" mask="url(#hero-m-faro)"/></g>
+            <g class="usp-beacon" id="layer-beacon"><rect width="360" height="360" fill="currentColor" mask="url(#hero-m-beacon)"/></g>
+          </svg>
+        </div>
+
+        <div class="hero-copy-block" id="hero-copy">
+          <h1 class="hero-h1" id="hero-h1">Ushuaia Soporte Técnico</h1>
+          <p class="hero-sub">Infraestructura, redes y asistencia informática para organizaciones.</p>
+          <p class="hero-desc">Acompañamos la operación tecnológica de empresas e instituciones desde 2014, con soluciones diseñadas a medida y trato directo.</p>
+          <div class="scroll-cue" id="scroll-cue" aria-hidden="true">
+            <span>Deslizá para explorar ↓</span>
+            <span class="scroll-cue-line"></span>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="manual">
+    <!-- ===================================================================
+         ACTO II — QUIÉNES SOMOS & COBERTURA AUSTRAL (CONSTELLATION MAP)
+         =================================================================== -->
+    <section class="act-territory" id="nosotros" aria-labelledby="territory-heading">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="section-label">01 // Fundamento Visual</div>
-            <h2>Manual de Estilo Oficial (Digital &amp; Markdown)</h2>
-          </div>
-        </div>
-        <div class="manual-banner">
-          <div>
-            <h3 style="font-size:1.35rem;font-weight:700;letter-spacing:-0.015em;">Sistema de Identidad · Ushuaia Soporte Técnico</h3>
-            <p>
-              Documenta la anatomía del isotipo Faro + RJ45, sus 5 versiones vectoriales, paleta exacta medida desde tus archivos de Illustrator (con ratios WCAG AA para fondo claro y oscuro), sistema tipográfico homogéneo, reglas de movimiento 60fps, política de veracidad estricta y aplicaciones reales (tarjetas, firmas y web).
+        <div class="territory-grid">
+          <div class="territory-copy">
+            <div class="act-eyebrow">01 // Presencia en territorio</div>
+            <h2 class="act-title" id="territory-heading">Tecnología confiable desde el Fin del Mundo.</h2>
+            <p class="act-lead">
+              Brindamos soporte técnico e ingeniería en infraestructura informática con base en Ushuaia. Combinamos atención presencial y gestión remota para sostener la continuidad diaria de cada organización, sin intermediarios ni estructuras rígidas.
             </p>
-            <div class="swatch-row">
-              <span class="swatch-pill"><span class="swatch-dot" style="background:#00AEEF"></span>#00AEEF Cian Beagle</span>
-              <span class="swatch-pill"><span class="swatch-dot" style="background:#0074A6"></span>#0074A6 Cian AA</span>
-              <span class="swatch-pill"><span class="swatch-dot" style="background:#252936"></span>#252936 Grafito Card 2</span>
-              <span class="swatch-pill"><span class="swatch-dot" style="background:#070A10"></span>#070A10 Obsidiana</span>
-              <span class="swatch-pill"><span class="swatch-dot" style="background:#F8FAFC"></span>#F8FAFC Glaciar</span>
-            </div>
-            <div class="btn-row">
-              <a class="btn btn-primary" href="./manual-de-estilo/index.html">Abrir Manual de Estilo Interactivo →</a>
-              <a class="btn btn-ghost" href="./manual-de-estilo/MANUAL_DE_ESTILO.md">Ver Especificación .md</a>
+
+            <div class="cities-list" id="cities-list">
+              <article class="city-card is-lit" data-city="0">
+                <div class="city-card-top">
+                  <span class="city-name">USHUAIA</span>
+                  <span class="city-coord">54°48′S</span>
+                </div>
+                <p class="city-role">Base operativa y atención presencial</p>
+              </article>
+
+              <article class="city-card" data-city="1">
+                <div class="city-card-top">
+                  <span class="city-name">TOLHUIN</span>
+                  <span class="city-coord">54°30′S</span>
+                </div>
+                <p class="city-role">Cobertura provincial</p>
+              </article>
+
+              <article class="city-card" data-city="2">
+                <div class="city-card-top">
+                  <span class="city-name">RÍO GRANDE</span>
+                  <span class="city-coord">53°47′S</span>
+                </div>
+                <p class="city-role">Cobertura provincial</p>
+              </article>
+
+              <article class="city-card" data-city="3">
+                <div class="city-card-top">
+                  <span class="city-name">EL CALAFATE</span>
+                  <span class="city-coord">50°20′S</span>
+                </div>
+                <p class="city-role">Operación y asistencia regional</p>
+              </article>
             </div>
           </div>
-          <div class="manual-visual">
-            <img src="./assets/usp-logo-seal.svg" alt="Sello oficial Ushuaia Soporte Técnico" width="118" height="118" />
-            <div class="caption">
-              ISOTIPO VECTORIAL OFICIAL<br/>
-              Faro Les Éclaireurs + Conectores RJ45<br/>
-              Extraído 1:1 de PDF Illustrator (35 trazos exactos)
+
+          <div class="constellation-stage" aria-label="Mapa de constelación de cobertura patagónica">
+            <div class="constellation-hud">
+              <span>CONSTELACIÓN AUSTRAL // COBERTURA</span>
+              <strong id="active-city-readout">USHUAIA · 54°48′S 68°18′W</strong>
+            </div>
+
+            <svg class="constellation-svg" viewBox="0 0 560 440" role="img" aria-label="Ruta de cobertura conectando Ushuaia, Tolhuin, Río Grande y El Calafate">
+              <defs>
+                <linearGradient id="route-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#00AEEF"/>
+                  <stop offset="55%" stop-color="#7FE2FF"/>
+                  <stop offset="100%" stop-color="#FFFFFF"/>
+                </linearGradient>
+                <filter id="route-glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feMerge>
+                    <feMergeNode in="blur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <!-- Stylized Latitude & Longitude Arcs -->
+              <g stroke="rgba(136, 230, 255, 0.1)" fill="none" stroke-width="1">
+                <path d="M 30 92 Q 280 56 530 98" stroke-dasharray="4 6"/>
+                <path d="M 30 198 Q 280 168 530 206" stroke-dasharray="4 6"/>
+                <path d="M 30 304 Q 280 280 530 314" stroke-dasharray="4 6"/>
+                <path d="M 30 390 Q 280 370 530 398" stroke-dasharray="4 6"/>
+                <line x1="140" y1="24" x2="178" y2="418" stroke-dasharray="2 8"/>
+                <line x1="305" y1="24" x2="318" y2="418" stroke-dasharray="2 8"/>
+                <line x1="450" y1="24" x2="435" y2="418" stroke-dasharray="2 8"/>
+              </g>
+
+              <!-- Ambient Latitude Labels -->
+              <g class="ambient-lat-marker" font-family="IBM Plex Mono, Consolas, monospace" font-size="10" fill="rgba(142, 178, 203, 0.55)">
+                <text x="34" y="84">50°S</text>
+                <text x="34" y="190">53°S</text>
+                <text x="34" y="296">54°S</text>
+                <text x="34" y="382">55°S · CANAL BEAGLE</text>
+              </g>
+
+              <!-- Stylized Patagonia / Tierra del Fuego Minimal Contour -->
+              <path d="M 110 42 C 136 62, 170 72, 194 110 C 220 148, 260 176, 336 188 C 386 196, 424 226, 434 268 C 446 312, 424 358, 370 384 C 318 408, 264 396, 232 374 C 194 348, 214 300, 240 270 C 260 246, 224 214, 178 184 C 122 146, 86 94, 110 42 Z"
+                    fill="rgba(0, 174, 239, 0.045)" stroke="rgba(136, 230, 255, 0.16)" stroke-width="1"/>
+
+              <!-- Base Route Guide (subtle) -->
+              <path d="M 332 368 Q 368 332 376 296 Q 388 250 358 214 Q 272 144 176 94"
+                    fill="none" stroke="rgba(136, 230, 255, 0.16)" stroke-width="1.5" stroke-dasharray="4 5"/>
+
+              <!-- Active Scrubbed Beam Path (stroke-dashoffset driven 1:1 by scroll) -->
+              <path id="patagonia-route"
+                    d="M 332 368 Q 368 332 376 296 Q 388 250 358 214 Q 272 144 176 94"
+                    fill="none" stroke="url(#route-grad)" stroke-width="2.6" stroke-linecap="round" filter="url(#route-glow)"/>
+
+              <!-- Node 0: USHUAIA -->
+              <g class="map-node-group is-lit" data-node="0" transform="translate(332, 368)">
+                <circle class="map-node-pulse" r="18" fill="none" stroke="#00AEEF" stroke-width="1.2" opacity="0.65"/>
+                <circle r="9" fill="rgba(0, 174, 239, 0.2)"/>
+                <circle class="map-node-dot" r="4.5" fill="#00AEEF"/>
+                <text class="map-node-label" x="-112" y="5" font-family="IBM Plex Mono, Consolas, monospace" font-size="11.5" font-weight="600" fill="#9BEBFF" letter-spacing="1.2">USHUAIA</text>
+              </g>
+
+              <!-- Node 1: TOLHUIN -->
+              <g class="map-node-group" data-node="1" transform="translate(376, 296)">
+                <circle class="map-node-pulse" r="15" fill="none" stroke="#00AEEF" stroke-width="1.1" opacity="0.2"/>
+                <circle r="7.5" fill="rgba(0, 174, 239, 0.14)"/>
+                <circle class="map-node-dot" r="4" fill="#5D87A3"/>
+                <text class="map-node-label" x="18" y="4" font-family="IBM Plex Mono, Consolas, monospace" font-size="11" font-weight="500" fill="#8EB2CB" letter-spacing="1.2">TOLHUIN</text>
+              </g>
+
+              <!-- Node 2: RÍO GRANDE -->
+              <g class="map-node-group" data-node="2" transform="translate(358, 214)">
+                <circle class="map-node-pulse" r="16" fill="none" stroke="#00AEEF" stroke-width="1.1" opacity="0.2"/>
+                <circle r="8" fill="rgba(0, 174, 239, 0.14)"/>
+                <circle class="map-node-dot" r="4" fill="#5D87A3"/>
+                <text class="map-node-label" x="18" y="4" font-family="IBM Plex Mono, Consolas, monospace" font-size="11" font-weight="500" fill="#8EB2CB" letter-spacing="1.2">RÍO GRANDE</text>
+              </g>
+
+              <!-- Node 3: EL CALAFATE -->
+              <g class="map-node-group" data-node="3" transform="translate(176, 94)">
+                <circle class="map-node-pulse" r="18" fill="none" stroke="#7FE2FF" stroke-width="1.2" opacity="0.2"/>
+                <circle r="8.5" fill="rgba(127, 226, 255, 0.16)"/>
+                <circle class="map-node-dot" r="4.5" fill="#5D87A3"/>
+                <text class="map-node-label" x="18" y="4" font-family="IBM Plex Mono, Consolas, monospace" font-size="11.5" font-weight="600" fill="#8EB2CB" letter-spacing="1.2">EL CALAFATE</text>
+              </g>
+            </svg>
+
+            <div class="constellation-foot">
+              <span>OPERANDO DESDE 2014</span>
+              <span>PRESENCIAL · REMOTO REGIONAL</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="pilotos">
+    <!-- ===================================================================
+         ACTO III — SERVICIOS (3D PERSPECTIVE SPATIAL DECK + ORBITAL DIAL)
+         =================================================================== -->
+    <section class="act-services" id="servicios" aria-labelledby="services-heading">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="section-label">02 // Maquetas Interactivas para Selección</div>
-            <h2>Tres Pilotos Radicalmente Distintos</h2>
+        <div class="services-layout">
+          <div class="services-sidebar">
+            <div class="act-eyebrow">02 // Qué hacemos</div>
+            <h2 class="act-title" id="services-heading">Servicios informáticos integrales.</h2>
+            <p class="act-lead">Diseño, implementación y mantenimiento de entornos corporativos.</p>
+
+            <div class="orbital-dial-box" aria-hidden="true">
+              <svg class="orbital-dial-svg" viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(136,230,255,0.16)" stroke-width="1"/>
+                <circle cx="60" cy="60" r="38" fill="none" stroke="rgba(0,174,239,0.28)" stroke-width="1" stroke-dasharray="3 5"/>
+                <g class="dial-rotator" id="dial-rotator">
+                  <line x1="60" y1="6" x2="60" y2="20" stroke="#7FE2FF" stroke-width="2" stroke-linecap="round"/>
+                  <circle cx="60" cy="12" r="3.5" fill="#00AEEF"/>
+                  <line x1="60" y1="100" x2="60" y2="112" stroke="rgba(136,230,255,0.35)" stroke-width="1"/>
+                  <line x1="8" y1="60" x2="18" y2="60" stroke="rgba(136,230,255,0.35)" stroke-width="1"/>
+                  <line x1="102" y1="60" x2="112" y2="60" stroke="rgba(136,230,255,0.35)" stroke-width="1"/>
+                </g>
+                <circle cx="60" cy="60" r="4" fill="#F3FAFF"/>
+              </svg>
+              <div class="dial-readout">
+                <div class="dial-index"><span id="dial-current">01</span> <span>/ 05</span></div>
+                <div class="dial-caption" id="dial-title">Redes y Conectividad</div>
+              </div>
+            </div>
+
+            <div class="service-nav-pills" role="tablist" aria-label="Navegar servicios">
+              <button class="service-pill-btn is-active" type="button" data-service-jump="0">01 Redes</button>
+              <button class="service-pill-btn" type="button" data-service-jump="1">02 Servidores</button>
+              <button class="service-pill-btn" type="button" data-service-jump="2">03 Soporte</button>
+              <button class="service-pill-btn" type="button" data-service-jump="3">04 Respaldo</button>
+              <button class="service-pill-btn" type="button" data-service-jump="4">05 Correo y Nube</button>
+            </div>
+          </div>
+
+          <div class="deck-viewport" id="service-deck">
+            <!-- Service 01 -->
+            <article class="service-prism-card" data-card-index="0" data-short-title="Redes y Conectividad">
+              <div class="prism-top">
+                <span class="prism-num">01 / 05</span>
+                <svg class="prism-glyph" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                  <circle cx="32" cy="32" r="24" stroke-opacity="0.35"/>
+                  <circle cx="32" cy="32" r="13" stroke-dasharray="3 3"/>
+                  <circle cx="32" cy="32" r="4" fill="#00AEEF" stroke="none"/>
+                  <line x1="8" y1="32" x2="20" y2="32"/>
+                  <line x1="44" y1="32" x2="56" y2="32"/>
+                  <line x1="32" y1="8" x2="32" y2="20"/>
+                  <line x1="32" y1="44" x2="32" y2="56"/>
+                </svg>
+              </div>
+              <div class="prism-body">
+                <h3>Redes Corporativas y Conectividad</h3>
+                <p>Provisión, diseño y armado de redes cableadas e inalámbricas para oficinas, espacios de atención al público y entornos de alta demanda.</p>
+              </div>
+              <div class="prism-foot">
+                <span>Infraestructura de red</span>
+                <strong>Diseño · Implementación</strong>
+              </div>
+            </article>
+
+            <!-- Service 02 -->
+            <article class="service-prism-card" data-card-index="1" data-short-title="Servidores">
+              <div class="prism-top">
+                <span class="prism-num">02 / 05</span>
+                <svg class="prism-glyph" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                  <rect x="12" y="10" width="40" height="12" rx="3"/>
+                  <rect x="12" y="26" width="40" height="12" rx="3"/>
+                  <rect x="12" y="42" width="40" height="12" rx="3"/>
+                  <circle cx="20" cy="16" r="2" fill="#00AEEF" stroke="none"/>
+                  <circle cx="20" cy="32" r="2" fill="#7FE2FF" stroke="none"/>
+                  <circle cx="20" cy="48" r="2" fill="#00AEEF" stroke="none"/>
+                  <line x1="28" y1="16" x2="44" y2="16" stroke-opacity="0.5"/>
+                  <line x1="28" y1="32" x2="44" y2="32" stroke-opacity="0.5"/>
+                  <line x1="28" y1="48" x2="44" y2="48" stroke-opacity="0.5"/>
+                </svg>
+              </div>
+              <div class="prism-body">
+                <h3>Infraestructura y Servidores</h3>
+                <p>Implementación, administración y mantenimiento de servidores, accesos remotos seguros y sistemas centrales de gestión.</p>
+              </div>
+              <div class="prism-foot">
+                <span>Núcleo operativo</span>
+                <strong>Estabilidad · Control</strong>
+              </div>
+            </article>
+
+            <!-- Service 03 -->
+            <article class="service-prism-card" data-card-index="2" data-short-title="Soporte Presencial y Remoto">
+              <div class="prism-top">
+                <span class="prism-num">03 / 05</span>
+                <svg class="prism-glyph" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                  <rect x="10" y="14" width="44" height="30" rx="4"/>
+                  <line x1="22" y1="52" x2="42" y2="52"/>
+                  <line x1="32" y1="44" x2="32" y2="52"/>
+                  <polyline points="18,30 25,30 29,22 35,36 39,28 46,28" stroke="#00AEEF" stroke-width="1.8"/>
+                </svg>
+              </div>
+              <div class="prism-body">
+                <h3>Soporte Técnico Presencial y Remoto</h3>
+                <p>Asistencia preventiva y correctiva para puestos de trabajo, equipamiento de oficina, puntos de atención y resolución rápida ante incidentes.</p>
+              </div>
+              <div class="prism-foot">
+                <span>Asistencia directa</span>
+                <strong>Preventivo · Correctivo</strong>
+              </div>
+            </article>
+
+            <!-- Service 04 -->
+            <article class="service-prism-card" data-card-index="3" data-short-title="Respaldo y Continuidad">
+              <div class="prism-top">
+                <span class="prism-num">04 / 05</span>
+                <svg class="prism-glyph" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                  <path d="M32 8 L52 16 V32 C52 44.5 43 52.5 32 56 C21 52.5 12 44.5 12 32 V16 L32 8 Z"/>
+                  <path d="M23 32 L29 38 L42 25" stroke="#00AEEF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="prism-body">
+                <h3>Respaldo y Continuidad Operativa</h3>
+                <p>Esquemas automatizados de copias de seguridad, supervisión periódica de sistemas y recuperación ante contingencias.</p>
+              </div>
+              <div class="prism-foot">
+                <span>Resguardo de datos</span>
+                <strong>Supervisión · Recuperación</strong>
+              </div>
+            </article>
+
+            <!-- Service 05 -->
+            <article class="service-prism-card" data-card-index="4" data-short-title="Correo y Nube">
+              <div class="prism-top">
+                <span class="prism-num">05 / 05</span>
+                <svg class="prism-glyph" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                  <circle cx="32" cy="32" r="22" stroke-opacity="0.4"/>
+                  <ellipse cx="32" cy="32" rx="10" ry="22"/>
+                  <line x1="10" y1="32" x2="54" y2="32"/>
+                  <path d="M14 21 Q32 26 50 21" stroke-opacity="0.5"/>
+                  <path d="M14 43 Q32 38 50 43" stroke-opacity="0.5"/>
+                  <circle cx="48" cy="18" r="4" fill="#00AEEF" stroke="none"/>
+                </svg>
+              </div>
+              <div class="prism-body">
+                <h3>Correo Corporativo, Dominios y Nube</h3>
+                <p>Configuración y migración de plataformas de correo empresarial, administración de dominios y buenas prácticas de seguridad digital.</p>
+              </div>
+              <div class="prism-foot">
+                <span>Identidad digital</span>
+                <strong>Plataformas · Seguridad</strong>
+              </div>
+            </article>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="pilots-grid">
-          <!-- Pilot 1 -->
-          <article class="pilot-card">
-            <div class="pilot-preview preview-1">
-              <div class="preview-top">
-                <span class="preview-pill">PILOTO 01 · DARK PRECISION</span>
-                <span style="color:#00AEEF">54°48′S</span>
-              </div>
-              <div class="preview-wire">
-                <div>
-                  <div class="preview-title-mini">Faro Telemetry</div>
-                  <div class="preview-sub-mini">Canvas 2D + SVG Scrub Blueprint</div>
-                </div>
-                <div class="preview-glass-chip">GSAP · LENIS</div>
-              </div>
-            </div>
-            <div class="pilot-body">
-              <div class="pilot-code">Dirección 01 // Ingeniería Oscura</div>
-              <h3>Faro Telemetry</h3>
-              <p>Evolución futurista de tu tarjeta oscura (Opción 2). Precisión técnica, retículas 1px y un centro de mando arquitectónico sobrio.</p>
-              <ul class="spec-list">
-                <li><span>Polaridad</span>Modo oscuro obsidiana + Grafito + #00AEEF</li>
-                <li><span>Tipografía</span>Space Grotesk + JetBrains Mono / Consolas</li>
-                <li><span>Scroll clave</span>Hero clip-path aperture + Blueprint SVG pinned 4 etapas (stroke scrub) + Bento 2.5D con retícula quickTo</li>
-                <li><span>Perfil ideal</span>Imagen de alta ingeniería, infraestructura crítica y precisión de consola</li>
-              </ul>
-              <div class="pilot-actions">
-                <a class="btn btn-primary" href="./piloto-1-faro-telemetry/index.html">Explorar Piloto 01 →</a>
-              </div>
-            </div>
+    <!-- ===================================================================
+         ACTO IV — SECTORES (ECCENTRIC COUNTER-SCROLLING KINETIC TYPOGRAPHY)
+         =================================================================== -->
+    <section class="act-sectors" id="sectores" aria-labelledby="sectors-heading">
+      <div class="container">
+        <div class="sectors-header">
+          <div class="act-eyebrow">03 // Experiencia transversal</div>
+          <h2 class="act-title" id="sectors-heading">Sectores con los que trabajamos.</h2>
+          <p class="act-lead">Adaptamos cada solución al ritmo, las exigencias y la criticidad de cada actividad.</p>
+        </div>
+      </div>
+
+      <!-- Monumental Counter-Scrolling Typography Ribbons (decorative, aria-hidden) -->
+      <div class="kinetic-stage" aria-hidden="true">
+        <div class="kinetic-track" id="kinetic-row-1">
+          <span class="kinetic-word is-solid">Privado</span>
+          <span class="kinetic-sep">/</span>
+          <span class="kinetic-word is-cyan">Bancario</span>
+          <span class="kinetic-sep">/</span>
+          <span class="kinetic-word">Hotelería</span>
+          <span class="kinetic-sep">/</span>
+          <span class="kinetic-word is-solid">Restaurantes</span>
+          <span class="kinetic-sep">/</span>
+          <span class="kinetic-word is-cyan">Privado</span>
+          <span class="kinetic-sep">/</span>
+          <span class="kinetic-word">Bancario</span>
+        </div>
+        <div class="kinetic-track" id="kinetic-row-2">
+          <span class="kinetic-word">Hotelería</span>
+          <span class="kinetic-sep">/</span>
+          <span class="kinetic-word is-solid">Restaurantes</span>
+          <span class="kinetic-sep">/</span>
+          <span class="kinetic-word is-cyan">Sector Privado</span>
+          <span class="kinetic-sep">/</span>
+          <span class="kinetic-word is-solid">Bancario</span>
+          <span class="kinetic-sep">/</span>
+          <span class="kinetic-word">Hotelería</span>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="sectors-grid" id="sectors-grid">
+          <article class="sector-lens">
+            <div class="sector-index"><span>RUBRO // 01</span><span>CORPORATIVO</span></div>
+            <h3>Sector Privado</h3>
+            <p>Empresas, oficinas administrativas y estudios profesionales.</p>
           </article>
 
-          <!-- Pilot 2 -->
-          <article class="pilot-card">
-            <div class="pilot-preview preview-2">
-              <div class="preview-top">
-                <span class="preview-pill">PILOTO 02 · GLACIER EDITORIAL</span>
-                <span class="preview-pill" style="background:rgba(11,17,30,0.88);color:#F8FAFC;border-color:rgba(255,255,255,0.16)">SWISS / 54°S</span>
-              </div>
-              <div class="preview-wire">
-                <div>
-                  <div class="preview-title-mini">Meridiano 54°S</div>
-                  <div class="preview-sub-mini">Horizontal Track + Polarity Wipe</div>
-                </div>
-                <div class="preview-glass-chip">VIEW TRANSITIONS</div>
-              </div>
-            </div>
-            <div class="pilot-body">
-              <div class="pilot-code">Dirección 02 // Lujo Silencioso Luminoso</div>
-              <h3>Meridiano 54°S</h3>
-              <p>Evolución editorial suiza de tu tarjeta clara (Opción 1). Luminoso, cristalino y ejecutivo, con giro dramático a noche antártica en el capítulo 24/7.</p>
-              <ul class="spec-list">
-                <li><span>Polaridad</span>Blanco Glaciar + Cian AA + Capítulo oscuro</li>
-                <li><span>Tipografía</span>Plus Jakarta Sans (300/800) + IBM Plex Mono</li>
-                <li><span>Scroll clave</span>Galería horizontal pinned con skew por velocidad + cortina clip-path Día→Noche + View Transitions API</li>
-                <li><span>Perfil ideal</span>Directores de hoteles, gerencias corporativas y prestigio atemporal</li>
-              </ul>
-              <div class="pilot-actions">
-                <a class="btn btn-primary" href="./piloto-2-meridiano-54/index.html">Explorar Piloto 02 →</a>
-              </div>
-            </div>
+          <article class="sector-lens">
+            <div class="sector-index"><span>RUBRO // 02</span><span>FINANCIERO</span></div>
+            <h3>Sector Bancario</h3>
+            <p>Entornos de alta exigencia, precisión y confidencialidad operativa.</p>
           </article>
 
-          <!-- Pilot 3 -->
-          <article class="pilot-card">
-            <div class="pilot-preview preview-3">
-              <div class="preview-top">
-                <span class="preview-pill">PILOTO 03 · SPATIAL LIGHT-FIELD</span>
-                <span style="color:#7CE4FF">GLSL WEBGL2</span>
-              </div>
-              <div class="preview-wire">
-                <div>
-                  <div class="preview-title-mini">Aurora Austral</div>
-                  <div class="preview-sub-mini">Shader GLSL + Z-Depth Glass Stack</div>
-                </div>
-                <div class="preview-glass-chip">FBM SHADER</div>
-              </div>
-            </div>
-            <div class="pilot-body">
-              <div class="pilot-code">Dirección 03 // Futurismo Espacial</div>
-              <h3>Aurora Austral</h3>
-              <p>La propuesta más vanguardista: un campo de luz polar WebGL2 propio en tonos Beagle Cyan que respira con la velocidad del scroll bajo paneles de cristal.</p>
-              <ul class="spec-list">
-                <li><span>Polaridad</span>Noche abisal + Aurora #00AEEF + Vidrio</li>
-                <li><span>Tipografía</span>Sora + IBM Plex Mono / Consolas</li>
-                <li><span>Scroll clave</span>Shader GLSL modulado por scroll + Tarjetas en pila de profundidad Z + Línea de tiempo con haz de faro</li>
-                <li><span>Perfil ideal</span>Impacto futurista sereno, diferenciación total y sensibilidad espacial</li>
-              </ul>
-              <div class="pilot-actions">
-                <a class="btn btn-primary" href="./piloto-3-aurora-austral/index.html">Explorar Piloto 03 →</a>
-              </div>
-            </div>
+          <article class="sector-lens">
+            <div class="sector-index"><span>RUBRO // 03</span><span>24 HORAS</span></div>
+            <h3>Hotelería</h3>
+            <p>Operación continua las 24 horas en recepción, administración y conectividad para huéspedes.</p>
+          </article>
+
+          <article class="sector-lens">
+            <div class="sector-index"><span>RUBRO // 04</span><span>SERVICIO</span></div>
+            <h3>Restaurantes y Gastronomía</h3>
+            <p>Puestos de servicio, conectividad estable y continuidad en horarios pico.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="comparativa">
+    <!-- ===================================================================
+         ACTO V — CIERRE & CONTACTO (CIRCULAR IRIS PORTAL REVEAL)
+         =================================================================== -->
+    <section class="act-contact" id="contacto" aria-labelledby="contact-heading">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="section-label">03 // Matriz de Decisión</div>
-            <h2>Comparativa Técnica y Estética</h2>
-          </div>
-        </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Dimensión</th>
-                <th>Piloto 01 · Faro Telemetry</th>
-                <th>Piloto 02 · Meridiano 54°S</th>
-                <th>Piloto 03 · Aurora Austral</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Sensación ejecutiva</td>
-                <td>Centro de comando técnico de alta ingeniería</td>
-                <td>Estudio de ingeniería suizo / lujo silencioso</td>
-                <td>Sistema espacial futurista / atmósfera austral</td>
-              </tr>
-              <tr>
-                <td>Coreografía central</td>
-                <td>Diagrama SVG de infraestructura dibujado 1:1 por scroll</td>
-                <td>Riel horizontal pinned + cambio de polaridad Día/Noche</td>
-                <td>Shader WebGL2 GLSL + tarjetas en pila de profundidad Z</td>
-              </tr>
-              <tr>
-                <td>Motor de movimiento</td>
-                <td>GSAP 3.13 + Lenis + Canvas 2D + CSS scroll()</td>
-                <td>GSAP 3.13 + Lenis + SplitText + View Transitions</td>
-                <td>GLSL WebGL2 nativo + GSAP 3.13 + Lenis + SplitText</td>
-              </tr>
-              <tr>
-                <td>Accesibilidad y rendimiento</td>
-                <td>60fps compositor-only · fallback offline · reduced-motion</td>
-                <td>60fps compositor-only · fallback offline · reduced-motion</td>
-                <td>DPR cap 1.75 · pausa en pestaña oculta · fallback CSS</td>
-              </tr>
-              <tr>
-                <td>Compatibilidad</td>
-                <td>100% autónomo (file:// y HTTPS · Cloudflare/GitHub Pages)</td>
-                <td>100% autónomo (file:// y HTTPS · Cloudflare/GitHub Pages)</td>
-                <td>100% autónomo (file:// y HTTPS · Cloudflare/GitHub Pages)</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
+        <div class="contact-portal-outer">
+          <div class="contact-portal-card" id="contact-portal">
+            <div class="contact-head">
+              <div>
+                <div class="act-eyebrow">04 // Contacto y cotizaciones</div>
+                <h2 class="act-title" id="contact-heading">Hablemos sobre tu proyecto.</h2>
+                <p class="act-lead">
+                  Si necesitás cotizar una implementación, evaluar el estado de tu red o recibir más información sobre nuestros servicios, escribinos por cualquiera de nuestros canales directos.
+                </p>
+              </div>
+              <div class="contact-founder-tag">
+                <strong>Rafael Pinto — Owner &amp; CEO</strong>
+                Ushuaia Soporte Técnico · Desde 2014<br/>
+                54°48′S 68°18′W · Ushuaia, TDF
+              </div>
+            </div>
 
-    <section class="section" id="skills">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="section-label">04 // Investigación de Estándares 2025–2026</div>
-            <h2>Skills de Alta Reputación Evaluadas y Aplicadas</h2>
-          </div>
-        </div>
-        <div class="skills-grid">
-          <div class="skill-card">
-            <div class="skill-top"><span class="skill-name">frontend-design</span><span class="skill-tag">Anthropic Oficial</span></div>
-            <p>Dirección estética audaz y coherente desde el minuto uno; prohíbe plantillas genéricas, exige pares tipográficos distintivos y profundidad textural real.</p>
-            <div class="skill-repo">github.com/anthropics/skills</div>
-          </div>
-          <div class="skill-card">
-            <div class="skill-top"><span class="skill-name">impeccable</span><span class="skill-tag">Paul Bakaus</span></div>
-            <p>60+ reglas deterministas anti-slop (adiós gradientes púrpura cliché, tarjetas anidadas sin sentido y relleno vacío) y arquitectura basada en DESIGN.md.</p>
-            <div class="skill-repo">github.com/pbakaus/impeccable</div>
-          </div>
-          <div class="skill-card">
-            <div class="skill-top"><span class="skill-name">web-design-guidelines</span><span class="skill-tag">Vercel Labs</span></div>
-            <p>Auditoría de 100+ reglas de accesibilidad WCAG, contraste, focus-visible, HTML semántico, responsive y Core Web Vitals.</p>
-            <div class="skill-repo">github.com/vercel-labs/agent-skills</div>
-          </div>
-          <div class="skill-card">
-            <div class="skill-top"><span class="skill-name">emilkowalski/skills</span><span class="skill-tag">Motion Craft</span></div>
-            <p>Estándar de gusto en animaciones (Linear/Vercel): curvas rápidas de entrada, física ponderada, cero animaciones distractivas.</p>
-            <div class="skill-repo">github.com/emilkowalski/skills</div>
-          </div>
-          <div class="skill-card">
-            <div class="skill-top"><span class="skill-name">gsap-skills</span><span class="skill-tag">GreenSock Oficial</span></div>
-            <p>Sincronización de reloj único Lenis + gsap.ticker, ScrollTrigger, SplitText 3.13 (100% gratuito), matchMedia para reduced-motion.</p>
-            <div class="skill-repo">github.com/greensock/gsap-skills</div>
-          </div>
-          <div class="skill-card">
-            <div class="skill-top"><span class="skill-name">Modern Web Guidance</span><span class="skill-tag">Antigravity Oficial</span></div>
-            <p>Plugin oficial del Marketplace de Antigravity para mejores prácticas web modernas (CSS Scroll-Driven Animations, View Transitions, WebGL2).</p>
-            <div class="skill-repo">antigravity-plugins-official</div>
+            <div class="channels-grid">
+              <div class="channel-item">
+                <div class="channel-meta">
+                  <div class="channel-label">WhatsApp / Teléfono</div>
+                  <div class="channel-value">+54 9 2901 519191</div>
+                </div>
+                <button class="copy-btn" type="button" data-copy="+54 9 2901 519191">Copiar</button>
+              </div>
+
+              <div class="channel-item">
+                <div class="channel-meta">
+                  <div class="channel-label">Consultas y cotizaciones</div>
+                  <div class="channel-value">contacto@ushuaiasoporte.com</div>
+                </div>
+                <button class="copy-btn" type="button" data-copy="contacto@ushuaiasoporte.com">Copiar</button>
+              </div>
+
+              <div class="channel-item">
+                <div class="channel-meta">
+                  <div class="channel-label">Soporte técnico</div>
+                  <div class="channel-value">soporte@ushuaiasoporte.com</div>
+                </div>
+                <button class="copy-btn" type="button" data-copy="soporte@ushuaiasoporte.com">Copiar</button>
+              </div>
+
+              <div class="channel-item">
+                <div class="channel-meta">
+                  <div class="channel-label">Dirección</div>
+                  <div class="channel-value">rafael@ushuaiasoporte.com</div>
+                </div>
+                <button class="copy-btn" type="button" data-copy="rafael@ushuaiasoporte.com">Copiar</button>
+              </div>
+            </div>
+
+            <div class="contact-actions">
+              <a class="btn-primary" href="https://wa.me/5492901519191?text=Hola%2C%20quisiera%20solicitar%20informaci%C3%B3n%20o%20una%20cotizaci%C3%B3n%20a%20Ushuaia%20Soporte%20T%C3%A9cnico." target="_blank" rel="noopener noreferrer">
+                Escribir por WhatsApp ↗
+              </a>
+              <a class="btn-secondary" href="mailto:contacto@ushuaiasoporte.com?subject=Consulta%20%E2%80%94%20Ushuaia%20Soporte%20T%C3%A9cnico">
+                Solicitar información por correo →
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" style="border-bottom:none;">
-      <div class="container">
-        <div class="deploy-box">
-          <div>
-            <div class="section-label">Cuando elijas tu piloto</div>
-            <h3>Pase a Producción ($0/mes con HTTPS)</h3>
-            <ul>
-              <li>Aislamos el piloto ganador en un repositorio público dedicado (<code>rafael202603/ushuaiasoporte-web</code>) separado de la documentación de clientes en <code>USP-GLOBAL</code>.</li>
-              <li>Agregamos SEO técnico completo (<code>OpenGraph</code>, <code>JSON-LD LocalBusiness</code>, <code>sitemap.xml</code>, <code>robots.txt</code>, favicons vectoriales) y el detalle final de equipo/redes si decidís mostrarlos.</li>
-              <li>Desplegamos en <strong>Cloudflare Pages</strong> o <strong>GitHub Pages</strong> apuntando <code>ushuaiasoporte.com</code> + <code>www</code> con SSL automático.</li>
-            </ul>
-          </div>
-          <div>
-            <div class="section-label">Recordatorio Operativo</div>
-            <h3>Verificaciones Previas al Lanzamiento</h3>
-            <ul>
-              <li>Confirmar que la suscripción anual <code>Registro del dominio</code> en <code>admin.google.com</code> (tarjeta <code>Visa •••• 3478</code>) ya fue regularizada antes de mediados de diciembre de 2026.</li>
-              <li>Decidir si incluimos mención pública al equipo (<code>Emiliano</code>, <code>Luciana</code>, <code>Juan</code>) y enlaces a redes sociales.</li>
-              <li>Decidir si querés fusionar algún elemento entre pilotos (por ejemplo: estética clara de Piloto 2 con el Blueprint interactivo de Piloto 1).</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
-  <footer class="container">
-    <div>USHUAIA SOPORTE TÉCNICO · RAFAEL PINTO · USHUAIA, TIERRA DEL FUEGO (54°48′S 68°18′W)</div>
-    <div>rafael@ushuaiasoporte.com · +54 9 2901 519191</div>
+  <!-- Minimal Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-label="Ushuaia Soporte Técnico">
+          <defs>
+            <mask id="foot-m-logo">
+              <rect width="360" height="360" fill="#000000"/>
+              <path d="M349.22 180.00 C349.22 273.46 273.46 349.22 180.00 349.22 C86.54 349.22 10.78 273.46 10.78 180.00 C10.78 86.54 86.54 10.78 180.00 10.78 C273.46 10.78 349.22 86.54 349.22 180.00 Z" fill="#ffffff"/>
+              <path d="M333.72 180.00 C333.72 264.90 264.90 333.72 180.00 333.72 C95.10 333.72 26.28 264.90 26.28 180.00 C26.28 95.10 95.10 26.28 180.00 26.28 C264.90 26.28 333.72 95.10 333.72 180.00 Z" fill="#000000"/>
+              <path d="M147.63 299.39 L210.29 300.00 L205.71 102.30 L194.70 102.30 L194.70 69.53 L179.19 54.01 L164.41 68.79 L164.39 102.30 L153.72 102.30 Z" fill="#ffffff"/>
+              <path d="M187.61 49.96 C187.61 54.44 183.98 58.06 179.51 58.06 C175.03 58.06 171.41 54.44 171.41 49.96 C171.41 45.49 175.03 41.86 179.51 41.86 C183.98 41.86 187.61 45.49 187.61 49.96 Z" fill="#ffffff"/>
+              <path d="M28.25 200.27 L30.11 200.27 C31.53 201.61 34.00 202.49 36.80 202.49 L39.44 202.49 C40.76 204.26 43.44 205.47 46.55 205.47 L48.84 205.47 C49.90 208.05 52.91 209.90 56.45 209.90 L58.88 209.90 C59.97 212.84 62.95 214.95 66.46 214.95 L137.82 214.95 C142.26 214.95 145.85 211.59 145.85 207.45 L145.85 152.45 C145.85 148.31 142.26 144.95 137.82 144.95 L66.46 144.95 C63.20 144.95 60.40 146.77 59.14 149.38 L56.45 149.38 C52.56 149.38 49.32 151.61 48.58 154.58 L46.55 154.58 C43.67 154.58 41.16 155.62 39.76 157.18 L36.80 157.18 C34.16 157.18 31.83 157.96 30.37 159.16 L28.25 159.16 C23.84 159.16 20.26 161.13 20.26 163.57 L20.26 195.87 C20.26 198.30 23.84 200.27 28.25 200.27 Z" fill="#ffffff"/>
+              <path d="M28.42 167.49 L32.55 167.49 C33.22 167.49 33.77 166.94 33.77 166.27 L33.77 165.81 C33.77 165.14 34.32 164.59 34.99 164.59 L42.79 164.59 C43.46 164.59 44.01 164.04 44.01 163.37 L44.01 163.06 C44.01 162.38 44.56 161.84 45.23 161.84 L53.33 161.84 C54.01 161.84 54.56 161.29 54.56 160.61 L54.56 158.02 C54.56 157.34 55.10 156.79 55.78 156.79 L63.57 156.79 C64.25 156.79 64.79 156.25 64.79 155.57 L64.79 152.97 C64.79 152.30 65.34 151.75 66.02 151.75 L138.46 151.75 C139.14 151.75 139.68 152.30 139.68 152.97 L139.68 207.38 C139.68 208.06 139.14 208.60 138.46 208.60 L65.56 208.60 C64.88 208.60 64.34 208.06 64.34 207.38 L64.34 204.48 C64.34 203.80 63.79 203.25 63.11 203.25 L55.47 203.25 C54.80 203.25 54.25 202.71 54.25 202.03 L54.25 199.74 C54.25 199.06 53.70 198.52 53.03 198.52 L44.93 198.52 C44.25 198.52 43.70 197.97 43.70 197.29 L43.70 196.68 C43.70 196.01 43.16 195.46 42.48 195.46 L34.69 195.46 C34.01 195.46 33.46 194.91 33.46 194.24 C33.46 193.56 32.92 193.01 32.24 193.01 L28.42 193.01 C27.75 193.01 27.20 192.47 27.20 191.79 L27.20 189.04 C27.20 188.37 27.75 187.82 28.42 187.82 L32.39 187.82 C33.07 187.82 33.62 187.27 33.62 186.60 L33.62 173.91 C33.62 173.24 33.07 172.69 32.39 172.69 L28.42 172.69 C27.75 172.69 27.20 172.14 27.20 171.47 L27.20 168.71 C27.20 168.04 27.75 167.49 28.42 167.49 Z" fill="#000000"/>
+              <path d="M44.01 190.26 L38.89 190.26 L38.89 169.94 L44.01 169.94 Z" fill="#ffffff"/>
+              <path d="M54.56 192.84 L49.44 192.84 L49.44 166.84 L54.56 166.84 Z" fill="#ffffff"/>
+              <path d="M64.87 198.33 L59.75 198.33 L59.75 161.95 L64.87 161.95 Z" fill="#ffffff"/>
+              <path d="M103.31 203.14 L70.07 203.14 L70.07 156.73 L103.31 156.73 Z" fill="#ffffff"/>
+              <path d="M134.54 203.38 L107.97 203.38 L107.97 156.97 L134.54 156.97 Z" fill="#ffffff"/>
+              <path d="M114.53 190.26 L76.42 190.26 C74.09 190.26 72.20 188.38 72.20 186.05 L72.20 173.54 C72.20 171.21 74.09 169.33 76.42 169.33 L114.53 169.33 C116.86 169.33 118.75 171.21 118.75 173.54 L118.75 186.05 C118.75 188.38 116.86 190.26 114.53 190.26 Z" fill="#000000"/>
+              <path d="M103.31 185.22 L77.33 185.22 L77.33 174.83 L103.31 174.83 Z" fill="#ffffff"/>
+              <path d="M113.55 185.22 L108.66 185.22 L108.66 174.83 L113.55 174.83 Z" fill="#ffffff"/>
+              <path d="M134.54 167.80 L123.94 167.80 L123.94 161.95 L134.54 161.95 Z" fill="#000000"/>
+              <path d="M134.54 177.95 L123.94 177.95 L123.94 172.11 L134.54 172.11 Z" fill="#000000"/>
+              <path d="M134.54 188.11 L123.94 188.11 L123.94 182.27 L134.54 182.27 Z" fill="#000000"/>
+              <path d="M134.54 198.27 L123.94 198.27 L123.94 192.42 L134.54 192.42 Z" fill="#000000"/>
+              <path d="M158.66 166.84 L200.32 166.84 L201.58 230.31 L157.16 230.31 Z" fill="#000000"/>
+              <path d="M178.96 67.20 L171.41 72.84 L171.41 101.08 L185.77 101.08 L185.77 72.84 Z" fill="#000000"/>
+              <path d="M331.21 159.85 L329.35 159.85 C327.93 158.52 325.46 157.63 322.66 157.63 L320.02 157.63 C318.70 155.87 316.02 154.65 312.91 154.65 L310.62 154.65 C309.56 152.08 306.55 150.22 303.01 150.22 L300.58 150.22 C299.49 147.29 296.51 145.18 293.00 145.18 L221.64 145.18 C217.20 145.18 213.61 148.53 213.61 152.68 L213.61 207.68 C213.61 211.82 217.20 215.18 221.64 215.18 L293.00 215.18 C296.26 215.18 299.06 213.35 300.32 210.74 L303.01 210.74 C306.90 210.74 310.14 208.51 310.88 205.55 L312.91 205.55 C315.79 205.55 318.30 204.51 319.70 202.95 L322.66 202.95 C325.30 202.95 327.63 202.16 329.09 200.96 L331.21 200.96 C335.62 200.96 339.20 198.99 339.20 196.56 L339.20 164.25 C339.20 161.82 335.62 159.85 331.21 159.85 Z" fill="#ffffff"/>
+              <path d="M331.04 192.63 L326.91 192.63 C326.24 192.63 325.69 193.18 325.69 193.86 L325.69 194.31 C325.69 194.99 325.14 195.54 324.47 195.54 L316.67 195.54 C316.00 195.54 315.45 196.08 315.45 196.76 L315.45 197.06 C315.45 197.74 314.90 198.29 314.23 198.29 L306.13 198.29 C305.45 198.29 304.90 198.83 304.90 199.51 L304.90 202.11 C304.90 202.78 304.36 203.33 303.68 203.33 L295.89 203.33 C295.21 203.33 294.67 203.88 294.67 204.55 L294.67 207.15 C294.67 207.83 294.12 208.37 293.44 208.37 L221.00 208.37 C220.32 208.37 219.78 207.83 219.78 207.15 L219.78 152.74 C219.78 152.07 220.32 151.52 221.00 151.52 L293.90 151.52 C294.58 151.52 295.12 152.07 295.12 152.74 L295.12 155.65 C295.12 156.32 295.67 156.87 296.35 156.87 L303.99 156.87 C304.66 156.87 305.21 157.42 305.21 158.09 L305.21 160.38 C305.21 161.06 305.76 161.61 306.43 161.61 L314.53 161.61 C315.21 161.61 315.76 162.15 315.76 162.83 L315.76 163.44 C315.76 164.12 316.30 164.66 316.98 164.66 L324.77 164.66 C325.45 164.66 326.00 165.21 326.00 165.89 C326.00 166.56 326.54 167.11 327.22 167.11 L331.04 167.11 C331.71 167.11 332.26 167.66 332.26 168.33 L332.26 171.08 C332.26 171.76 331.71 172.31 331.04 172.31 L327.07 172.31 C326.39 172.31 325.84 172.85 325.84 173.53 L325.84 186.21 C325.84 186.89 326.39 187.44 327.07 187.44 L331.04 187.44 C331.71 187.44 332.26 187.98 332.26 188.66 L332.26 191.41 C332.26 192.09 331.71 192.63 331.04 192.63 Z" fill="#000000"/>
+              <path d="M315.45 169.86 L320.57 169.86 L320.57 190.19 L315.45 190.19 Z" fill="#ffffff"/>
+              <path d="M304.90 167.29 L310.02 167.29 L310.02 193.28 L304.90 193.28 Z" fill="#ffffff"/>
+              <path d="M294.59 161.80 L299.71 161.80 L299.71 198.17 L294.59 198.17 Z" fill="#ffffff"/>
+              <path d="M256.14 156.99 L289.39 156.99 L289.39 203.39 L256.14 203.39 Z" fill="#ffffff"/>
+              <path d="M224.92 156.74 L251.49 156.74 L251.49 203.15 L224.92 203.15 Z" fill="#ffffff"/>
+              <path d="M244.93 169.86 L283.04 169.86 C285.37 169.86 287.26 171.75 287.26 174.08 L287.26 186.58 C287.26 188.91 285.37 190.80 283.04 190.80 L244.93 190.80 C242.60 190.80 240.71 188.91 240.71 186.58 L240.71 174.08 C240.71 171.75 242.60 169.86 244.93 169.86 Z" fill="#000000"/>
+              <path d="M256.15 174.90 L282.13 174.90 L282.13 185.30 L256.15 185.30 Z" fill="#ffffff"/>
+              <path d="M245.91 174.90 L250.80 174.90 L250.80 185.30 L245.91 185.30 Z" fill="#ffffff"/>
+              <path d="M224.92 192.33 L235.52 192.33 L235.52 198.17 L224.92 198.17 Z" fill="#000000"/>
+              <path d="M224.92 182.17 L235.52 182.17 L235.52 188.02 L224.92 188.02 Z" fill="#000000"/>
+              <path d="M224.92 172.01 L235.52 172.01 L235.52 177.86 L224.92 177.86 Z" fill="#000000"/>
+              <path d="M224.92 161.85 L235.52 161.85 L235.52 167.70 L224.92 167.70 Z" fill="#000000"/>
+            </mask>
+          </defs>
+          <rect width="360" height="360" fill="#FFFFFF" mask="url(#foot-m-logo)"/>
+        </svg>
+        <span class="footer-brand-name">Ushuaia Soporte Técnico</span>
+        <span class="footer-brand-domain">ushuaiasoporte.com</span>
+      </div>
+      <div class="footer-geo">Ushuaia · Tolhuin · Río Grande · El Calafate — Tierra del Fuego y Patagonia, Argentina</div>
+    </div>
   </footer>
+
+  <div class="copy-toast" id="copy-toast" role="status" aria-live="polite"></div>
+
+  <!-- UMD Motion Engines (file:// & HTTPS safe) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      'use strict';
+
+      var reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      var state = {
+        scrollNorm: 0,
+        velocity: 0,
+        targetMouseX: 0.5,
+        targetMouseY: 0.45,
+        mouseX: 0.5,
+        mouseY: 0.45,
+        pausedByUser: false,
+        reducedMotion: reducedMotionQuery.matches
+      };
+
+      /* =======================================================================
+         1. SCROLL PROGRESS FALLBACK (modern-web-guidance: scroll-progress-indicator)
+         ======================================================================= */
+      var progressEl = document.getElementById('scroll-progress');
+      var supportsNativeScrollTimeline = window.CSS && CSS.supports && CSS.supports('animation-timeline', 'scroll()');
+
+      function updateScrollProgressFallback() {
+        var maxY = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        state.scrollNorm = Math.min(1, Math.max(0, window.scrollY / maxY));
+        if (!supportsNativeScrollTimeline && progressEl) {
+          progressEl.style.transform = 'scaleX(' + state.scrollNorm.toFixed(4) + ')';
+        }
+      }
+      window.addEventListener('scroll', updateScrollProgressFallback, { passive: true });
+      updateScrollProgressFallback();
+
+      /* =======================================================================
+         2. LIVING WEBGL2 POLAR AURORA + LIGHTHOUSE SWEEP SHADER
+         ======================================================================= */
+      var kickShader = function () {};
+
+      (function initAuroraWebGL() {
+        var canvas = document.getElementById('aurora-gl');
+        if (!canvas) return;
+        var gl = canvas.getContext('webgl2', { alpha: true, antialias: false, powerPreference: 'high-performance' });
+        var isWebGL2 = !!gl;
+        if (!gl) gl = canvas.getContext('webgl', { alpha: true, antialias: false });
+        if (!gl) return;
+
+        var vertSrc = isWebGL2
+          ? '#version 300 es\nin vec2 aPos;\nout vec2 vUv;\nvoid main(){ vUv = aPos * 0.5 + 0.5; gl_Position = vec4(aPos, 0.0, 1.0); }'
+          : 'attribute vec2 aPos;\nvarying vec2 vUv;\nvoid main(){ vUv = aPos * 0.5 + 0.5; gl_Position = vec4(aPos, 0.0, 1.0); }';
+
+        var fragBody = [
+          'uniform vec2 uRes;',
+          'uniform float uTime;',
+          'uniform float uScroll;',
+          'uniform float uVelocity;',
+          'uniform vec2 uMouse;',
+          'float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123); }',
+          'float noise(vec2 p){ vec2 i = floor(p); vec2 f = fract(p); vec2 u = f * f * (3.0 - 2.0 * f); return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x), mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x), u.y); }',
+          'float fbm(vec2 p){ float v = 0.0; float a = 0.52; mat2 rot = mat2(0.8, 0.6, -0.6, 0.8); for(int i = 0; i < 4; i++){ v += a * noise(p); p = rot * p * 2.04; a *= 0.5; } return v; }',
+          'void main(){',
+          '  vec2 uv = gl_FragCoord.xy / uRes.xy;',
+          '  vec2 p = uv * 2.0 - 1.0;',
+          '  p.x *= uRes.x / max(uRes.y, 1.0);',
+          '  float t = uTime * 0.16 + uScroll * 2.4;',
+          '  float vel = clamp(abs(uVelocity) * 0.03, 0.0, 0.48);',
+          '  vec2 q = vec2(fbm(p * 1.15 + vec2(t * 0.35, -t * 0.2)), fbm(p * 1.35 + vec2(-t * 0.25, t * 0.3)));',
+          '  float ribbon = fbm(p * 1.65 + q * (1.55 + vel) + vec2(0.0, -uScroll * 1.8));',
+          '  float curtain = smoothstep(0.26, 0.86, ribbon) * exp(-abs(p.y - (0.28 - uScroll * 0.55) + sin(p.x * 1.45 + t) * 0.24) * 1.55);',
+          '  vec2 beaconPos = vec2((uMouse.x - 0.5) * 0.45, 0.42 - uScroll * 0.30);',
+          '  vec2 dB = p - beaconPos;',
+          '  float ang = atan(dB.y, dB.x);',
+          '  float sweep = pow(max(0.0, cos(ang - uScroll * 5.6 - uTime * 0.18)), 9.0) * exp(-length(dB) * 0.95);',
+          '  float portalBoost = smoothstep(0.72, 0.98, uScroll) * exp(-length(p * vec2(0.82, 1.08)) * 1.4) * 0.46;',
+          '  vec3 cAbyss = vec3(0.016, 0.027, 0.055);',
+          '  vec3 cOcean = vec3(0.032, 0.128, 0.230);',
+          '  vec3 cBeagle = vec3(0.0, 0.682, 0.937);',
+          '  vec3 cIce = vec3(0.55, 0.91, 1.0);',
+          '  vec3 col = mix(cAbyss, cOcean, clamp(ribbon * 0.85 + (1.0 - uv.y) * 0.22, 0.0, 1.0));',
+          '  col += cBeagle * (curtain * (0.56 + vel * 0.35) + sweep * 0.28 + portalBoost);',
+          '  col += cIce * pow(curtain, 2.2) * 0.30;',
+          '  float vig = smoothstep(1.70, 0.22, length(p * vec2(0.72, 0.95)));',
+          '  col *= mix(0.58, 1.0, vig);',
+          '  OUT_COL = vec4(col, 1.0);',
+          '}'
+        ].join('\n');
+
+        var fragSrc = isWebGL2
+          ? '#version 300 es\nprecision highp float;\nout vec4 fragColor;\n' + fragBody.replace('OUT_COL', 'fragColor')
+          : 'precision highp float;\n' + fragBody.replace('OUT_COL', 'gl_FragColor');
+
+        function compile(type, src) {
+          var s = gl.createShader(type);
+          gl.shaderSource(s, src);
+          gl.compileShader(s);
+          if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) return null;
+          return s;
+        }
+        var vs = compile(gl.VERTEX_SHADER, vertSrc);
+        var fs = compile(gl.FRAGMENT_SHADER, fragSrc);
+        if (!vs || !fs) return;
+        var prog = gl.createProgram();
+        gl.attachShader(prog, vs);
+        gl.attachShader(prog, fs);
+        gl.linkProgram(prog);
+        if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+        gl.useProgram(prog);
+
+        var buf = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]), gl.STATIC_DRAW);
+        var loc = gl.getAttribLocation(prog, 'aPos');
+        gl.enableVertexAttribArray(loc);
+        gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+        var uRes = gl.getUniformLocation(prog, 'uRes');
+        var uTime = gl.getUniformLocation(prog, 'uTime');
+        var uScroll = gl.getUniformLocation(prog, 'uScroll');
+        var uVelocity = gl.getUniformLocation(prog, 'uVelocity');
+        var uMouse = gl.getUniformLocation(prog, 'uMouse');
+
+        function resize() {
+          var dpr = Math.min(window.devicePixelRatio || 1, 1.6);
+          canvas.width = Math.floor(window.innerWidth * dpr);
+          canvas.height = Math.floor(window.innerHeight * dpr);
+          gl.viewport(0, 0, canvas.width, canvas.height);
+        }
+        resize();
+        window.addEventListener('resize', resize, { passive: true });
+        window.addEventListener('pointermove', function (e) {
+          state.targetMouseX = e.clientX / Math.max(window.innerWidth, 1);
+          state.targetMouseY = 1 - (e.clientY / Math.max(window.innerHeight, 1));
+        }, { passive: true });
+
+        var elapsed = 1.6;
+        var lastFrame = performance.now();
+        var rafId = null;
+
+        function renderFrame(now) {
+          var dt = Math.min(0.05, (now - lastFrame) / 1000);
+          lastFrame = now;
+          if (!state.pausedByUser && !state.reducedMotion) {
+            elapsed += dt;
+          }
+          state.mouseX += (state.targetMouseX - state.mouseX) * 0.06;
+          state.mouseY += (state.targetMouseY - state.mouseY) * 0.06;
+          state.velocity *= 0.92;
+
+          gl.uniform2f(uRes, canvas.width, canvas.height);
+          gl.uniform1f(uTime, elapsed);
+          gl.uniform1f(uScroll, state.scrollNorm);
+          gl.uniform1f(uVelocity, state.velocity);
+          gl.uniform2f(uMouse, state.mouseX, state.mouseY);
+          gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+          if (!document.hidden && !state.pausedByUser && !state.reducedMotion) {
+            rafId = requestAnimationFrame(renderFrame);
+          } else {
+            rafId = null;
+          }
+        }
+
+        kickShader = function () {
+          if (rafId === null && !document.hidden) {
+            lastFrame = performance.now();
+            rafId = requestAnimationFrame(renderFrame);
+          }
+        };
+
+        renderFrame(performance.now());
+        document.addEventListener('visibilitychange', function () {
+          if (!document.hidden && !state.pausedByUser && !state.reducedMotion) kickShader();
+        });
+        window.addEventListener('scroll', function () {
+          if (state.pausedByUser || state.reducedMotion) renderFrame(performance.now());
+        }, { passive: true });
+      })();
+
+      /* =======================================================================
+         3. SINGLE-SCROLL CINEMATIC CHOREOGRAPHY (GSAP 3.13 + LENIS)
+            With explicit WCAG 2.2.2 Pause / Full-Motion Runtime Switcher
+         ======================================================================= */
+      var lenis = null;
+      var serviceTrigger = null;
+      var cinematicCtx = null;
+      var reducedCtx = null;
+
+      function teardownScrollContexts() {
+        if (cinematicCtx) { cinematicCtx.revert(); cinematicCtx = null; }
+        if (reducedCtx) { reducedCtx.revert(); reducedCtx = null; }
+        if (lenis) { lenis.destroy(); lenis = null; }
+        serviceTrigger = null;
+      }
+
+      function mountScrollChoreography() {
+        if (!window.gsap || !window.ScrollTrigger) return;
+        teardownScrollContexts();
+
+        var isDesktop = window.innerWidth >= 900;
+        var allowFull = !state.pausedByUser && !state.reducedMotion;
+
+        if (allowFull) {
+          cinematicCtx = gsap.context(function (ctx) {
+            var cleanups = [];
+            if (window.Lenis) {
+              lenis = new Lenis({
+                lerp: 0.085,
+                smoothWheel: true,
+                wheelMultiplier: 0.95
+              });
+              lenis.on('scroll', function (e) {
+                state.velocity = e.velocity || 0;
+                updateScrollProgressFallback();
+                ScrollTrigger.update();
+              });
+              var tickFn = function (time) { if (lenis) lenis.raf(time * 1000); };
+              gsap.ticker.add(tickFn);
+              gsap.ticker.lagSmoothing(0);
+              cleanups.push(function () { gsap.ticker.remove(tickFn); });
+            }
+
+            if (isDesktop) {
+              /* --- ACTO I: MONUMENTAL FARO PORTAL SPLIT --- */
+              var heroH1 = document.getElementById('hero-h1');
+              var splitH1 = null;
+              if (window.SplitText && heroH1) {
+                splitH1 = SplitText.create(heroH1, { type: 'lines', mask: 'lines' });
+                gsap.from(splitH1.lines, {
+                  yPercent: 100,
+                  duration: 0.95,
+                  stagger: 0.09,
+                  ease: 'power3.out',
+                  clearProps: 'transform'
+                });
+                cleanups.push(function () { if (splitH1 && splitH1.revert) splitH1.revert(); });
+              }
+
+              var heroTl = gsap.timeline({
+                scrollTrigger: {
+                  trigger: '#inicio',
+                  start: 'top top',
+                  end: '+=115%',
+                  pin: true,
+                  scrub: 0.75,
+                  anticipatePin: 1
+                }
+              });
+
+              heroTl
+                .to('#scroll-cue', { opacity: 0, y: 18, duration: 0.25 }, 0)
+                .to('#layer-rj-left', { x: -160, opacity: 0.12, duration: 0.85, ease: 'power2.inOut' }, 0.05)
+                .to('#layer-rj-right', { x: 160, opacity: 0.12, duration: 0.85, ease: 'power2.inOut' }, 0.05)
+                .to('#layer-ring', { scale: 2.65, opacity: 0, duration: 0.9, ease: 'power2.in' }, 0.05)
+                .to('#orbit-outer', { rotation: 68, scale: 1.78, opacity: 0, duration: 0.9 }, 0)
+                .to('#orbit-inner', { rotation: -98, scale: 1.48, opacity: 0, duration: 0.9 }, 0)
+                .to('#layer-faro', { y: -22, scale: 1.2, opacity: 0.22, duration: 0.9 }, 0.08)
+                .to('#faro-beam', { scaleY: 1, duration: 0.65, ease: 'power2.out' }, 0.16)
+                .to('#hero-copy', { y: -44, scale: 1.06, opacity: 0.1, duration: 0.85, ease: 'power1.in' }, 0.2);
+
+              /* --- ACTO II: PINNED PATAGONIAN CONSTELLATION ROUTE --- */
+              var routePath = document.getElementById('patagonia-route');
+              var cityCards = document.querySelectorAll('#cities-list .city-card');
+              var mapNodes = document.querySelectorAll('.map-node-group');
+              var readoutEl = document.getElementById('active-city-readout');
+              var cityMeta = [
+                'USHUAIA · 54°48′S 68°18′W',
+                'TOLHUIN · 54°30′S 67°11′W',
+                'RÍO GRANDE · 53°47′S 67°42′W',
+                'EL CALAFATE · 50°20′S 72°16′W'
+              ];
+
+              if (routePath) {
+                var routeLen = routePath.getTotalLength();
+                gsap.set(routePath, { strokeDasharray: routeLen, strokeDashoffset: routeLen });
+
+                gsap.to(routePath, {
+                  strokeDashoffset: 0,
+                  ease: 'none',
+                  scrollTrigger: {
+                    trigger: '#nosotros',
+                    start: 'top top',
+                    end: '+=160%',
+                    pin: true,
+                    scrub: 0.6,
+                    anticipatePin: 1,
+                    onUpdate: function (self) {
+                      var p = self.progress;
+                      var activeIdx = p < 0.28 ? 0 : (p < 0.54 ? 1 : (p < 0.80 ? 2 : 3));
+                      cityCards.forEach(function (c, idx) { c.classList.toggle('is-lit', idx <= activeIdx); });
+                      mapNodes.forEach(function (n, idx) { n.classList.toggle('is-lit', idx <= activeIdx); });
+                      if (readoutEl) readoutEl.textContent = cityMeta[activeIdx];
+                    }
+                  }
+                });
+              }
+
+              /* --- ACTO III: 3D SPATIAL PERSPECTIVE DECK + ORBITAL DIAL --- */
+              var deckEl = document.getElementById('service-deck');
+              var cards = gsap.utils.toArray('#service-deck .service-prism-card');
+              var dialRotator = document.getElementById('dial-rotator');
+              var dialCurrent = document.getElementById('dial-current');
+              var dialTitle = document.getElementById('dial-title');
+              var pillBtns = document.querySelectorAll('.service-pill-btn');
+
+              if (deckEl && cards.length === 5) {
+                deckEl.classList.add('is-3d-deck');
+                cleanups.push(function () { deckEl.classList.remove('is-3d-deck'); });
+
+                cards.forEach(function (card, i) {
+                  gsap.set(card, {
+                    zIndex: i + 1,
+                    yPercent: i === 0 ? 0 : 112,
+                    scale: i === 0 ? 1 : 0.94,
+                    rotateX: i === 0 ? 0 : 10,
+                    opacity: 1,
+                    transformOrigin: '50% 85%'
+                  });
+                });
+
+                var deckTl = gsap.timeline({
+                  scrollTrigger: {
+                    trigger: '#servicios',
+                    start: 'top top',
+                    end: '+=320%',
+                    pin: true,
+                    scrub: 0.7,
+                    anticipatePin: 1,
+                    onUpdate: function (self) {
+                      var idx = Math.min(4, Math.floor(self.progress * 4.999));
+                      if (dialCurrent) dialCurrent.textContent = '0' + (idx + 1);
+                      if (dialTitle) dialTitle.textContent = cards[idx].getAttribute('data-short-title') || '';
+                      pillBtns.forEach(function (btn, bIdx) {
+                        btn.classList.toggle('is-active', bIdx === idx);
+                      });
+                    }
+                  }
+                });
+                serviceTrigger = deckTl.scrollTrigger;
+
+                if (dialRotator) {
+                  deckTl.to(dialRotator, { rotation: 288, ease: 'none', duration: 4 }, 0);
+                }
+
+                for (var i = 1; i < cards.length; i++) {
+                  var stepPos = i - 1;
+                  deckTl.to(cards[i], {
+                    yPercent: 0,
+                    scale: 1,
+                    rotateX: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: 'power2.out'
+                  }, stepPos);
+
+                  for (var j = 0; j < i; j++) {
+                    var depth = i - j;
+                    deckTl.to(cards[j], {
+                      y: -26 * Math.min(depth, 2),
+                      scale: Math.max(0.84, 1 - depth * 0.06),
+                      rotateX: -6 * Math.min(depth, 2),
+                      opacity: depth === 1 ? 0.35 : 0,
+                      duration: 1,
+                      ease: 'power2.out'
+                    }, stepPos);
+                  }
+                }
+              }
+
+              /* --- ACTO IV: ECCENTRIC COUNTER-SCROLLING KINETIC MARQUEE + LENSES --- */
+              gsap.fromTo('#kinetic-row-1',
+                { xPercent: 4 },
+                {
+                  xPercent: -26,
+                  ease: 'none',
+                  scrollTrigger: {
+                    trigger: '#sectores',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 0.6
+                  }
+                }
+              );
+              gsap.fromTo('#kinetic-row-2',
+                { xPercent: -24 },
+                {
+                  xPercent: 6,
+                  ease: 'none',
+                  scrollTrigger: {
+                    trigger: '#sectores',
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 0.6
+                  }
+                }
+              );
+
+              gsap.from('#sectors-grid .sector-lens', {
+                y: 34,
+                clipPath: 'inset(0% 0% 100% 0% round 22px)',
+                duration: 0.85,
+                stagger: 0.12,
+                ease: 'power3.out',
+                clearProps: 'clipPath,transform',
+                scrollTrigger: {
+                  trigger: '#sectors-grid',
+                  start: 'top 82%',
+                  once: true
+                }
+              });
+
+              /* --- ACTO V: CIRCULAR IRIS PORTAL REVEAL --- */
+              gsap.fromTo('#contact-portal',
+                { clipPath: 'circle(24% at 50% 48%)', scale: 0.94 },
+                {
+                  clipPath: 'circle(115% at 50% 50%)',
+                  scale: 1,
+                  ease: 'power2.out',
+                  scrollTrigger: {
+                    trigger: '#contacto',
+                    start: 'top 86%',
+                    end: 'top 22%',
+                    scrub: 0.65
+                  },
+                  onComplete: function () {
+                    gsap.set('#contact-portal', { clearProps: 'clipPath' });
+                  }
+                }
+              );
+            }
+
+            return function () {
+              cleanups.forEach(function (fn) { try { fn(); } catch (e) {} });
+            };
+          });
+        } else {
+          /* Calm Reduced-Motion Mode: all 4 Patagonian cities clearly lit, zero jarring motion */
+          reducedCtx = gsap.context(function () {
+            document.querySelectorAll('#cities-list .city-card, .map-node-group').forEach(function (el) {
+              el.classList.add('is-lit');
+            });
+            var readoutEl = document.getElementById('active-city-readout');
+            if (readoutEl) readoutEl.textContent = 'USHUAIA · TOLHUIN · RÍO GRANDE · EL CALAFATE';
+          });
+        }
+
+        ScrollTrigger.refresh();
+      }
+
+      if (window.gsap && window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+        if (window.SplitText) gsap.registerPlugin(SplitText);
+        mountScrollChoreography();
+
+        var resizeTimer = null;
+        window.addEventListener('resize', function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(mountScrollChoreography, 220);
+        });
+
+        /* Active Chapter Highlighting (All Viewports & Modes) */
+        var sectionIds = ['#inicio', '#nosotros', '#servicios', '#sectores', '#contacto'];
+        var railDots = document.querySelectorAll('.chapter-dot');
+        var navLinks = document.querySelectorAll('.nav-links a');
+
+        sectionIds.forEach(function (id, idx) {
+          var sec = document.querySelector(id);
+          if (!sec) return;
+          ScrollTrigger.create({
+            trigger: sec,
+            start: 'top 45%',
+            end: 'bottom 45%',
+            onToggle: function (self) {
+              if (!self.isActive) return;
+              railDots.forEach(function (d, dIdx) { d.classList.toggle('is-active', dIdx === idx); });
+              var clean = id.replace('#', '');
+              navLinks.forEach(function (a) {
+                var target = a.getAttribute('href').replace('#', '');
+                a.classList.toggle('is-active', target === clean);
+              });
+            }
+          });
+        });
+      }
+
+      /* WCAG 2.2.2 Pause / Resume & Full Cinematic Toggle (always attached regardless of WebGL) */
+      var toggleBtn = document.getElementById('motion-toggle');
+      var toggleLabel = document.getElementById('motion-toggle-label');
+      function syncMotionToggleUI() {
+        if (!toggleBtn || !toggleLabel) return;
+        var paused = state.pausedByUser || state.reducedMotion;
+        document.body.classList.toggle('motion-paused', paused);
+        toggleBtn.classList.toggle('is-paused', paused);
+        toggleLabel.textContent = paused ? 'Activar modo cinemático' : 'Pausar efecto';
+      }
+      syncMotionToggleUI();
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', function () {
+          if (state.reducedMotion || state.pausedByUser) {
+            state.reducedMotion = false;
+            state.pausedByUser = false;
+          } else {
+            state.pausedByUser = true;
+          }
+          syncMotionToggleUI();
+          mountScrollChoreography();
+          if (!state.pausedByUser && !state.reducedMotion) kickShader();
+        });
+      }
+
+      /* =======================================================================
+         4. SMOOTH NAVIGATION JUMPS, SERVICE PILL JUMPS & CLIPBOARD COPY
+         ======================================================================= */
+      function scrollToTarget(selector) {
+        var el = document.querySelector(selector);
+        if (!el) return;
+        if (lenis) {
+          lenis.scrollTo(el, { duration: 1.15 });
+        } else {
+          el.scrollIntoView({ behavior: state.reducedMotion ? 'auto' : 'smooth' });
+        }
+      }
+
+      document.querySelectorAll('a[href^="#"], .chapter-dot[data-jump]').forEach(function (el) {
+        el.addEventListener('click', function (e) {
+          var target = el.getAttribute('href') || el.getAttribute('data-jump');
+          if (!target || target === '#') return;
+          e.preventDefault();
+          scrollToTarget(target);
+        });
+      });
+
+      document.querySelectorAll('.service-pill-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var idx = parseInt(btn.getAttribute('data-service-jump'), 10);
+          if (serviceTrigger && !isNaN(idx)) {
+            var targetY = serviceTrigger.start + (serviceTrigger.end - serviceTrigger.start) * (idx / 4.25);
+            if (lenis) lenis.scrollTo(targetY, { duration: 0.9 });
+            else window.scrollTo({ top: targetY, behavior: 'smooth' });
+          }
+        });
+      });
+
+      /* 1-Click Copy Channels + Accessible Toast */
+      var toast = document.getElementById('copy-toast');
+      var toastTimer = null;
+
+      function showToast(msg) {
+        if (!toast) return;
+        toast.textContent = msg;
+        toast.classList.add('is-visible');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove('is-visible');
+        }, 2300);
+      }
+
+      document.querySelectorAll('.copy-btn[data-copy]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var val = btn.getAttribute('data-copy');
+          if (!val) return;
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(val).then(function () {
+              showToast('Copiado: ' + val);
+            }).catch(function () {
+              showToast('Seleccioná manualmente: ' + val);
+            });
+          } else {
+            var ta = document.createElement('textarea');
+            ta.value = val;
+            ta.style.position = 'fixed';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); showToast('Copiado: ' + val); } catch (err) {}
+            document.body.removeChild(ta);
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>
