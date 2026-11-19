@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ushuaia Soporte Técnico — Infraestructura, Redes y Asistencia Informática</title>
-  <meta name="description" content="Ushuaia Soporte Técnico. Infraestructura, redes corporativas y asistencia informática para organizaciones desde 2014 en Ushuaia, Tolhuin, Río Grande y El Calafate." />
+  <title>Ushuaia Soporte Técnico · Infraestructura, Redes y Asistencia Informática</title>
+  <meta name="description" content="Ushuaia Soporte Técnico. Infraestructura, redes corporativas y asistencia informática para organizaciones desde 2014 en Ushuaia, Tolhuin, Río Grande, El Calafate y soporte remoto global." />
   <meta name="theme-color" content="#04070E" />
   <link rel="canonical" href="https://ushuaiasoporte.com/" />
   <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
@@ -12,9 +12,10 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_AR" />
+  <meta property="og:locale:alternate" content="en_US" />
   <meta property="og:site_name" content="Ushuaia Soporte Técnico" />
-  <meta property="og:title" content="Ushuaia Soporte Técnico — Infraestructura, Redes y Asistencia Informática" />
-  <meta property="og:description" content="Acompañamos la operación tecnológica de empresas e instituciones desde 2014 en Ushuaia, Tolhuin, Río Grande y El Calafate." />
+  <meta property="og:title" content="Ushuaia Soporte Técnico · Infraestructura, Redes y Asistencia Informática" />
+  <meta property="og:description" content="Acompañamos la operación tecnológica de empresas e instituciones desde 2014 en Ushuaia, Tolhuin, Río Grande, El Calafate y con soporte remoto global." />
   <meta property="og:url" content="https://ushuaiasoporte.com/" />
 
   <!-- Structured Data (Verified Business Info Only) -->
@@ -32,7 +33,7 @@
       "jobTitle": "Owner & CEO"
     },
     "telephone": "+54 9 2901 519191",
-    "email": "contacto@ushuaiasoporte.com",
+    "email": "hello@ushuaiasoporte.com",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Ushuaia",
@@ -43,9 +44,11 @@
       "Ushuaia",
       "Tolhuin",
       "Río Grande",
-      "El Calafate"
+      "El Calafate",
+      "Worldwide (Remote)"
     ],
-    "description": "Infraestructura, redes corporativas y asistencia informática para organizaciones del sector privado, bancario, hotelería y gastronomía."
+    "availableLanguage": ["Spanish", "English"],
+    "description": "Infraestructura, redes corporativas y asistencia informática presencial y remota global para organizaciones del sector privado, bancario, hotelería y gastronomía."
   }
   </script>
 
@@ -65,7 +68,7 @@
       --cyan-dim: rgba(0, 174, 239, 0.16);
 
       --glass: rgba(5, 13, 25, 0.78);
-      --glass-strong: rgba(5, 13, 25, 0.90);
+      --glass-strong: rgba(5, 13, 25, 0.92);
       --glass-border: rgba(136, 230, 255, 0.16);
       --glass-border-hi: rgba(0, 174, 239, 0.52);
 
@@ -123,14 +126,13 @@
     .skip-link:focus { top: 16px; }
 
     /* Focus-Visible Standard (never clipped) */
-    a:focus-visible,
-    button:focus-visible {
+    :where(a:any-link, button):focus-visible {
       outline: 2px solid var(--cyan-ice);
       outline-offset: 3px;
     }
 
     /* =========================================================================
-       BACKGROUND ATMOSPHERE: STATIC FALLBACK + WEBGL2 AURORA SHADER + GRAIN
+       BACKGROUND ATMOSPHERE: STATIC FALLBACK + WEBGL2 AURORA SHADER + GRID
        ========================================================================= */
     .aurora-fallback {
       position: fixed;
@@ -153,7 +155,6 @@
       display: block;
     }
 
-    /* Subtle architectural coordinate grid & light-field vignette */
     .spatial-grid-overlay {
       position: fixed;
       inset: 0;
@@ -167,8 +168,7 @@
     }
 
     /* =========================================================================
-       SCROLL PROGRESS BAR — NATIVE CSS SCROLL-DRIVEN ANIMATION + JS FALLBACK
-       (modern-web-guidance: scroll-progress-indicator & scrollytelling)
+       SCROLL PROGRESS BAR: NATIVE CSS SCROLL-DRIVEN ANIMATION + JS FALLBACK
        ========================================================================= */
     #scroll-progress {
       position: fixed;
@@ -197,7 +197,6 @@
       }
     }
 
-    /* Native CSS Scrollytelling Timeline Scope for decorative ambient parallax cues */
     @media (prefers-reduced-motion: no-preference) {
       @supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
         html {
@@ -207,10 +206,10 @@
         #sectores { view-timeline: --act-sec block; }
 
         @keyframes usp-ambient-shift {
-          from { opacity: 0.45; transform: translateY(16px); }
-          to { opacity: 1; transform: translateY(-16px); }
+          from { opacity: 0.45; transform: translateY(10px); }
+          to { opacity: 0.9; transform: translateY(-10px); }
         }
-        .ambient-lat-marker {
+        .ambient-map-caption {
           animation: usp-ambient-shift auto linear both;
           animation-timeline: --act-ter;
           animation-range: entry 0% exit 100%;
@@ -219,7 +218,7 @@
     }
 
     /* =========================================================================
-       FLOATING GLASS NAVIGATION PILL
+       FLOATING GLASS NAVIGATION PILL + ES/EN LANGUAGE SWITCHER
        ========================================================================= */
     .site-nav-wrap {
       position: fixed;
@@ -238,17 +237,16 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 18px;
       width: 100%;
-      max-width: 980px;
-      padding: 9px 10px 9px 16px;
+      max-width: 1040px;
+      padding: 8px 10px 8px 16px;
       border-radius: 999px;
-      background: rgba(5, 12, 24, 0.74);
+      background: rgba(5, 12, 24, 0.78);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(155, 235, 255, 0.08);
-      transition: background-color 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.44), inset 0 1px 0 rgba(155, 235, 255, 0.08);
     }
 
     .nav-brand {
@@ -276,7 +274,7 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 20px;
       list-style: none;
     }
     .nav-links a {
@@ -292,17 +290,56 @@
       color: var(--cyan-ice);
     }
 
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    /* Accessible ES / EN Language Toggle */
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px;
+      border-radius: 999px;
+      background: rgba(4, 10, 20, 0.75);
+      border: 1px solid var(--glass-border);
+    }
+    .lang-btn {
+      min-block-size: 28px;
+      min-inline-size: 32px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      color: var(--ink-muted);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background-color 0.2s var(--ease-out), color 0.2s var(--ease-out);
+    }
+    .lang-btn:hover {
+      color: var(--ink);
+    }
+    .lang-btn[aria-pressed="true"] {
+      background: rgba(0, 174, 239, 0.22);
+      color: var(--cyan-ice);
+    }
+
     .nav-cta {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 9px 18px;
+      min-block-size: 34px;
+      padding: 8px 16px;
       border-radius: 999px;
       background: rgba(0, 174, 239, 0.14);
       border: 1px solid rgba(0, 174, 239, 0.48);
       color: var(--ink);
       font-family: var(--font-mono);
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       font-weight: 500;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -317,23 +354,24 @@
     }
 
     /* =========================================================================
-       RIGHT CHAPTER TELEMETRY RAIL (I - V) + WCAG 2.2.2 PAUSE CONTROL
+       RIGHT CHAPTER RAIL + WCAG 2.2.2 PAUSE CONTROL
        ========================================================================= */
     .chapter-rail {
       position: fixed;
-      right: 22px;
+      right: 20px;
       top: 50%;
       transform: translateY(-50%);
       z-index: 80;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 14px;
+      gap: 12px;
     }
     .chapter-dot {
       display: inline-flex;
       align-items: center;
       gap: 10px;
+      min-block-size: 26px;
       background: none;
       border: none;
       cursor: pointer;
@@ -341,7 +379,7 @@
       font-family: var(--font-mono);
       font-size: 0.66rem;
       letter-spacing: 0.1em;
-      padding: 3px 0;
+      padding: 2px 0;
       transition: color 0.2s var(--ease-out);
     }
     .chapter-dot .dot-bar {
@@ -356,8 +394,8 @@
       transform: translateX(6px);
       padding: 3px 9px;
       border-radius: 999px;
-      background: rgba(4, 7, 14, 0.88);
-      border: 1px solid rgba(136, 230, 255, 0.16);
+      background: rgba(4, 7, 14, 0.9);
+      border: 1px solid rgba(136, 230, 255, 0.18);
       backdrop-filter: blur(8px);
       transition: opacity 0.2s var(--ease-out), transform 0.2s var(--ease-out);
     }
@@ -375,7 +413,7 @@
       box-shadow: 0 0 10px rgba(0, 174, 239, 0.8);
     }
 
-    /* WCAG 2.2.2 Pause, Stop, Hide visible keyboard button (no aria-pressed because label toggles) */
+    /* WCAG 2.2.2 Pause/Stop/Hide control (label toggles, no aria-pressed) */
     .motion-toggle {
       position: fixed;
       right: 20px;
@@ -384,9 +422,10 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 13px;
+      min-block-size: 32px;
+      padding: 7px 13px;
       border-radius: 999px;
-      background: rgba(5, 13, 25, 0.82);
+      background: rgba(5, 13, 25, 0.84);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid var(--glass-border);
@@ -446,9 +485,9 @@
     }
 
     .act-title {
-      font-size: clamp(2rem, 4.2vw, 3.65rem);
+      font-size: clamp(2rem, 4.2vw, 3.6rem);
       font-weight: 600;
-      line-height: 1.06;
+      line-height: 1.07;
       letter-spacing: -0.03em;
       color: var(--ink);
     }
@@ -461,7 +500,7 @@
     }
 
     /* =========================================================================
-       ACTO I — APERTURA · PORTAL DEL FARO (HERO MONUMENTAL)
+       ACTO I: APERTURA · PORTAL DEL FARO
        ========================================================================= */
     .act-hero {
       position: relative;
@@ -473,7 +512,6 @@
       overflow: hidden;
     }
 
-    /* Vertical lighthouse light shaft revealed during portal split */
     .faro-beam-shaft {
       position: absolute;
       top: 0;
@@ -499,7 +537,7 @@
       text-align: center;
     }
 
-    .hero-coord-pill {
+    .hero-location-pill {
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -516,7 +554,7 @@
       color: var(--cyan-ice);
       margin-bottom: 24px;
     }
-    .coord-pulse {
+    .pill-dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
@@ -524,11 +562,10 @@
       box-shadow: 0 0 12px var(--cyan);
     }
 
-    /* Monumental Official Layered Emblem Portal */
     .portal-emblem-wrap {
       position: relative;
-      width: clamp(190px, 24vw, 256px);
-      height: clamp(190px, 24vw, 256px);
+      width: clamp(188px, 23vw, 250px);
+      height: clamp(188px, 23vw, 250px);
       display: grid;
       place-items: center;
       margin-bottom: 24px;
@@ -589,7 +626,6 @@
       filter: drop-shadow(0 0 10px rgba(0, 174, 239, 0.95));
     }
 
-    /* Gentle WCAG-safe beacon breathing (< 0.25 Hz, strictly < 3 flashes/s, opt-in) */
     @media (prefers-reduced-motion: no-preference) {
       @keyframes usp-beacon-breathe {
         0%, 100% { opacity: 0.78; filter: drop-shadow(0 0 8px rgba(0, 174, 239, 0.7)); }
@@ -607,20 +643,20 @@
     }
 
     .hero-h1 {
-      font-size: clamp(2.25rem, 5.2vw, 4.45rem);
+      font-size: clamp(2.2rem, 5vw, 4.4rem);
       font-weight: 700;
-      line-height: 1.03;
+      line-height: 1.04;
       letter-spacing: -0.035em;
       color: var(--ink);
       margin-bottom: 14px;
     }
 
     .hero-sub {
-      font-size: clamp(1.08rem, 2.05vw, 1.55rem);
+      font-size: clamp(1.06rem, 2vw, 1.52rem);
       font-weight: 400;
       line-height: 1.32;
       color: var(--cyan-ice);
-      max-width: 720px;
+      max-width: 740px;
       margin-bottom: 14px;
       letter-spacing: -0.015em;
     }
@@ -630,8 +666,8 @@
       font-weight: 300;
       line-height: 1.68;
       color: var(--ink-2);
-      max-width: 640px;
-      margin-bottom: 30px;
+      max-width: 650px;
+      margin-bottom: 28px;
     }
 
     .scroll-cue {
@@ -652,7 +688,7 @@
     }
 
     /* =========================================================================
-       ACTO II — QUIÉNES SOMOS & COBERTURA AUSTRAL (CONSTELLATION MAP)
+       ACTO II: TERRITORIO & MAPA REAL DE PATAGONIA AUSTRAL / TIERRA DEL FUEGO
        ========================================================================= */
     .act-territory {
       position: relative;
@@ -665,16 +701,16 @@
 
     .territory-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.08fr);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
       gap: clamp(32px, 5vw, 64px);
       align-items: center;
     }
 
     .territory-copy .act-title {
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
     .territory-copy .act-lead {
-      margin-bottom: 28px;
+      margin-bottom: 26px;
       max-width: 540px;
     }
 
@@ -685,17 +721,17 @@
     }
 
     .city-card {
-      padding: 16px 18px;
+      padding: 15px 17px;
       border-radius: 16px;
       background: var(--glass);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid var(--glass-border);
-      transition: border-color 0.35s var(--ease-out), background-color 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+      transition: border-color 0.35s var(--ease-out), background-color 0.35s var(--ease-out);
     }
     .city-card.is-lit {
       border-color: var(--glass-border-hi);
-      background: rgba(8, 28, 48, 0.86);
+      background: rgba(8, 28, 48, 0.88);
       box-shadow: 0 12px 32px rgba(0, 174, 239, 0.14);
     }
     .city-card-top {
@@ -715,10 +751,12 @@
     .city-card.is-lit .city-name {
       color: var(--cyan-ice);
     }
-    .city-coord {
+    .city-zone {
       font-family: var(--font-mono);
-      font-size: 0.66rem;
+      font-size: 0.64rem;
+      letter-spacing: 0.08em;
       color: var(--ink-muted);
+      text-transform: uppercase;
     }
     .city-role {
       font-size: 0.83rem;
@@ -727,7 +765,7 @@
       line-height: 1.45;
     }
 
-    /* Constellation Architectural Instrument Panel */
+    /* Real Geographic Profile Constellation Map */
     .constellation-stage {
       position: relative;
       border-radius: 24px;
@@ -735,7 +773,7 @@
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
-      padding: 24px;
+      padding: 22px 24px;
       box-shadow: 0 28px 70px rgba(0, 0, 0, 0.48), inset 0 1px 0 rgba(155, 235, 255, 0.09);
       overflow: hidden;
     }
@@ -744,9 +782,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
       padding-bottom: 14px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       border-bottom: 1px solid rgba(136, 230, 255, 0.1);
       font-family: var(--font-mono);
       font-size: 0.7rem;
@@ -765,7 +804,7 @@
     }
 
     .map-node-dot {
-      transition: fill 0.35s ease, r 0.35s ease;
+      transition: fill 0.35s ease;
     }
     .map-node-pulse {
       transform-box: fill-box;
@@ -776,7 +815,7 @@
       fill: #9BEBFF;
     }
     .map-node-group.is-lit .map-node-pulse {
-      opacity: 0.85;
+      opacity: 0.9;
       transform: scale(1.35);
     }
     .map-node-group.is-lit .map-node-label {
@@ -787,17 +826,23 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
-      margin-top: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
       padding-top: 12px;
       border-top: 1px solid rgba(136, 230, 255, 0.1);
       font-family: var(--font-mono);
       font-size: 0.68rem;
+      letter-spacing: 0.06em;
       color: var(--ink-muted);
+    }
+    .constellation-foot strong {
+      color: var(--cyan-ice);
+      font-weight: 500;
     }
 
     /* =========================================================================
-       ACTO III — SERVICIOS (3D PERSPECTIVE SPATIAL DECK + ORBITAL DIAL)
+       ACTO III: SERVICIOS (6 LAMINAS EN PROFUNDIDAD 3D + DIAL ORBITAL)
        ========================================================================= */
     .act-services {
       position: relative;
@@ -819,10 +864,9 @@
       margin-bottom: 14px;
     }
     .services-sidebar .act-lead {
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
 
-    /* Architectural Rotating Orbital Dial */
     .orbital-dial-box {
       display: flex;
       align-items: center;
@@ -833,7 +877,7 @@
       border: 1px solid var(--glass-border);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
     .orbital-dial-svg {
       width: 92px;
@@ -855,7 +899,7 @@
       color: var(--ink);
       letter-spacing: -0.02em;
     }
-    .dial-index span {
+    .dial-index .dial-total {
       color: var(--ink-muted);
       font-size: 0.88rem;
       font-weight: 400;
@@ -874,9 +918,10 @@
       gap: 8px;
     }
     .service-pill-btn {
+      min-block-size: 32px;
       font-family: var(--font-mono);
       font-size: 0.72rem;
-      padding: 7px 12px;
+      padding: 6px 12px;
       border-radius: 999px;
       background: rgba(5, 13, 25, 0.74);
       border: 1px solid var(--glass-border);
@@ -894,7 +939,6 @@
       color: var(--cyan-ice);
     }
 
-    /* 3D Spatial Perspective Deck Stage */
     .deck-viewport {
       position: relative;
       perspective: 1400px;
@@ -904,9 +948,8 @@
       gap: 18px;
     }
 
-    /* Only switched to layered 3D stack inside desktop matchMedia via JS (.is-3d-deck) */
     .deck-viewport.is-3d-deck {
-      height: 452px;
+      height: 456px;
       display: block;
       overflow: hidden;
       padding-top: 42px;
@@ -915,7 +958,7 @@
     .service-prism-card {
       position: relative;
       border-radius: 26px;
-      background: linear-gradient(150deg, rgba(8, 22, 40, 0.92) 0%, rgba(4, 11, 22, 0.94) 100%);
+      background: linear-gradient(150deg, rgba(8, 22, 40, 0.94) 0%, rgba(4, 11, 22, 0.96) 100%);
       backdrop-filter: blur(22px);
       -webkit-backdrop-filter: blur(22px);
       border: 1px solid var(--glass-border);
@@ -948,7 +991,6 @@
       -webkit-backdrop-filter: none;
     }
 
-    /* Native CSS view() scroll entry/exit for non-pinned mobile cards (modern-web-guidance: scroll-entry-exit-effects) */
     @media (max-width: 899px) and (prefers-reduced-motion: no-preference) {
       @supports ((animation-timeline: view()) and (animation-range: entry)) {
         @keyframes usp-card-scroll-reveal {
@@ -970,7 +1012,7 @@
       align-items: flex-start;
       justify-content: space-between;
       gap: 18px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
     .prism-num {
       font-family: var(--font-mono);
@@ -983,8 +1025,8 @@
       border: 1px solid rgba(0, 174, 239, 0.34);
     }
     .prism-glyph {
-      width: 58px;
-      height: 58px;
+      width: 56px;
+      height: 56px;
       color: var(--cyan-ice);
       opacity: 0.92;
       flex-shrink: 0;
@@ -995,7 +1037,7 @@
       z-index: 2;
     }
     .prism-body h3 {
-      font-size: clamp(1.38rem, 2.3vw, 1.95rem);
+      font-size: clamp(1.36rem, 2.25vw, 1.92rem);
       font-weight: 600;
       letter-spacing: -0.025em;
       line-height: 1.18;
@@ -1003,7 +1045,7 @@
       margin-bottom: 14px;
     }
     .prism-body p {
-      font-size: clamp(0.96rem, 1.25vw, 1.08rem);
+      font-size: clamp(0.95rem, 1.22vw, 1.06rem);
       font-weight: 300;
       line-height: 1.72;
       color: var(--ink-2);
@@ -1013,7 +1055,7 @@
     .prism-foot {
       position: relative;
       z-index: 2;
-      margin-top: 26px;
+      margin-top: 24px;
       padding-top: 16px;
       border-top: 1px solid rgba(136, 230, 255, 0.12);
       display: flex;
@@ -1032,7 +1074,8 @@
     }
 
     /* =========================================================================
-       ACTO IV — SECTORES (ECCENTRIC COUNTER-SCROLL KINETIC MARQUEE + LENSES)
+       ACTO IV: SECTORES (CRISP SOLID KINETIC TYPOGRAPHY + OPTICAL LENSES)
+       Zero hollow variable-font stroke artifacts: pure solid/cyan/ice contrast
        ========================================================================= */
     .act-sectors {
       position: relative;
@@ -1044,7 +1087,7 @@
     .sectors-header {
       text-align: center;
       max-width: 760px;
-      margin: 0 auto 48px;
+      margin: 0 auto 44px;
     }
     .sectors-header .act-eyebrow {
       justify-content: center;
@@ -1059,49 +1102,48 @@
       margin-bottom: 16px;
     }
 
-    /* Eccentric Counter-Scrolling Monumental Kinetic Ribbon */
     .kinetic-stage {
       position: relative;
-      padding: 20px 0 42px;
-      margin-bottom: 30px;
+      padding: 16px 0 42px;
+      margin-bottom: 24px;
       user-select: none;
       pointer-events: none;
+      mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
     }
     .kinetic-track {
       display: flex;
       align-items: center;
-      gap: 44px;
+      gap: 38px;
       white-space: nowrap;
       will-change: transform;
-      line-height: 1.05;
+      line-height: 1.08;
     }
     .kinetic-track + .kinetic-track {
       margin-top: 10px;
     }
     .kinetic-word {
-      font-size: clamp(2.6rem, 6.8vw, 6.2rem);
-      font-weight: 700;
-      letter-spacing: -0.04em;
+      font-family: var(--font-sans);
+      font-size: clamp(2.4rem, 6.2vw, 5.4rem);
+      font-weight: 600;
+      letter-spacing: -0.03em;
       text-transform: uppercase;
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(155, 235, 255, 0.28);
+      color: rgba(158, 206, 234, 0.22);
     }
     .kinetic-word.is-solid {
-      color: rgba(243, 250, 255, 0.92);
-      -webkit-text-stroke: 0;
+      color: rgba(243, 250, 255, 0.94);
+      font-weight: 700;
     }
     .kinetic-word.is-cyan {
-      color: transparent;
-      -webkit-text-stroke: 1.2px rgba(0, 174, 239, 0.65);
+      color: rgba(0, 174, 239, 0.86);
+      font-weight: 500;
     }
     .kinetic-sep {
       font-family: var(--font-mono);
-      font-size: clamp(1.2rem, 2.2vw, 2rem);
-      color: var(--cyan);
-      opacity: 0.7;
+      font-size: clamp(1.1rem, 2vw, 1.85rem);
+      color: rgba(127, 226, 255, 0.45);
     }
 
-    /* 4 Sector Optical Lenses */
     .sectors-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1164,7 +1206,7 @@
     }
 
     /* =========================================================================
-       ACTO V — CIERRE & CONTACTO (CIRCULAR IRIS PORTAL REVEAL)
+       ACTO V: CIERRE & CONTACTO (CIRCULAR IRIS PORTAL + 5 CHANNELS)
        ========================================================================= */
     .act-contact {
       position: relative;
@@ -1172,7 +1214,6 @@
       border-top: 1px solid rgba(136, 230, 255, 0.08);
     }
 
-    /* Outer wrapper stays unclipped so focus-visible rings are never cut off (modern-web-guidance: motion) */
     .contact-portal-outer {
       position: relative;
       max-width: 1040px;
@@ -1182,7 +1223,7 @@
     .contact-portal-card {
       position: relative;
       border-radius: 30px;
-      background: linear-gradient(155deg, rgba(7, 22, 40, 0.92) 0%, rgba(4, 10, 20, 0.95) 100%);
+      background: linear-gradient(155deg, rgba(7, 22, 40, 0.92) 0%, rgba(4, 10, 20, 0.96) 100%);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(136, 230, 255, 0.24);
@@ -1197,7 +1238,7 @@
       gap: 28px;
       align-items: end;
       padding-bottom: 34px;
-      margin-bottom: 34px;
+      margin-bottom: 32px;
       border-bottom: 1px solid rgba(136, 230, 255, 0.12);
     }
     .contact-head .act-title {
@@ -1211,7 +1252,7 @@
       border: 1px solid var(--glass-border);
       font-family: var(--font-mono);
       font-size: 0.74rem;
-      line-height: 1.6;
+      line-height: 1.65;
       color: var(--ink-muted);
     }
     .contact-founder-tag strong {
@@ -1239,9 +1280,14 @@
       border: 1px solid var(--glass-border);
       transition: border-color 0.22s var(--ease-out), background-color 0.22s var(--ease-out);
     }
+    .channel-item.is-featured {
+      grid-column: 1 / -1;
+      background: rgba(6, 22, 40, 0.78);
+      border-color: rgba(0, 174, 239, 0.34);
+    }
     .channel-item:hover {
       border-color: var(--glass-border-hi);
-      background: rgba(7, 20, 36, 0.86);
+      background: rgba(7, 22, 40, 0.88);
     }
     .channel-meta {
       min-width: 0;
@@ -1263,7 +1309,8 @@
     }
     .copy-btn {
       flex-shrink: 0;
-      padding: 8px 14px;
+      min-block-size: 34px;
+      padding: 8px 15px;
       border-radius: 999px;
       background: rgba(0, 174, 239, 0.1);
       border: 1px solid rgba(0, 174, 239, 0.34);
@@ -1292,7 +1339,8 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 14px 26px;
+      min-block-size: 46px;
+      padding: 13px 26px;
       border-radius: 999px;
       background: var(--cyan);
       color: #03101B;
@@ -1312,7 +1360,8 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 14px 24px;
+      min-block-size: 46px;
+      padding: 13px 24px;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--glass-border-hi);
@@ -1401,8 +1450,11 @@
       .chapter-rail { display: none; }
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       .nav-links { display: none; }
+    }
+
+    @media (max-width: 900px) {
       .territory-grid,
       .services-layout,
       .contact-head {
@@ -1415,6 +1467,9 @@
       .channels-grid {
         grid-template-columns: 1fr;
       }
+      .channel-item.is-featured {
+        grid-column: auto;
+      }
       .cities-list {
         grid-template-columns: 1fr;
       }
@@ -1423,9 +1478,7 @@
         min-height: auto;
         padding: 76px 0;
       }
-      .service-nav-pills {
-        display: none;
-      }
+      .service-nav-pills,
       .orbital-dial-box {
         display: none;
       }
@@ -1433,19 +1486,18 @@
 
     @media (max-width: 540px) {
       .site-nav {
-        padding: 8px 8px 8px 12px;
-        gap: 10px;
+        padding: 7px 8px 7px 11px;
+        gap: 8px;
       }
       .nav-brand-text {
-        font-size: 0.66rem;
-        letter-spacing: 0.06em;
+        display: none;
       }
       .nav-cta {
-        padding: 8px 13px;
+        padding: 7px 12px;
         font-size: 0.68rem;
       }
-      .hero-coord-pill {
-        font-size: 0.64rem;
+      .hero-location-pill {
+        font-size: 0.63rem;
         padding: 6px 12px;
       }
       .channel-item {
@@ -1460,7 +1512,6 @@
       }
     }
 
-    /* Strict Reduced-Motion Static Safety */
     @media (prefers-reduced-motion: reduce) {
       .faro-beam-shaft { display: none; }
       .contact-portal-card { clip-path: none !important; }
@@ -1469,9 +1520,9 @@
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Ir al contenido principal</a>
+  <a class="skip-link" href="#main-content" data-i18n="skip">Ir al contenido principal</a>
 
-  <!-- Static Aurora Fallback + WebGL2 Polar Light-Field Canvas + Subtle Spatial Grid -->
+  <!-- Static Aurora Fallback + WebGL2 Polar Light-Field Canvas + Spatial Grid -->
   <div class="aurora-fallback" aria-hidden="true"></div>
   <canvas id="aurora-gl" aria-hidden="true"></canvas>
   <div class="spatial-grid-overlay" aria-hidden="true"></div>
@@ -1481,7 +1532,7 @@
 
   <!-- Floating Glass Navigation Pill -->
   <header class="site-nav-wrap">
-    <nav class="site-nav" aria-label="Navegación principal">
+    <nav class="site-nav" aria-label="Principal">
       <a class="nav-brand" href="#inicio">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-label="Ushuaia Soporte Técnico">
           <defs>
@@ -1529,27 +1580,33 @@
       </a>
 
       <ul class="nav-links">
-        <li><a href="#nosotros" data-nav="nosotros">Nosotros</a></li>
-        <li><a href="#servicios" data-nav="servicios">Servicios</a></li>
-        <li><a href="#sectores" data-nav="sectores">Sectores</a></li>
-        <li><a href="#nosotros" data-nav="cobertura">Cobertura</a></li>
-        <li><a href="#contacto" data-nav="contacto">Contacto</a></li>
+        <li><a href="#nosotros" data-nav="nosotros" data-i18n="nav_about">Nosotros</a></li>
+        <li><a href="#servicios" data-nav="servicios" data-i18n="nav_services">Servicios</a></li>
+        <li><a href="#sectores" data-nav="sectores" data-i18n="nav_sectors">Sectores</a></li>
+        <li><a href="#nosotros" data-nav="cobertura" data-i18n="nav_coverage">Cobertura</a></li>
+        <li><a href="#contacto" data-nav="contacto" data-i18n="nav_contact">Contacto</a></li>
       </ul>
 
-      <a class="nav-cta" href="#contacto">Consultar</a>
+      <div class="nav-right">
+        <div class="lang-switch" role="group" aria-label="Idioma / Language">
+          <button class="lang-btn" type="button" data-set-lang="es" lang="es" aria-pressed="true">ES</button>
+          <button class="lang-btn" type="button" data-set-lang="en" lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="nav-cta" href="#contacto" data-i18n="nav_cta">Consultar</a>
+      </div>
     </nav>
   </header>
 
-  <!-- Right Chapter Telemetry Rail -->
-  <aside class="chapter-rail" aria-label="Progreso de actos">
-    <button class="chapter-dot is-active" type="button" data-jump="#inicio"><span class="dot-label">I · INICIO</span><span class="dot-bar"></span></button>
-    <button class="chapter-dot" type="button" data-jump="#nosotros"><span class="dot-label">II · TERRITORIO</span><span class="dot-bar"></span></button>
-    <button class="chapter-dot" type="button" data-jump="#servicios"><span class="dot-label">III · SERVICIOS</span><span class="dot-bar"></span></button>
-    <button class="chapter-dot" type="button" data-jump="#sectores"><span class="dot-label">IV · SECTORES</span><span class="dot-bar"></span></button>
-    <button class="chapter-dot" type="button" data-jump="#contacto"><span class="dot-label">V · CONTACTO</span><span class="dot-bar"></span></button>
+  <!-- Right Chapter Rail -->
+  <aside class="chapter-rail" aria-label="Capítulos">
+    <button class="chapter-dot is-active" type="button" data-jump="#inicio"><span class="dot-label" data-i18n="rail_1">I · INICIO</span><span class="dot-bar"></span></button>
+    <button class="chapter-dot" type="button" data-jump="#nosotros"><span class="dot-label" data-i18n="rail_2">II · TERRITORIO</span><span class="dot-bar"></span></button>
+    <button class="chapter-dot" type="button" data-jump="#servicios"><span class="dot-label" data-i18n="rail_3">III · SERVICIOS</span><span class="dot-bar"></span></button>
+    <button class="chapter-dot" type="button" data-jump="#sectores"><span class="dot-label" data-i18n="rail_4">IV · SECTORES</span><span class="dot-bar"></span></button>
+    <button class="chapter-dot" type="button" data-jump="#contacto"><span class="dot-label" data-i18n="rail_5">V · CONTACTO</span><span class="dot-bar"></span></button>
   </aside>
 
-  <!-- WCAG 2.2.2 Pause/Resume Atmospheric Animation Control (label toggles, no aria-pressed) -->
+  <!-- WCAG 2.2.2 Pause/Resume Atmospheric Animation Control -->
   <button id="motion-toggle" class="motion-toggle" type="button">
     <span class="motion-toggle-dot" aria-hidden="true"></span>
     <span id="motion-toggle-label">Pausar efecto</span>
@@ -1558,15 +1615,15 @@
   <main id="main-content">
 
     <!-- ===================================================================
-         ACTO I — APERTURA · PORTAL DEL FARO
+         ACTO I: APERTURA · PORTAL DEL FARO
          =================================================================== -->
-    <section class="act-hero" id="inicio" aria-label="Apertura">
+    <section class="act-hero" id="inicio">
       <div class="faro-beam-shaft" id="faro-beam" aria-hidden="true"></div>
 
       <div class="hero-stage">
-        <div class="hero-coord-pill">
-          <span class="coord-pulse" aria-hidden="true"></span>
-          <span>54°48′S 68°18′W · TIERRA DEL FUEGO &amp; PATAGONIA</span>
+        <div class="hero-location-pill">
+          <span class="pill-dot" aria-hidden="true"></span>
+          <span data-i18n="hero_pill">TIERRA DEL FUEGO · PATAGONIA · SOPORTE REMOTO GLOBAL</span>
         </div>
 
         <div class="portal-emblem-wrap" id="portal-emblem">
@@ -1575,7 +1632,7 @@
           <div class="portal-orbit-inner" id="orbit-inner" aria-hidden="true"></div>
 
           <!-- Official 5-Layer Vector Emblem (extracted 1:1 from LOGO SOPORTE USHUAIA RAFA PINTO.pdf) -->
-          <svg class="hero-emblem-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-label="Emblema oficial Ushuaia Soporte Técnico — Faro Les Éclaireurs y conectores RJ45">
+          <svg class="hero-emblem-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" role="img" aria-label="Emblema oficial Ushuaia Soporte Técnico">
             <defs>
               <mask id="hero-m-ring">
                 <rect width="360" height="360" fill="#000000"/>
@@ -1636,11 +1693,11 @@
         </div>
 
         <div class="hero-copy-block" id="hero-copy">
-          <h1 class="hero-h1" id="hero-h1">Ushuaia Soporte Técnico</h1>
-          <p class="hero-sub">Infraestructura, redes y asistencia informática para organizaciones.</p>
-          <p class="hero-desc">Acompañamos la operación tecnológica de empresas e instituciones desde 2014, con soluciones diseñadas a medida y trato directo.</p>
+          <h1 class="hero-h1" id="hero-h1" tabindex="-1">Ushuaia Soporte Técnico</h1>
+          <p class="hero-sub" data-i18n="hero_sub">Infraestructura, redes y asistencia informática para organizaciones.</p>
+          <p class="hero-desc" data-i18n="hero_desc">Acompañamos la operación tecnológica de empresas e instituciones desde 2014, con soluciones diseñadas a medida y trato directo.</p>
           <div class="scroll-cue" id="scroll-cue" aria-hidden="true">
-            <span>Deslizá para explorar ↓</span>
+            <span data-i18n="scroll_cue">Deslizá para explorar ↓</span>
             <span class="scroll-cue-line"></span>
           </div>
         </div>
@@ -1648,68 +1705,73 @@
     </section>
 
     <!-- ===================================================================
-         ACTO II — QUIÉNES SOMOS & COBERTURA AUSTRAL (CONSTELLATION MAP)
+         ACTO II: QUIÉNES SOMOS & MAPA GEOGRÁFICO CONSTELACIÓN PATAGONIA AUSTRAL
          =================================================================== -->
-    <section class="act-territory" id="nosotros" aria-labelledby="territory-heading">
+    <section class="act-territory" id="nosotros">
       <div class="container">
         <div class="territory-grid">
           <div class="territory-copy">
-            <div class="act-eyebrow">01 // Presencia en territorio</div>
-            <h2 class="act-title" id="territory-heading">Tecnología confiable desde el Fin del Mundo.</h2>
-            <p class="act-lead">
-              Brindamos soporte técnico e ingeniería en infraestructura informática con base en Ushuaia. Combinamos atención presencial y gestión remota para sostener la continuidad diaria de cada organización, sin intermediarios ni estructuras rígidas.
+            <div class="act-eyebrow" data-i18n="ter_eyebrow">01 // Presencia en territorio</div>
+            <h2 class="act-title" id="territory-heading" data-i18n="ter_title">Tecnología confiable desde el Fin del Mundo.</h2>
+            <p class="act-lead" data-i18n="ter_desc">
+              Brindamos soporte técnico e ingeniería en infraestructura informática con base en Ushuaia. Combinamos atención presencial en la región y asistencia remota para todo el mundo, sin intermediarios ni estructuras rígidas.
             </p>
 
             <div class="cities-list" id="cities-list">
               <article class="city-card is-lit" data-city="0">
                 <div class="city-card-top">
                   <span class="city-name">USHUAIA</span>
-                  <span class="city-coord">54°48′S</span>
+                  <span class="city-zone" data-i18n="zone_base">BASE</span>
                 </div>
-                <p class="city-role">Base operativa y atención presencial</p>
+                <p class="city-role" data-i18n="city_ush">Base operativa y atención presencial</p>
               </article>
 
               <article class="city-card" data-city="1">
                 <div class="city-card-top">
                   <span class="city-name">TOLHUIN</span>
-                  <span class="city-coord">54°30′S</span>
+                  <span class="city-zone">TDF</span>
                 </div>
-                <p class="city-role">Cobertura provincial</p>
+                <p class="city-role" data-i18n="city_tol">Cobertura provincial</p>
               </article>
 
               <article class="city-card" data-city="2">
                 <div class="city-card-top">
                   <span class="city-name">RÍO GRANDE</span>
-                  <span class="city-coord">53°47′S</span>
+                  <span class="city-zone">TDF</span>
                 </div>
-                <p class="city-role">Cobertura provincial</p>
+                <p class="city-role" data-i18n="city_rg">Cobertura provincial</p>
               </article>
 
               <article class="city-card" data-city="3">
                 <div class="city-card-top">
                   <span class="city-name">EL CALAFATE</span>
-                  <span class="city-coord">50°20′S</span>
+                  <span class="city-zone">PATAGONIA</span>
                 </div>
-                <p class="city-role">Operación y asistencia regional</p>
+                <p class="city-role" data-i18n="city_cal">Operación y asistencia regional</p>
               </article>
             </div>
           </div>
 
-          <div class="constellation-stage" aria-label="Mapa de constelación de cobertura patagónica">
+          <div class="constellation-stage">
             <div class="constellation-hud">
-              <span>CONSTELACIÓN AUSTRAL // COBERTURA</span>
-              <strong id="active-city-readout">USHUAIA · 54°48′S 68°18′W</strong>
+              <span data-i18n="map_hud_label">MAPA DE COBERTURA // PATAGONIA AUSTRAL</span>
+              <strong id="active-city-readout">USHUAIA · BASE OPERATIVA</strong>
             </div>
 
-            <svg class="constellation-svg" viewBox="0 0 560 440" role="img" aria-label="Ruta de cobertura conectando Ushuaia, Tolhuin, Río Grande y El Calafate">
+            <!-- Real Geographic Silhouette: Southern Patagonia, Strait of Magellan, Tierra del Fuego, Lago Fagnano, Lago Argentino, Beagle Channel, Isla de los Estados -->
+            <svg class="constellation-svg" viewBox="0 0 560 430" role="img" aria-label="Mapa geográfico de cobertura en Patagonia Austral y Tierra del Fuego: Ushuaia, Tolhuin, Río Grande y El Calafate">
               <defs>
                 <linearGradient id="route-grad" x1="0%" y1="100%" x2="100%" y2="0%">
                   <stop offset="0%" stop-color="#00AEEF"/>
                   <stop offset="55%" stop-color="#7FE2FF"/>
                   <stop offset="100%" stop-color="#FFFFFF"/>
                 </linearGradient>
+                <linearGradient id="land-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="rgba(0, 174, 239, 0.14)"/>
+                  <stop offset="100%" stop-color="rgba(8, 32, 54, 0.36)"/>
+                </linearGradient>
                 <filter id="route-glow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feGaussianBlur stdDeviation="3.5" result="blur"/>
                   <feMerge>
                     <feMergeNode in="blur"/>
                     <feMergeNode in="SourceGraphic"/>
@@ -1717,74 +1779,92 @@
                 </filter>
               </defs>
 
-              <!-- Stylized Latitude & Longitude Arcs -->
-              <g stroke="rgba(136, 230, 255, 0.1)" fill="none" stroke-width="1">
-                <path d="M 30 92 Q 280 56 530 98" stroke-dasharray="4 6"/>
-                <path d="M 30 198 Q 280 168 530 206" stroke-dasharray="4 6"/>
-                <path d="M 30 304 Q 280 280 530 314" stroke-dasharray="4 6"/>
-                <path d="M 30 390 Q 280 370 530 398" stroke-dasharray="4 6"/>
-                <line x1="140" y1="24" x2="178" y2="418" stroke-dasharray="2 8"/>
-                <line x1="305" y1="24" x2="318" y2="418" stroke-dasharray="2 8"/>
-                <line x1="450" y1="24" x2="435" y2="418" stroke-dasharray="2 8"/>
+              <!-- Subtle Geometric Constellation Reticle Background (no degrees) -->
+              <g stroke="rgba(136, 230, 255, 0.07)" fill="none" stroke-width="1">
+                <line x1="24" y1="98" x2="536" y2="98" stroke-dasharray="3 7"/>
+                <line x1="24" y1="220" x2="536" y2="220" stroke-dasharray="3 7"/>
+                <line x1="24" y1="348" x2="536" y2="348" stroke-dasharray="3 7"/>
+                <line x1="122" y1="24" x2="122" y2="404" stroke-dasharray="2 8"/>
+                <line x1="300" y1="24" x2="300" y2="404" stroke-dasharray="2 8"/>
+                <line x1="442" y1="24" x2="442" y2="404" stroke-dasharray="2 8"/>
               </g>
 
-              <!-- Ambient Latitude Labels -->
-              <g class="ambient-lat-marker" font-family="IBM Plex Mono, Consolas, monospace" font-size="10" fill="rgba(142, 178, 203, 0.55)">
-                <text x="34" y="84">50°S</text>
-                <text x="34" y="190">53°S</text>
-                <text x="34" y="296">54°S</text>
-                <text x="34" y="382">55°S · CANAL BEAGLE</text>
+              <!-- 1. Southern Patagonia Mainland (Santa Cruz / Magallanes) -->
+              <path d="M 62.0 34.0 L 331.7 34.0 L 326.3 53.7 L 295.7 79.1 L 289.0 87.5 L 264.3 124.2 L 268.8 170.4 L 277.8 189.0 L 297.5 210.4 L 257.5 217.2 L 239.5 220.0 L 210.3 235.8 L 183.4 256.6 L 165.4 296.1 L 115.9 279.2 L 71.0 245.4 L 62.0 197.5 L 80.0 143.9 L 68.7 96.0 L 66.5 56.5 Z"
+                    fill="url(#land-grad)" stroke="rgba(136, 230, 255, 0.34)" stroke-width="1.15" stroke-linejoin="round"/>
+
+              <!-- 2. Isla Grande de Tierra del Fuego (iconic silhouette: Bahia San Sebastian, Peninsula Mitre, Canal Beagle) -->
+              <path d="M 277.8 221.7 L 286.3 229.0 L 303.8 251.0 L 284.5 259.5 L 292.1 267.9 L 312.8 277.5 L 328.1 292.7 L 347.4 307.4 L 371.3 320.3 L 396.9 331.6 L 442.3 340.1 L 437.8 354.1 L 419.4 358.7 L 383.4 355.8 L 342.9 354.1 L 300.2 350.8 L 285.8 352.5 L 244.0 348.5 L 212.6 331.6 L 244.0 313.0 L 215.7 301.7 L 205.8 283.1 L 208.1 265.1 L 219.3 245.4 L 244.0 232.4 Z"
+                    fill="rgba(0, 174, 239, 0.14)" stroke="rgba(127, 226, 255, 0.56)" stroke-width="1.35" stroke-linejoin="round"/>
+
+              <!-- 3. Isla de los Estados -->
+              <path d="M 461.2 345.7 L 482.3 345.1 L 501.6 348.5 L 491.3 353.0 L 468.8 354.1 L 459.4 350.8 Z"
+                    fill="rgba(0, 174, 239, 0.11)" stroke="rgba(127, 226, 255, 0.42)" stroke-width="1.1" stroke-linejoin="round"/>
+
+              <!-- 4. Southern Beagle Channel Islands (subtle geographic context) -->
+              <path d="M 304.7 357.0 L 340.7 357.5 L 353.3 367.7 L 333.9 376.7 L 305.6 374.4 L 298.0 363.2 Z"
+                    fill="rgba(8, 32, 54, 0.24)" stroke="rgba(136, 230, 255, 0.22)" stroke-width="0.95" stroke-linejoin="round"/>
+              <path d="M 248.5 362.0 L 289.0 358.7 L 298.0 375.0 L 285.8 390.2 L 244.0 385.7 Z"
+                    fill="rgba(8, 32, 54, 0.20)" stroke="rgba(136, 230, 255, 0.18)" stroke-width="0.9" stroke-linejoin="round"/>
+
+              <!-- 5. Lago Argentino (El Calafate) & Lago Fagnano (Tolhuin) -->
+              <path d="M 92.5 92.6 L 115.0 87.5 L 133.0 91.5 L 125.8 98.8 L 104.7 101.6 L 88.1 98.3 Z"
+                    fill="rgba(0, 174, 239, 0.28)" stroke="rgba(127, 226, 255, 0.55)" stroke-width="0.9"/>
+              <path d="M 287.6 333.9 L 316.0 332.7 L 348.8 334.4 L 347.0 338.4 L 316.0 338.9 L 289.0 337.2 Z"
+                    fill="rgba(0, 174, 239, 0.30)" stroke="rgba(127, 226, 255, 0.6)" stroke-width="0.9"/>
+
+              <!-- Subtle Geographic Water Labels (zero degrees) -->
+              <g class="ambient-map-caption" font-family="IBM Plex Mono, Consolas, monospace" font-size="9" fill="rgba(142, 178, 203, 0.52)" letter-spacing="1.2">
+                <text x="348" y="146" data-i18n="map_ocean">OCÉANO ATLÁNTICO</text>
+                <text x="150" y="218" data-i18n="map_strait">ESTRECHO DE MAGALLANES</text>
+                <text x="364" y="380" data-i18n="map_beagle">CANAL BEAGLE</text>
               </g>
 
-              <!-- Stylized Patagonia / Tierra del Fuego Minimal Contour -->
-              <path d="M 110 42 C 136 62, 170 72, 194 110 C 220 148, 260 176, 336 188 C 386 196, 424 226, 434 268 C 446 312, 424 358, 370 384 C 318 408, 264 396, 232 374 C 194 348, 214 300, 240 270 C 260 246, 224 214, 178 184 C 122 146, 86 94, 110 42 Z"
-                    fill="rgba(0, 174, 239, 0.045)" stroke="rgba(136, 230, 255, 0.16)" stroke-width="1"/>
+              <!-- Base Route Guide -->
+              <path d="M 300.2 349.6 Q 332 345 350.1 333.3 Q 345 312 327.2 292.7 Q 238 206 122.2 98.3"
+                    fill="none" stroke="rgba(136, 230, 255, 0.22)" stroke-width="1.4" stroke-dasharray="4 5"/>
 
-              <!-- Base Route Guide (subtle) -->
-              <path d="M 332 368 Q 368 332 376 296 Q 388 250 358 214 Q 272 144 176 94"
-                    fill="none" stroke="rgba(136, 230, 255, 0.16)" stroke-width="1.5" stroke-dasharray="4 5"/>
-
-              <!-- Active Scrubbed Beam Path (stroke-dashoffset driven 1:1 by scroll) -->
+              <!-- Active Scrubbed Beam Route -->
               <path id="patagonia-route"
-                    d="M 332 368 Q 368 332 376 296 Q 388 250 358 214 Q 272 144 176 94"
+                    d="M 300.2 349.6 Q 332 345 350.1 333.3 Q 345 312 327.2 292.7 Q 238 206 122.2 98.3"
                     fill="none" stroke="url(#route-grad)" stroke-width="2.6" stroke-linecap="round" filter="url(#route-glow)"/>
 
               <!-- Node 0: USHUAIA -->
-              <g class="map-node-group is-lit" data-node="0" transform="translate(332, 368)">
-                <circle class="map-node-pulse" r="18" fill="none" stroke="#00AEEF" stroke-width="1.2" opacity="0.65"/>
-                <circle r="9" fill="rgba(0, 174, 239, 0.2)"/>
+              <g class="map-node-group is-lit" data-node="0" transform="translate(300.2, 349.6)">
+                <circle class="map-node-pulse" r="16" fill="none" stroke="#00AEEF" stroke-width="1.2" opacity="0.7"/>
+                <circle r="8.5" fill="rgba(0, 174, 239, 0.24)"/>
                 <circle class="map-node-dot" r="4.5" fill="#00AEEF"/>
-                <text class="map-node-label" x="-112" y="5" font-family="IBM Plex Mono, Consolas, monospace" font-size="11.5" font-weight="600" fill="#9BEBFF" letter-spacing="1.2">USHUAIA</text>
+                <text class="map-node-label" x="-78" y="24" font-family="IBM Plex Mono, Consolas, monospace" font-size="11" font-weight="600" fill="#9BEBFF" letter-spacing="1.2">USHUAIA</text>
               </g>
 
               <!-- Node 1: TOLHUIN -->
-              <g class="map-node-group" data-node="1" transform="translate(376, 296)">
-                <circle class="map-node-pulse" r="15" fill="none" stroke="#00AEEF" stroke-width="1.1" opacity="0.2"/>
-                <circle r="7.5" fill="rgba(0, 174, 239, 0.14)"/>
-                <circle class="map-node-dot" r="4" fill="#5D87A3"/>
-                <text class="map-node-label" x="18" y="4" font-family="IBM Plex Mono, Consolas, monospace" font-size="11" font-weight="500" fill="#8EB2CB" letter-spacing="1.2">TOLHUIN</text>
+              <g class="map-node-group" data-node="1" transform="translate(350.1, 333.3)">
+                <circle class="map-node-pulse" r="13" fill="none" stroke="#00AEEF" stroke-width="1.1" opacity="0.22"/>
+                <circle r="6.5" fill="rgba(0, 174, 239, 0.16)"/>
+                <circle class="map-node-dot" r="3.8" fill="#6D96B2"/>
+                <text class="map-node-label" x="15" y="4" font-family="IBM Plex Mono, Consolas, monospace" font-size="10.5" font-weight="500" fill="#8EB2CB" letter-spacing="1.2">TOLHUIN</text>
               </g>
 
               <!-- Node 2: RÍO GRANDE -->
-              <g class="map-node-group" data-node="2" transform="translate(358, 214)">
-                <circle class="map-node-pulse" r="16" fill="none" stroke="#00AEEF" stroke-width="1.1" opacity="0.2"/>
-                <circle r="8" fill="rgba(0, 174, 239, 0.14)"/>
-                <circle class="map-node-dot" r="4" fill="#5D87A3"/>
-                <text class="map-node-label" x="18" y="4" font-family="IBM Plex Mono, Consolas, monospace" font-size="11" font-weight="500" fill="#8EB2CB" letter-spacing="1.2">RÍO GRANDE</text>
+              <g class="map-node-group" data-node="2" transform="translate(327.2, 292.7)">
+                <circle class="map-node-pulse" r="14" fill="none" stroke="#00AEEF" stroke-width="1.1" opacity="0.22"/>
+                <circle r="7.5" fill="rgba(0, 174, 239, 0.16)"/>
+                <circle class="map-node-dot" r="4" fill="#6D96B2"/>
+                <text class="map-node-label" x="16" y="3" font-family="IBM Plex Mono, Consolas, monospace" font-size="10.5" font-weight="500" fill="#8EB2CB" letter-spacing="1.2">RÍO GRANDE</text>
               </g>
 
               <!-- Node 3: EL CALAFATE -->
-              <g class="map-node-group" data-node="3" transform="translate(176, 94)">
-                <circle class="map-node-pulse" r="18" fill="none" stroke="#7FE2FF" stroke-width="1.2" opacity="0.2"/>
-                <circle r="8.5" fill="rgba(127, 226, 255, 0.16)"/>
-                <circle class="map-node-dot" r="4.5" fill="#5D87A3"/>
-                <text class="map-node-label" x="18" y="4" font-family="IBM Plex Mono, Consolas, monospace" font-size="11.5" font-weight="600" fill="#8EB2CB" letter-spacing="1.2">EL CALAFATE</text>
+              <g class="map-node-group" data-node="3" transform="translate(122.2, 98.3)">
+                <circle class="map-node-pulse" r="16" fill="none" stroke="#7FE2FF" stroke-width="1.2" opacity="0.22"/>
+                <circle r="8.5" fill="rgba(127, 226, 255, 0.18)"/>
+                <circle class="map-node-dot" r="4.5" fill="#6D96B2"/>
+                <text class="map-node-label" x="18" y="4" font-family="IBM Plex Mono, Consolas, monospace" font-size="11" font-weight="600" fill="#8EB2CB" letter-spacing="1.2">EL CALAFATE</text>
               </g>
             </svg>
 
             <div class="constellation-foot">
-              <span>OPERANDO DESDE 2014</span>
-              <span>PRESENCIAL · REMOTO REGIONAL</span>
+              <span data-i18n="map_foot_l">OPERANDO DESDE 2014</span>
+              <strong data-i18n="map_foot_r">PRESENCIAL PATAGONIA · REMOTO GLOBAL</strong>
             </div>
           </div>
         </div>
@@ -1792,15 +1872,15 @@
     </section>
 
     <!-- ===================================================================
-         ACTO III — SERVICIOS (3D PERSPECTIVE SPATIAL DECK + ORBITAL DIAL)
+         ACTO III: SERVICIOS (6 LÁMINAS EN PROFUNDIDAD 3D + DIAL ORBITAL)
          =================================================================== -->
-    <section class="act-services" id="servicios" aria-labelledby="services-heading">
+    <section class="act-services" id="servicios">
       <div class="container">
         <div class="services-layout">
           <div class="services-sidebar">
-            <div class="act-eyebrow">02 // Qué hacemos</div>
-            <h2 class="act-title" id="services-heading">Servicios informáticos integrales.</h2>
-            <p class="act-lead">Diseño, implementación y mantenimiento de entornos corporativos.</p>
+            <div class="act-eyebrow" data-i18n="srv_eyebrow">02 // Qué hacemos</div>
+            <h2 class="act-title" id="services-heading" data-i18n="srv_title">Servicios informáticos integrales.</h2>
+            <p class="act-lead" data-i18n="srv_lead">Diseño, implementación y mantenimiento de entornos corporativos.</p>
 
             <div class="orbital-dial-box" aria-hidden="true">
               <svg class="orbital-dial-svg" viewBox="0 0 120 120">
@@ -1816,25 +1896,26 @@
                 <circle cx="60" cy="60" r="4" fill="#F3FAFF"/>
               </svg>
               <div class="dial-readout">
-                <div class="dial-index"><span id="dial-current">01</span> <span>/ 05</span></div>
+                <div class="dial-index"><span id="dial-current">01</span> <span class="dial-total">/ 06</span></div>
                 <div class="dial-caption" id="dial-title">Redes y Conectividad</div>
               </div>
             </div>
 
-            <div class="service-nav-pills" role="tablist" aria-label="Navegar servicios">
-              <button class="service-pill-btn is-active" type="button" data-service-jump="0">01 Redes</button>
-              <button class="service-pill-btn" type="button" data-service-jump="1">02 Servidores</button>
-              <button class="service-pill-btn" type="button" data-service-jump="2">03 Soporte</button>
-              <button class="service-pill-btn" type="button" data-service-jump="3">04 Respaldo</button>
-              <button class="service-pill-btn" type="button" data-service-jump="4">05 Correo y Nube</button>
+            <div class="service-nav-pills">
+              <button class="service-pill-btn is-active" type="button" data-service-jump="0" aria-current="step" data-i18n="pill_1">01 Redes</button>
+              <button class="service-pill-btn" type="button" data-service-jump="1" data-i18n="pill_2">02 Servidores</button>
+              <button class="service-pill-btn" type="button" data-service-jump="2" data-i18n="pill_3">03 Soporte</button>
+              <button class="service-pill-btn" type="button" data-service-jump="3" data-i18n="pill_4">04 Respaldo</button>
+              <button class="service-pill-btn" type="button" data-service-jump="4" data-i18n="pill_5">05 Correo y Nube</button>
+              <button class="service-pill-btn" type="button" data-service-jump="5" data-i18n="pill_6">06 Remoto Global</button>
             </div>
           </div>
 
           <div class="deck-viewport" id="service-deck">
             <!-- Service 01 -->
-            <article class="service-prism-card" data-card-index="0" data-short-title="Redes y Conectividad">
+            <article class="service-prism-card" data-card-index="0">
               <div class="prism-top">
-                <span class="prism-num">01 / 05</span>
+                <span class="prism-num">01 / 06</span>
                 <svg class="prism-glyph" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
                   <circle cx="32" cy="32" r="24" stroke-opacity="0.35"/>
                   <circle cx="32" cy="32" r="13" stroke-dasharray="3 3"/>
@@ -1846,19 +1927,19 @@
                 </svg>
               </div>
               <div class="prism-body">
-                <h3>Redes Corporativas y Conectividad</h3>
-                <p>Provisión, diseño y armado de redes cableadas e inalámbricas para oficinas, espacios de atención al público y entornos de alta demanda.</p>
+                <h3 data-i18n="s1_t">Redes Corporativas y Conectividad</h3>
+                <p data-i18n="s1_d">Provisión, diseño y armado de redes cableadas e inalámbricas para oficinas, espacios de atención al público y entornos de alta demanda.</p>
               </div>
               <div class="prism-foot">
-                <span>Infraestructura de red</span>
-                <strong>Diseño · Implementación</strong>
+                <span data-i18n="s1_fl">Infraestructura de red</span>
+                <strong data-i18n="s1_fr">Diseño · Implementación</strong>
               </div>
             </article>
 
             <!-- Service 02 -->
-            <article class="service-prism-card" data-card-index="1" data-short-title="Servidores">
+            <article class="service-prism-card" data-card-index="1">
               <div class="prism-top">
-                <span class="prism-num">02 / 05</span>
+                <span class="prism-num">02 / 06</span>
                 <svg class="prism-glyph" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
                   <rect x="12" y="10" width="40" height="12" rx="3"/>
                   <rect x="12" y="26" width="40" height="12" rx="3"/>
@@ -1872,19 +1953,19 @@
                 </svg>
               </div>
               <div class="prism-body">
-                <h3>Infraestructura y Servidores</h3>
-                <p>Implementación, administración y mantenimiento de servidores, accesos remotos seguros y sistemas centrales de gestión.</p>
+                <h3 data-i18n="s2_t">Infraestructura y Servidores</h3>
+                <p data-i18n="s2_d">Implementación, administración y mantenimiento de servidores, accesos remotos seguros y sistemas centrales de gestión.</p>
               </div>
               <div class="prism-foot">
-                <span>Núcleo operativo</span>
-                <strong>Estabilidad · Control</strong>
+                <span data-i18n="s2_fl">Núcleo operativo</span>
+                <strong data-i18n="s2_fr">Estabilidad · Control</strong>
               </div>
             </article>
 
             <!-- Service 03 -->
-            <article class="service-prism-card" data-card-index="2" data-short-title="Soporte Presencial y Remoto">
+            <article class="service-prism-card" data-card-index="2">
               <div class="prism-top">
-                <span class="prism-num">03 / 05</span>
+                <span class="prism-num">03 / 06</span>
                 <svg class="prism-glyph" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
                   <rect x="10" y="14" width="44" height="30" rx="4"/>
                   <line x1="22" y1="52" x2="42" y2="52"/>
@@ -1893,54 +1974,73 @@
                 </svg>
               </div>
               <div class="prism-body">
-                <h3>Soporte Técnico Presencial y Remoto</h3>
-                <p>Asistencia preventiva y correctiva para puestos de trabajo, equipamiento de oficina, puntos de atención y resolución rápida ante incidentes.</p>
+                <h3 data-i18n="s3_t">Soporte Técnico Presencial y Remoto</h3>
+                <p data-i18n="s3_d">Asistencia preventiva y correctiva para puestos de trabajo, equipamiento de oficina, puntos de atención y resolución rápida ante incidentes.</p>
               </div>
               <div class="prism-foot">
-                <span>Asistencia directa</span>
-                <strong>Preventivo · Correctivo</strong>
+                <span data-i18n="s3_fl">Asistencia directa</span>
+                <strong data-i18n="s3_fr">Preventivo · Correctivo</strong>
               </div>
             </article>
 
             <!-- Service 04 -->
-            <article class="service-prism-card" data-card-index="3" data-short-title="Respaldo y Continuidad">
+            <article class="service-prism-card" data-card-index="3">
               <div class="prism-top">
-                <span class="prism-num">04 / 05</span>
+                <span class="prism-num">04 / 06</span>
                 <svg class="prism-glyph" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
                   <path d="M32 8 L52 16 V32 C52 44.5 43 52.5 32 56 C21 52.5 12 44.5 12 32 V16 L32 8 Z"/>
                   <path d="M23 32 L29 38 L42 25" stroke="#00AEEF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
               <div class="prism-body">
-                <h3>Respaldo y Continuidad Operativa</h3>
-                <p>Esquemas automatizados de copias de seguridad, supervisión periódica de sistemas y recuperación ante contingencias.</p>
+                <h3 data-i18n="s4_t">Respaldo y Continuidad Operativa</h3>
+                <p data-i18n="s4_d">Esquemas automatizados de copias de seguridad, supervisión periódica de sistemas y recuperación ante contingencias.</p>
               </div>
               <div class="prism-foot">
-                <span>Resguardo de datos</span>
-                <strong>Supervisión · Recuperación</strong>
+                <span data-i18n="s4_fl">Resguardo de datos</span>
+                <strong data-i18n="s4_fr">Supervisión · Recuperación</strong>
               </div>
             </article>
 
             <!-- Service 05 -->
-            <article class="service-prism-card" data-card-index="4" data-short-title="Correo y Nube">
+            <article class="service-prism-card" data-card-index="4">
               <div class="prism-top">
-                <span class="prism-num">05 / 05</span>
+                <span class="prism-num">05 / 06</span>
                 <svg class="prism-glyph" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-                  <circle cx="32" cy="32" r="22" stroke-opacity="0.4"/>
+                  <rect x="10" y="16" width="44" height="32" rx="5"/>
+                  <polyline points="12,18 32,34 52,18" stroke="#00AEEF" stroke-width="1.6"/>
+                </svg>
+              </div>
+              <div class="prism-body">
+                <h3 data-i18n="s5_t">Correo Corporativo, Dominios y Nube</h3>
+                <p data-i18n="s5_d">Configuración y migración de plataformas de correo empresarial, administración de dominios y buenas prácticas de seguridad digital.</p>
+              </div>
+              <div class="prism-foot">
+                <span data-i18n="s5_fl">Identidad digital</span>
+                <strong data-i18n="s5_fr">Plataformas · Seguridad</strong>
+              </div>
+            </article>
+
+            <!-- Service 06: NEW Global Remote Support -->
+            <article class="service-prism-card" data-card-index="5">
+              <div class="prism-top">
+                <span class="prism-num">06 / 06</span>
+                <svg class="prism-glyph" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                  <circle cx="32" cy="32" r="22" stroke-opacity="0.45"/>
                   <ellipse cx="32" cy="32" rx="10" ry="22"/>
                   <line x1="10" y1="32" x2="54" y2="32"/>
                   <path d="M14 21 Q32 26 50 21" stroke-opacity="0.5"/>
                   <path d="M14 43 Q32 38 50 43" stroke-opacity="0.5"/>
-                  <circle cx="48" cy="18" r="4" fill="#00AEEF" stroke="none"/>
+                  <circle cx="48" cy="18" r="4.5" fill="#00AEEF" stroke="none"/>
                 </svg>
               </div>
               <div class="prism-body">
-                <h3>Correo Corporativo, Dominios y Nube</h3>
-                <p>Configuración y migración de plataformas de correo empresarial, administración de dominios y buenas prácticas de seguridad digital.</p>
+                <h3 data-i18n="s6_t">Soporte Remoto Global</h3>
+                <p data-i18n="s6_d">Asistencia técnica remota en tiempo real para equipos y organizaciones en cualquier lugar del mundo, con atención bilingüe en español e inglés.</p>
               </div>
               <div class="prism-foot">
-                <span>Identidad digital</span>
-                <strong>Plataformas · Seguridad</strong>
+                <span data-i18n="s6_fl">Alcance internacional</span>
+                <strong data-i18n="s6_fr">Todo el mundo · ES / EN</strong>
               </div>
             </article>
           </div>
@@ -1949,135 +2049,143 @@
     </section>
 
     <!-- ===================================================================
-         ACTO IV — SECTORES (ECCENTRIC COUNTER-SCROLLING KINETIC TYPOGRAPHY)
+         ACTO IV: SECTORES (CRISP SOLID KINETIC MARQUEE + OPTICAL LENSES)
          =================================================================== -->
-    <section class="act-sectors" id="sectores" aria-labelledby="sectors-heading">
+    <section class="act-sectors" id="sectores">
       <div class="container">
         <div class="sectors-header">
-          <div class="act-eyebrow">03 // Experiencia transversal</div>
-          <h2 class="act-title" id="sectors-heading">Sectores con los que trabajamos.</h2>
-          <p class="act-lead">Adaptamos cada solución al ritmo, las exigencias y la criticidad de cada actividad.</p>
+          <div class="act-eyebrow" data-i18n="sec_eyebrow">03 // Experiencia transversal</div>
+          <h2 class="act-title" id="sectors-heading" data-i18n="sec_title">Sectores con los que trabajamos.</h2>
+          <p class="act-lead" data-i18n="sec_lead">Adaptamos cada solución al ritmo, las exigencias y la criticidad de cada actividad.</p>
         </div>
       </div>
 
-      <!-- Monumental Counter-Scrolling Typography Ribbons (decorative, aria-hidden) -->
+      <!-- Clean Solid Monumental Counter-Scrolling Typography (zero hollow stroke glitches) -->
       <div class="kinetic-stage" aria-hidden="true">
         <div class="kinetic-track" id="kinetic-row-1">
-          <span class="kinetic-word is-solid">Privado</span>
+          <span class="kinetic-word is-solid" data-i18n="k_priv">Privado</span>
           <span class="kinetic-sep">/</span>
-          <span class="kinetic-word is-cyan">Bancario</span>
+          <span class="kinetic-word is-cyan" data-i18n="k_bank">Bancario</span>
           <span class="kinetic-sep">/</span>
-          <span class="kinetic-word">Hotelería</span>
+          <span class="kinetic-word" data-i18n="k_hosp">Hotelería</span>
           <span class="kinetic-sep">/</span>
-          <span class="kinetic-word is-solid">Restaurantes</span>
+          <span class="kinetic-word is-solid" data-i18n="k_rest">Restaurantes</span>
           <span class="kinetic-sep">/</span>
-          <span class="kinetic-word is-cyan">Privado</span>
+          <span class="kinetic-word is-cyan" data-i18n="k_priv">Privado</span>
           <span class="kinetic-sep">/</span>
-          <span class="kinetic-word">Bancario</span>
+          <span class="kinetic-word" data-i18n="k_bank">Bancario</span>
         </div>
         <div class="kinetic-track" id="kinetic-row-2">
-          <span class="kinetic-word">Hotelería</span>
+          <span class="kinetic-word" data-i18n="k_hosp">Hotelería</span>
           <span class="kinetic-sep">/</span>
-          <span class="kinetic-word is-solid">Restaurantes</span>
+          <span class="kinetic-word is-solid" data-i18n="k_rest">Restaurantes</span>
           <span class="kinetic-sep">/</span>
-          <span class="kinetic-word is-cyan">Sector Privado</span>
+          <span class="kinetic-word is-cyan" data-i18n="k_priv2">Sector Privado</span>
           <span class="kinetic-sep">/</span>
-          <span class="kinetic-word is-solid">Bancario</span>
+          <span class="kinetic-word is-solid" data-i18n="k_bank">Bancario</span>
           <span class="kinetic-sep">/</span>
-          <span class="kinetic-word">Hotelería</span>
+          <span class="kinetic-word" data-i18n="k_hosp">Hotelería</span>
         </div>
       </div>
 
       <div class="container">
         <div class="sectors-grid" id="sectors-grid">
           <article class="sector-lens">
-            <div class="sector-index"><span>RUBRO // 01</span><span>CORPORATIVO</span></div>
-            <h3>Sector Privado</h3>
-            <p>Empresas, oficinas administrativas y estudios profesionales.</p>
+            <div class="sector-index"><span data-i18n="sec1_idx">RUBRO // 01</span><span data-i18n="sec1_tag">CORPORATIVO</span></div>
+            <h3 data-i18n="sec1_t">Sector Privado</h3>
+            <p data-i18n="sec1_d">Empresas, oficinas administrativas y estudios profesionales.</p>
           </article>
 
           <article class="sector-lens">
-            <div class="sector-index"><span>RUBRO // 02</span><span>FINANCIERO</span></div>
-            <h3>Sector Bancario</h3>
-            <p>Entornos de alta exigencia, precisión y confidencialidad operativa.</p>
+            <div class="sector-index"><span data-i18n="sec2_idx">RUBRO // 02</span><span data-i18n="sec2_tag">FINANCIERO</span></div>
+            <h3 data-i18n="sec2_t">Sector Bancario</h3>
+            <p data-i18n="sec2_d">Entornos de alta exigencia, precisión y confidencialidad operativa.</p>
           </article>
 
           <article class="sector-lens">
-            <div class="sector-index"><span>RUBRO // 03</span><span>24 HORAS</span></div>
-            <h3>Hotelería</h3>
-            <p>Operación continua las 24 horas en recepción, administración y conectividad para huéspedes.</p>
+            <div class="sector-index"><span data-i18n="sec3_idx">RUBRO // 03</span><span data-i18n="sec3_tag">24 HORAS</span></div>
+            <h3 data-i18n="sec3_t">Hotelería</h3>
+            <p data-i18n="sec3_d">Operación continua las 24 horas en recepción, administración y conectividad para huéspedes.</p>
           </article>
 
           <article class="sector-lens">
-            <div class="sector-index"><span>RUBRO // 04</span><span>SERVICIO</span></div>
-            <h3>Restaurantes y Gastronomía</h3>
-            <p>Puestos de servicio, conectividad estable y continuidad en horarios pico.</p>
+            <div class="sector-index"><span data-i18n="sec4_idx">RUBRO // 04</span><span data-i18n="sec4_tag">SERVICIO</span></div>
+            <h3 data-i18n="sec4_t">Restaurantes y Gastronomía</h3>
+            <p data-i18n="sec4_d">Puestos de servicio, conectividad estable y continuidad en horarios pico.</p>
           </article>
         </div>
       </div>
     </section>
 
     <!-- ===================================================================
-         ACTO V — CIERRE & CONTACTO (CIRCULAR IRIS PORTAL REVEAL)
+         ACTO V: CIERRE & CONTACTO (CIRCULAR IRIS PORTAL + 5 CANALES)
          =================================================================== -->
-    <section class="act-contact" id="contacto" aria-labelledby="contact-heading">
+    <section class="act-contact" id="contacto">
       <div class="container">
         <div class="contact-portal-outer">
           <div class="contact-portal-card" id="contact-portal">
             <div class="contact-head">
               <div>
-                <div class="act-eyebrow">04 // Contacto y cotizaciones</div>
-                <h2 class="act-title" id="contact-heading">Hablemos sobre tu proyecto.</h2>
-                <p class="act-lead">
+                <div class="act-eyebrow" data-i18n="cnt_eyebrow">04 // Contacto y cotizaciones</div>
+                <h2 class="act-title" id="contact-heading" data-i18n="cnt_title">Hablemos sobre tu proyecto.</h2>
+                <p class="act-lead" data-i18n="cnt_lead">
                   Si necesitás cotizar una implementación, evaluar el estado de tu red o recibir más información sobre nuestros servicios, escribinos por cualquiera de nuestros canales directos.
                 </p>
               </div>
               <div class="contact-founder-tag">
-                <strong>Rafael Pinto — Owner &amp; CEO</strong>
-                Ushuaia Soporte Técnico · Desde 2014<br/>
-                54°48′S 68°18′W · Ushuaia, TDF
+                <strong>Rafael Pinto · Owner &amp; CEO</strong>
+                <span data-i18n="founder_line1">Ushuaia Soporte Técnico · Desde 2014</span><br/>
+                <span data-i18n="founder_line2">Ushuaia, Tierra del Fuego, Argentina</span>
               </div>
             </div>
 
             <div class="channels-grid">
-              <div class="channel-item">
+              <div class="channel-item is-featured">
                 <div class="channel-meta">
-                  <div class="channel-label">WhatsApp / Teléfono</div>
+                  <div class="channel-label" data-i18n="ch_wa">WhatsApp / Teléfono directo</div>
                   <div class="channel-value">+54 9 2901 519191</div>
                 </div>
-                <button class="copy-btn" type="button" data-copy="+54 9 2901 519191">Copiar</button>
+                <button class="copy-btn" type="button" data-copy="+54 9 2901 519191" aria-label="Copiar +54 9 2901 519191" data-i18n-copy="true">Copiar</button>
               </div>
 
               <div class="channel-item">
                 <div class="channel-meta">
-                  <div class="channel-label">Consultas y cotizaciones</div>
-                  <div class="channel-value">contacto@ushuaiasoporte.com</div>
+                  <div class="channel-label" data-i18n="ch_hello">Consultas y cotizaciones</div>
+                  <div class="channel-value">hello@ushuaiasoporte.com</div>
                 </div>
-                <button class="copy-btn" type="button" data-copy="contacto@ushuaiasoporte.com">Copiar</button>
+                <button class="copy-btn" type="button" data-copy="hello@ushuaiasoporte.com" aria-label="Copiar hello@ushuaiasoporte.com" data-i18n-copy="true">Copiar</button>
               </div>
 
               <div class="channel-item">
                 <div class="channel-meta">
-                  <div class="channel-label">Soporte técnico</div>
-                  <div class="channel-value">soporte@ushuaiasoporte.com</div>
+                  <div class="channel-label" data-i18n="ch_support">Soporte técnico</div>
+                  <div class="channel-value">support@ushuaiasoporte.com</div>
                 </div>
-                <button class="copy-btn" type="button" data-copy="soporte@ushuaiasoporte.com">Copiar</button>
+                <button class="copy-btn" type="button" data-copy="support@ushuaiasoporte.com" aria-label="Copiar support@ushuaiasoporte.com" data-i18n-copy="true">Copiar</button>
               </div>
 
               <div class="channel-item">
                 <div class="channel-meta">
-                  <div class="channel-label">Dirección</div>
+                  <div class="channel-label" data-i18n="ch_admin">Administración</div>
+                  <div class="channel-value">juan@ushuaiasoporte.com</div>
+                </div>
+                <button class="copy-btn" type="button" data-copy="juan@ushuaiasoporte.com" aria-label="Copiar juan@ushuaiasoporte.com" data-i18n-copy="true">Copiar</button>
+              </div>
+
+              <div class="channel-item">
+                <div class="channel-meta">
+                  <div class="channel-label" data-i18n="ch_dir">Dirección</div>
                   <div class="channel-value">rafael@ushuaiasoporte.com</div>
                 </div>
-                <button class="copy-btn" type="button" data-copy="rafael@ushuaiasoporte.com">Copiar</button>
+                <button class="copy-btn" type="button" data-copy="rafael@ushuaiasoporte.com" aria-label="Copiar rafael@ushuaiasoporte.com" data-i18n-copy="true">Copiar</button>
               </div>
             </div>
 
             <div class="contact-actions">
-              <a class="btn-primary" href="https://wa.me/5492901519191?text=Hola%2C%20quisiera%20solicitar%20informaci%C3%B3n%20o%20una%20cotizaci%C3%B3n%20a%20Ushuaia%20Soporte%20T%C3%A9cnico." target="_blank" rel="noopener noreferrer">
+              <a id="cta-whatsapp" class="btn-primary" href="https://wa.me/5492901519191?text=Hola%2C%20quisiera%20solicitar%20informaci%C3%B3n%20o%20una%20cotizaci%C3%B3n%20a%20Ushuaia%20Soporte%20T%C3%A9cnico." target="_blank" rel="noopener noreferrer" data-i18n="cta_wa">
                 Escribir por WhatsApp ↗
               </a>
-              <a class="btn-secondary" href="mailto:contacto@ushuaiasoporte.com?subject=Consulta%20%E2%80%94%20Ushuaia%20Soporte%20T%C3%A9cnico">
+              <a id="cta-email" class="btn-secondary" href="mailto:hello@ushuaiasoporte.com?subject=Consulta%20Ushuaia%20Soporte%20T%C3%A9cnico" data-i18n="cta_mail">
                 Solicitar información por correo →
               </a>
             </div>
@@ -2137,7 +2245,7 @@
         <span class="footer-brand-name">Ushuaia Soporte Técnico</span>
         <span class="footer-brand-domain">ushuaiasoporte.com</span>
       </div>
-      <div class="footer-geo">Ushuaia · Tolhuin · Río Grande · El Calafate — Tierra del Fuego y Patagonia, Argentina</div>
+      <div class="footer-geo" data-i18n="footer_geo">Ushuaia · Tolhuin · Río Grande · El Calafate · Soporte Remoto Global</div>
     </div>
   </footer>
 
@@ -2153,8 +2261,267 @@
     window.addEventListener('DOMContentLoaded', function () {
       'use strict';
 
+      /* =======================================================================
+         0. BILINGUAL DICTIONARY (ES / EN, ZERO EM DASHES, ZERO DEGREES)
+         ======================================================================= */
+      var I18N = {
+        es: {
+          htmlLang: 'es-AR',
+          docTitle: 'Ushuaia Soporte Técnico · Infraestructura, Redes y Asistencia Informática',
+          skip: 'Ir al contenido principal',
+          nav_about: 'Nosotros',
+          nav_services: 'Servicios',
+          nav_sectors: 'Sectores',
+          nav_coverage: 'Cobertura',
+          nav_contact: 'Contacto',
+          nav_cta: 'Consultar',
+          rail_1: 'I · INICIO',
+          rail_2: 'II · TERRITORIO',
+          rail_3: 'III · SERVICIOS',
+          rail_4: 'IV · SECTORES',
+          rail_5: 'V · CONTACTO',
+          hero_pill: 'TIERRA DEL FUEGO · PATAGONIA · SOPORTE REMOTO GLOBAL',
+          hero_sub: 'Infraestructura, redes y asistencia informática para organizaciones.',
+          hero_desc: 'Acompañamos la operación tecnológica de empresas e instituciones desde 2014, con soluciones diseñadas a medida y trato directo.',
+          scroll_cue: 'Deslizá para explorar ↓',
+          ter_eyebrow: '01 // Presencia en territorio',
+          ter_title: 'Tecnología confiable desde el Fin del Mundo.',
+          ter_desc: 'Brindamos soporte técnico e ingeniería en infraestructura informática con base en Ushuaia. Combinamos atención presencial en la región y asistencia remota para todo el mundo, sin intermediarios ni estructuras rígidas.',
+          zone_base: 'BASE',
+          city_ush: 'Base operativa y atención presencial',
+          city_tol: 'Cobertura provincial',
+          city_rg: 'Cobertura provincial',
+          city_cal: 'Operación y asistencia regional',
+          map_hud_label: 'MAPA DE COBERTURA // PATAGONIA AUSTRAL',
+          map_foot_l: 'OPERANDO DESDE 2014',
+          map_foot_r: 'PRESENCIAL PATAGONIA · REMOTO GLOBAL',
+          cityReadouts: [
+            'USHUAIA · BASE OPERATIVA',
+            'TOLHUIN · TIERRA DEL FUEGO',
+            'RÍO GRANDE · TIERRA DEL FUEGO',
+            'EL CALAFATE · PATAGONIA'
+          ],
+          cityReadoutAll: 'USHUAIA · TOLHUIN · RÍO GRANDE · EL CALAFATE',
+          map_ocean: 'OCÉANO ATLÁNTICO',
+          map_strait: 'ESTRECHO DE MAGALLANES',
+          map_beagle: 'CANAL BEAGLE',
+          srv_eyebrow: '02 // Qué hacemos',
+          srv_title: 'Servicios informáticos integrales.',
+          srv_lead: 'Diseño, implementación y mantenimiento de entornos corporativos.',
+          pill_1: '01 Redes',
+          pill_2: '02 Servidores',
+          pill_3: '03 Soporte',
+          pill_4: '04 Respaldo',
+          pill_5: '05 Correo y Nube',
+          pill_6: '06 Remoto Global',
+          dialTitles: [
+            'Redes y Conectividad',
+            'Infraestructura y Servidores',
+            'Soporte Presencial y Remoto',
+            'Respaldo y Continuidad',
+            'Correo, Dominios y Nube',
+            'Soporte Remoto Global'
+          ],
+          s1_t: 'Redes Corporativas y Conectividad',
+          s1_d: 'Provisión, diseño y armado de redes cableadas e inalámbricas para oficinas, espacios de atención al público y entornos de alta demanda.',
+          s1_fl: 'Infraestructura de red',
+          s1_fr: 'Diseño · Implementación',
+          s2_t: 'Infraestructura y Servidores',
+          s2_d: 'Implementación, administración y mantenimiento de servidores, accesos remotos seguros y sistemas centrales de gestión.',
+          s2_fl: 'Núcleo operativo',
+          s2_fr: 'Estabilidad · Control',
+          s3_t: 'Soporte Técnico Presencial y Remoto',
+          s3_d: 'Asistencia preventiva y correctiva para puestos de trabajo, equipamiento de oficina, puntos de atención y resolución rápida ante incidentes.',
+          s3_fl: 'Asistencia directa',
+          s3_fr: 'Preventivo · Correctivo',
+          s4_t: 'Respaldo y Continuidad Operativa',
+          s4_d: 'Esquemas automatizados de copias de seguridad, supervisión periódica de sistemas y recuperación ante contingencias.',
+          s4_fl: 'Resguardo de datos',
+          s4_fr: 'Supervisión · Recuperación',
+          s5_t: 'Correo Corporativo, Dominios y Nube',
+          s5_d: 'Configuración y migración de plataformas de correo empresarial, administración de dominios y buenas prácticas de seguridad digital.',
+          s5_fl: 'Identidad digital',
+          s5_fr: 'Plataformas · Seguridad',
+          s6_t: 'Soporte Remoto Global',
+          s6_d: 'Asistencia técnica remota en tiempo real para equipos y organizaciones en cualquier lugar del mundo, con atención bilingüe en español e inglés.',
+          s6_fl: 'Alcance internacional',
+          s6_fr: 'Todo el mundo · ES / EN',
+          sec_eyebrow: '03 // Experiencia transversal',
+          sec_title: 'Sectores con los que trabajamos.',
+          sec_lead: 'Adaptamos cada solución al ritmo, las exigencias y la criticidad de cada actividad.',
+          k_priv: 'Privado',
+          k_priv2: 'Sector Privado',
+          k_bank: 'Bancario',
+          k_hosp: 'Hotelería',
+          k_rest: 'Restaurantes',
+          sec1_idx: 'RUBRO // 01',
+          sec1_tag: 'CORPORATIVO',
+          sec1_t: 'Sector Privado',
+          sec1_d: 'Empresas, oficinas administrativas y estudios profesionales.',
+          sec2_idx: 'RUBRO // 02',
+          sec2_tag: 'FINANCIERO',
+          sec2_t: 'Sector Bancario',
+          sec2_d: 'Entornos de alta exigencia, precisión y confidencialidad operativa.',
+          sec3_idx: 'RUBRO // 03',
+          sec3_tag: '24 HORAS',
+          sec3_t: 'Hotelería',
+          sec3_d: 'Operación continua las 24 horas en recepción, administración y conectividad para huéspedes.',
+          sec4_idx: 'RUBRO // 04',
+          sec4_tag: 'SERVICIO',
+          sec4_t: 'Restaurantes y Gastronomía',
+          sec4_d: 'Puestos de servicio, conectividad estable y continuidad en horarios pico.',
+          cnt_eyebrow: '04 // Contacto y cotizaciones',
+          cnt_title: 'Hablemos sobre tu proyecto.',
+          cnt_lead: 'Si necesitás cotizar una implementación, evaluar el estado de tu red o recibir más información sobre nuestros servicios, escribinos por cualquiera de nuestros canales directos.',
+          founder_line1: 'Ushuaia Soporte Técnico · Desde 2014',
+          founder_line2: 'Ushuaia, Tierra del Fuego, Argentina',
+          ch_wa: 'WhatsApp / Teléfono directo',
+          ch_hello: 'Consultas y cotizaciones',
+          ch_support: 'Soporte técnico',
+          ch_admin: 'Administración',
+          ch_dir: 'Dirección',
+          copyWord: 'Copiar',
+          copiedPrefix: 'Copiado: ',
+          cta_wa: 'Escribir por WhatsApp ↗',
+          cta_wa_href: 'https://wa.me/5492901519191?text=Hola%2C%20quisiera%20solicitar%20informaci%C3%B3n%20o%20una%20cotizaci%C3%B3n%20a%20Ushuaia%20Soporte%20T%C3%A9cnico.',
+          cta_mail: 'Solicitar información por correo →',
+          cta_mail_href: 'mailto:hello@ushuaiasoporte.com?subject=Consulta%20Ushuaia%20Soporte%20T%C3%A9cnico',
+          footer_geo: 'Ushuaia · Tolhuin · Río Grande · El Calafate · Soporte Remoto Global',
+          pauseLabel: 'Pausar efecto',
+          resumeLabel: 'Activar modo cinemático'
+        },
+        en: {
+          htmlLang: 'en',
+          docTitle: 'Ushuaia Soporte Técnico · IT Infrastructure, Networks & Global Remote Support',
+          skip: 'Skip to main content',
+          nav_about: 'About',
+          nav_services: 'Services',
+          nav_sectors: 'Sectors',
+          nav_coverage: 'Coverage',
+          nav_contact: 'Contact',
+          nav_cta: 'Inquire',
+          rail_1: 'I · HOME',
+          rail_2: 'II · COVERAGE',
+          rail_3: 'III · SERVICES',
+          rail_4: 'IV · SECTORS',
+          rail_5: 'V · CONTACT',
+          hero_pill: 'TIERRA DEL FUEGO · PATAGONIA · GLOBAL REMOTE SUPPORT',
+          hero_sub: 'Infrastructure, corporate networks and IT assistance for organizations.',
+          hero_desc: 'Supporting business and institutional technology operations since 2014, with tailored engineering and direct human attention.',
+          scroll_cue: 'Scroll to explore ↓',
+          ter_eyebrow: '01 // Regional & global reach',
+          ter_title: 'Reliable technology from the End of the World.',
+          ter_desc: 'We deliver IT engineering and technical support headquartered in Ushuaia. We combine on-site regional presence across Southern Patagonia with remote technical assistance worldwide, without intermediaries.',
+          zone_base: 'HQ',
+          city_ush: 'Operations base and on-site service',
+          city_tol: 'Provincial coverage',
+          city_rg: 'Provincial coverage',
+          city_cal: 'Regional operations and support',
+          map_hud_label: 'COVERAGE MAP // SOUTHERN PATAGONIA',
+          map_foot_l: 'OPERATING SINCE 2014',
+          map_foot_r: 'ON-SITE PATAGONIA · WORLDWIDE REMOTE',
+          cityReadouts: [
+            'USHUAIA · OPERATIONS HQ',
+            'TOLHUIN · TIERRA DEL FUEGO',
+            'RÍO GRANDE · TIERRA DEL FUEGO',
+            'EL CALAFATE · PATAGONIA'
+          ],
+          cityReadoutAll: 'USHUAIA · TOLHUIN · RÍO GRANDE · EL CALAFATE',
+          map_ocean: 'ATLANTIC OCEAN',
+          map_strait: 'STRAIT OF MAGELLAN',
+          map_beagle: 'BEAGLE CHANNEL',
+          srv_eyebrow: '02 // What we do',
+          srv_title: 'Comprehensive IT services.',
+          srv_lead: 'Design, deployment and ongoing care of corporate technology environments.',
+          pill_1: '01 Networks',
+          pill_2: '02 Servers',
+          pill_3: '03 Support',
+          pill_4: '04 Backup',
+          pill_5: '05 Mail & Cloud',
+          pill_6: '06 Global Remote',
+          dialTitles: [
+            'Networks & Connectivity',
+            'Infrastructure & Servers',
+            'On-Site & Remote Support',
+            'Backup & Continuity',
+            'Email, Domains & Cloud',
+            'Global Remote Support'
+          ],
+          s1_t: 'Corporate Networks & Connectivity',
+          s1_d: 'Provision, architecture and deployment of wired and wireless networks for offices, public spaces and high-demand operations.',
+          s1_fl: 'Network infrastructure',
+          s1_fr: 'Design · Deployment',
+          s2_t: 'Infrastructure & Servers',
+          s2_d: 'Deployment, administration and maintenance of servers, secure remote access and core management environments.',
+          s2_fl: 'Operational core',
+          s2_fr: 'Stability · Control',
+          s3_t: 'On-Site & Remote Technical Support',
+          s3_d: 'Preventive and corrective assistance for workstations, office equipment, service desks and fast incident resolution.',
+          s3_fl: 'Direct assistance',
+          s3_fr: 'Preventive · Corrective',
+          s4_t: 'Backup & Business Continuity',
+          s4_d: 'Automated backup schemes, periodic system supervision and structured recovery for unexpected contingencies.',
+          s4_fl: 'Data protection',
+          s4_fr: 'Supervision · Recovery',
+          s5_t: 'Corporate Email, Domains & Cloud',
+          s5_d: 'Setup and migration of corporate email platforms, domain management and modern digital security practices.',
+          s5_fl: 'Digital identity',
+          s5_fr: 'Platforms · Security',
+          s6_t: 'Global Remote Support',
+          s6_d: 'Real-time remote technical assistance for teams and organizations anywhere in the world, delivered fluently in English and Spanish.',
+          s6_fl: 'Worldwide reach',
+          s6_fr: 'Global · EN / ES',
+          sec_eyebrow: '03 // Cross-industry experience',
+          sec_title: 'Industries we support.',
+          sec_lead: 'We tailor every solution to the pace, standards and operational criticality of each sector.',
+          k_priv: 'Private',
+          k_priv2: 'Private Sector',
+          k_bank: 'Banking',
+          k_hosp: 'Hospitality',
+          k_rest: 'Restaurants',
+          sec1_idx: 'SECTOR // 01',
+          sec1_tag: 'CORPORATE',
+          sec1_t: 'Private Sector',
+          sec1_d: 'Companies, administrative offices and professional practices.',
+          sec2_idx: 'SECTOR // 02',
+          sec2_tag: 'FINANCIAL',
+          sec2_t: 'Banking Sector',
+          sec2_d: 'High-demand environments requiring precision and operational confidentiality.',
+          sec3_idx: 'SECTOR // 03',
+          sec3_tag: '24/7 OPS',
+          sec3_t: 'Hospitality',
+          sec3_d: 'Continuous 24-hour operations across front desk, administration and guest connectivity.',
+          sec4_idx: 'SECTOR // 04',
+          sec4_tag: 'SERVICE',
+          sec4_t: 'Restaurants & Dining',
+          sec4_d: 'Service terminals, reliable connectivity and continuity during peak hours.',
+          cnt_eyebrow: '04 // Contact & quotes',
+          cnt_title: "Let's talk about your project.",
+          cnt_lead: 'Whether you need a quote, a network assessment or more information about our services, reach out directly through any of our channels.',
+          founder_line1: 'Ushuaia Soporte Técnico · Since 2014',
+          founder_line2: 'Ushuaia, Tierra del Fuego, Argentina',
+          ch_wa: 'Direct WhatsApp / Phone',
+          ch_hello: 'Inquiries & quotes',
+          ch_support: 'Technical support',
+          ch_admin: 'Administration',
+          ch_dir: 'Direction',
+          copyWord: 'Copy',
+          copiedPrefix: 'Copied: ',
+          cta_wa: 'Message on WhatsApp ↗',
+          cta_wa_href: 'https://wa.me/5492901519191?text=Hello%2C%20I%20would%20like%20to%20request%20information%20or%20a%20quote%20from%20Ushuaia%20Soporte%20T%C3%A9cnico.',
+          cta_mail: 'Request information by email →',
+          cta_mail_href: 'mailto:hello@ushuaiasoporte.com?subject=Inquiry%20Ushuaia%20Soporte%20Tecnico',
+          footer_geo: 'Ushuaia · Tolhuin · Río Grande · El Calafate · Global Remote Support',
+          pauseLabel: 'Pause effect',
+          resumeLabel: 'Enable cinematic mode'
+        }
+      };
+
       var reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
       var state = {
+        lang: 'es',
+        activeCityIdx: 0,
+        activeServiceIdx: 0,
         scrollNorm: 0,
         velocity: 0,
         targetMouseX: 0.5,
@@ -2165,8 +2532,65 @@
         reducedMotion: reducedMotionQuery.matches
       };
 
+      /* Resolve initial language (?lang=en or saved preference) */
+      try {
+        var urlLang = new URLSearchParams(window.location.search).get('lang');
+        var savedLang = localStorage.getItem('usp_lang');
+        if (urlLang === 'en' || urlLang === 'es') state.lang = urlLang;
+        else if (savedLang === 'en' || savedLang === 'es') state.lang = savedLang;
+      } catch (e) {}
+
+      function applyLanguage(lang) {
+        if (!I18N[lang]) return;
+        state.lang = lang;
+        var dict = I18N[lang];
+        document.documentElement.lang = dict.htmlLang;
+        document.title = dict.docTitle;
+
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n');
+          if (dict[key] !== undefined) el.textContent = dict[key];
+        });
+
+        document.querySelectorAll('[data-i18n-copy]').forEach(function (btn) {
+          var val = btn.getAttribute('data-copy') || '';
+          btn.textContent = dict.copyWord;
+          btn.setAttribute('aria-label', dict.copyWord + ' ' + val);
+        });
+
+        var ctaWa = document.getElementById('cta-whatsapp');
+        var ctaMail = document.getElementById('cta-email');
+        if (ctaWa) ctaWa.href = dict.cta_wa_href;
+        if (ctaMail) ctaMail.href = dict.cta_mail_href;
+
+        document.querySelectorAll('.lang-btn[data-set-lang]').forEach(function (btn) {
+          btn.setAttribute('aria-pressed', btn.getAttribute('data-set-lang') === lang ? 'true' : 'false');
+        });
+
+        var readoutEl = document.getElementById('active-city-readout');
+        if (readoutEl) {
+          readoutEl.textContent = (state.pausedByUser || state.reducedMotion)
+            ? dict.cityReadoutAll
+            : dict.cityReadouts[state.activeCityIdx];
+        }
+
+        var dialTitle = document.getElementById('dial-title');
+        if (dialTitle) {
+          dialTitle.textContent = dict.dialTitles[state.activeServiceIdx] || '';
+        }
+
+        syncMotionToggleUI();
+        try { localStorage.setItem('usp_lang', lang); } catch (e) {}
+      }
+
+      document.querySelectorAll('.lang-btn[data-set-lang]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          applyLanguage(btn.getAttribute('data-set-lang'));
+        });
+      });
+
       /* =======================================================================
-         1. SCROLL PROGRESS FALLBACK (modern-web-guidance: scroll-progress-indicator)
+         1. SCROLL PROGRESS FALLBACK
          ======================================================================= */
       var progressEl = document.getElementById('scroll-progress');
       var supportsNativeScrollTimeline = window.CSS && CSS.supports && CSS.supports('animation-timeline', 'scroll()');
@@ -2327,7 +2751,6 @@
 
       /* =======================================================================
          3. SINGLE-SCROLL CINEMATIC CHOREOGRAPHY (GSAP 3.13 + LENIS)
-            With explicit WCAG 2.2.2 Pause / Full-Motion Runtime Switcher
          ======================================================================= */
       var lenis = null;
       var serviceTrigger = null;
@@ -2349,7 +2772,7 @@
         var allowFull = !state.pausedByUser && !state.reducedMotion;
 
         if (allowFull) {
-          cinematicCtx = gsap.context(function (ctx) {
+          cinematicCtx = gsap.context(function () {
             var cleanups = [];
             if (window.Lenis) {
               lenis = new Lenis({
@@ -2369,7 +2792,7 @@
             }
 
             if (isDesktop) {
-              /* --- ACTO I: MONUMENTAL FARO PORTAL SPLIT --- */
+              /* ACTO I: MONUMENTAL FARO PORTAL SPLIT */
               var heroH1 = document.getElementById('hero-h1');
               var splitH1 = null;
               if (window.SplitText && heroH1) {
@@ -2406,17 +2829,11 @@
                 .to('#faro-beam', { scaleY: 1, duration: 0.65, ease: 'power2.out' }, 0.16)
                 .to('#hero-copy', { y: -44, scale: 1.06, opacity: 0.1, duration: 0.85, ease: 'power1.in' }, 0.2);
 
-              /* --- ACTO II: PINNED PATAGONIAN CONSTELLATION ROUTE --- */
+              /* ACTO II: PINNED PATAGONIAN GEOGRAPHIC ROUTE */
               var routePath = document.getElementById('patagonia-route');
               var cityCards = document.querySelectorAll('#cities-list .city-card');
               var mapNodes = document.querySelectorAll('.map-node-group');
               var readoutEl = document.getElementById('active-city-readout');
-              var cityMeta = [
-                'USHUAIA · 54°48′S 68°18′W',
-                'TOLHUIN · 54°30′S 67°11′W',
-                'RÍO GRANDE · 53°47′S 67°42′W',
-                'EL CALAFATE · 50°20′S 72°16′W'
-              ];
 
               if (routePath) {
                 var routeLen = routePath.getTotalLength();
@@ -2434,16 +2851,17 @@
                     anticipatePin: 1,
                     onUpdate: function (self) {
                       var p = self.progress;
-                      var activeIdx = p < 0.28 ? 0 : (p < 0.54 ? 1 : (p < 0.80 ? 2 : 3));
+                      var activeIdx = p < 0.22 ? 0 : (p < 0.45 ? 1 : (p < 0.72 ? 2 : 3));
+                      state.activeCityIdx = activeIdx;
                       cityCards.forEach(function (c, idx) { c.classList.toggle('is-lit', idx <= activeIdx); });
                       mapNodes.forEach(function (n, idx) { n.classList.toggle('is-lit', idx <= activeIdx); });
-                      if (readoutEl) readoutEl.textContent = cityMeta[activeIdx];
+                      if (readoutEl) readoutEl.textContent = I18N[state.lang].cityReadouts[activeIdx];
                     }
                   }
                 });
               }
 
-              /* --- ACTO III: 3D SPATIAL PERSPECTIVE DECK + ORBITAL DIAL --- */
+              /* ACTO III: 6-CARD 3D SPATIAL DECK + ORBITAL DIAL */
               var deckEl = document.getElementById('service-deck');
               var cards = gsap.utils.toArray('#service-deck .service-prism-card');
               var dialRotator = document.getElementById('dial-rotator');
@@ -2451,7 +2869,7 @@
               var dialTitle = document.getElementById('dial-title');
               var pillBtns = document.querySelectorAll('.service-pill-btn');
 
-              if (deckEl && cards.length === 5) {
+              if (deckEl && cards.length === 6) {
                 deckEl.classList.add('is-3d-deck');
                 cleanups.push(function () { deckEl.classList.remove('is-3d-deck'); });
 
@@ -2470,16 +2888,20 @@
                   scrollTrigger: {
                     trigger: '#servicios',
                     start: 'top top',
-                    end: '+=320%',
+                    end: '+=380%',
                     pin: true,
                     scrub: 0.7,
                     anticipatePin: 1,
                     onUpdate: function (self) {
-                      var idx = Math.min(4, Math.floor(self.progress * 4.999));
+                      var idx = Math.min(5, Math.floor(self.progress * 5.999));
+                      state.activeServiceIdx = idx;
                       if (dialCurrent) dialCurrent.textContent = '0' + (idx + 1);
-                      if (dialTitle) dialTitle.textContent = cards[idx].getAttribute('data-short-title') || '';
+                      if (dialTitle) dialTitle.textContent = I18N[state.lang].dialTitles[idx] || '';
                       pillBtns.forEach(function (btn, bIdx) {
-                        btn.classList.toggle('is-active', bIdx === idx);
+                        var active = bIdx === idx;
+                        btn.classList.toggle('is-active', active);
+                        if (active) btn.setAttribute('aria-current', 'step');
+                        else btn.removeAttribute('aria-current');
                       });
                     }
                   }
@@ -2487,7 +2909,7 @@
                 serviceTrigger = deckTl.scrollTrigger;
 
                 if (dialRotator) {
-                  deckTl.to(dialRotator, { rotation: 288, ease: 'none', duration: 4 }, 0);
+                  deckTl.to(dialRotator, { rotation: 300, ease: 'none', duration: 5 }, 0);
                 }
 
                 for (var i = 1; i < cards.length; i++) {
@@ -2515,7 +2937,7 @@
                 }
               }
 
-              /* --- ACTO IV: ECCENTRIC COUNTER-SCROLLING KINETIC MARQUEE + LENSES --- */
+              /* ACTO IV: CRISP SOLID COUNTER-SCROLLING KINETIC MARQUEE + LENSES */
               gsap.fromTo('#kinetic-row-1',
                 { xPercent: 4 },
                 {
@@ -2557,7 +2979,7 @@
                 }
               });
 
-              /* --- ACTO V: CIRCULAR IRIS PORTAL REVEAL --- */
+              /* ACTO V: CIRCULAR IRIS PORTAL REVEAL */
               gsap.fromTo('#contact-portal',
                 { clipPath: 'circle(24% at 50% 48%)', scale: 0.94 },
                 {
@@ -2582,40 +3004,34 @@
             };
           });
         } else {
-          /* Calm Reduced-Motion Mode: all 4 Patagonian cities clearly lit, zero jarring motion */
           reducedCtx = gsap.context(function () {
             document.querySelectorAll('#cities-list .city-card, .map-node-group').forEach(function (el) {
               el.classList.add('is-lit');
             });
             var readoutEl = document.getElementById('active-city-readout');
-            if (readoutEl) readoutEl.textContent = 'USHUAIA · TOLHUIN · RÍO GRANDE · EL CALAFATE';
+            if (readoutEl) readoutEl.textContent = I18N[state.lang].cityReadoutAll;
           });
         }
 
         ScrollTrigger.refresh();
+        syncChapterRailTriggers();
       }
 
-      if (window.gsap && window.ScrollTrigger) {
-        gsap.registerPlugin(ScrollTrigger);
-        if (window.SplitText) gsap.registerPlugin(SplitText);
-        mountScrollChoreography();
+      var sectionIds = ['#inicio', '#nosotros', '#servicios', '#sectores', '#contacto'];
+      var railDots = document.querySelectorAll('.chapter-dot');
+      var navLinks = document.querySelectorAll('.nav-links a');
+      var navTriggers = [];
 
-        var resizeTimer = null;
-        window.addEventListener('resize', function () {
-          clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(mountScrollChoreography, 220);
-        });
-
-        /* Active Chapter Highlighting (All Viewports & Modes) */
-        var sectionIds = ['#inicio', '#nosotros', '#servicios', '#sectores', '#contacto'];
-        var railDots = document.querySelectorAll('.chapter-dot');
-        var navLinks = document.querySelectorAll('.nav-links a');
-
+      function syncChapterRailTriggers() {
+        if (!window.ScrollTrigger) return;
+        navTriggers.forEach(function (t) { try { t.kill(); } catch (e) {} });
+        navTriggers = [];
         sectionIds.forEach(function (id, idx) {
           var sec = document.querySelector(id);
           if (!sec) return;
-          ScrollTrigger.create({
-            trigger: sec,
+          var triggerEl = (sec.parentElement && sec.parentElement.classList.contains('pin-spacer')) ? sec.parentElement : sec;
+          navTriggers.push(ScrollTrigger.create({
+            trigger: triggerEl,
             start: 'top 45%',
             end: 'bottom 45%',
             onToggle: function (self) {
@@ -2627,21 +3043,22 @@
                 a.classList.toggle('is-active', target === clean);
               });
             }
-          });
+          }));
         });
       }
 
-      /* WCAG 2.2.2 Pause / Resume & Full Cinematic Toggle (always attached regardless of WebGL) */
+      /* WCAG 2.2.2 Pause / Resume Control */
       var toggleBtn = document.getElementById('motion-toggle');
       var toggleLabel = document.getElementById('motion-toggle-label');
       function syncMotionToggleUI() {
         if (!toggleBtn || !toggleLabel) return;
         var paused = state.pausedByUser || state.reducedMotion;
+        var dict = I18N[state.lang];
         document.body.classList.toggle('motion-paused', paused);
         toggleBtn.classList.toggle('is-paused', paused);
-        toggleLabel.textContent = paused ? 'Activar modo cinemático' : 'Pausar efecto';
+        toggleLabel.textContent = paused ? dict.resumeLabel : dict.pauseLabel;
       }
-      syncMotionToggleUI();
+
       if (toggleBtn) {
         toggleBtn.addEventListener('click', function () {
           if (state.reducedMotion || state.pausedByUser) {
@@ -2653,6 +3070,20 @@
           syncMotionToggleUI();
           mountScrollChoreography();
           if (!state.pausedByUser && !state.reducedMotion) kickShader();
+        });
+      }
+
+      applyLanguage(state.lang);
+
+      if (window.gsap && window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+        if (window.SplitText) gsap.registerPlugin(SplitText);
+        mountScrollChoreography();
+
+        var resizeTimer = null;
+        window.addEventListener('resize', function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(mountScrollChoreography, 220);
         });
       }
 
@@ -2682,14 +3113,13 @@
         btn.addEventListener('click', function () {
           var idx = parseInt(btn.getAttribute('data-service-jump'), 10);
           if (serviceTrigger && !isNaN(idx)) {
-            var targetY = serviceTrigger.start + (serviceTrigger.end - serviceTrigger.start) * (idx / 4.25);
+            var targetY = serviceTrigger.start + (serviceTrigger.end - serviceTrigger.start) * (idx / 5.25);
             if (lenis) lenis.scrollTo(targetY, { duration: 0.9 });
             else window.scrollTo({ top: targetY, behavior: 'smooth' });
           }
         });
       });
 
-      /* 1-Click Copy Channels + Accessible Toast */
       var toast = document.getElementById('copy-toast');
       var toastTimer = null;
 
@@ -2707,11 +3137,12 @@
         btn.addEventListener('click', function () {
           var val = btn.getAttribute('data-copy');
           if (!val) return;
+          var prefix = I18N[state.lang].copiedPrefix;
           if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(val).then(function () {
-              showToast('Copiado: ' + val);
+              showToast(prefix + val);
             }).catch(function () {
-              showToast('Seleccioná manualmente: ' + val);
+              showToast(val);
             });
           } else {
             var ta = document.createElement('textarea');
@@ -2720,7 +3151,7 @@
             ta.style.opacity = '0';
             document.body.appendChild(ta);
             ta.select();
-            try { document.execCommand('copy'); showToast('Copiado: ' + val); } catch (err) {}
+            try { document.execCommand('copy'); showToast(prefix + val); } catch (err) {}
             document.body.removeChild(ta);
           }
         });
